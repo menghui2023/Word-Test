@@ -1,0 +1,2589 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>高級中等學校英文單字比賽 - 區域決賽模擬試題</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid #d1d5db; padding: 0.75rem; }
+        th { background-color: #f9fafb; font-weight: bold; }
+        @media print {
+            body { background-color: #ffffff; font-size: 11pt; padding-bottom: 0 !important; }
+            .paper-container { box-shadow: none !important; padding: 0 !important; margin: 0 !important; max-width: 100% !important; border: none !important; }
+            .no-print { display: none !important; }
+            .speak-btn { display: none !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            input[type="text"] { border: none !important; border-bottom: 1px solid #000 !important; border-radius: 0 !important; background: transparent !important; padding: 0 !important; box-shadow: none !important; }
+            input[type="radio"] { -webkit-appearance: none !important; appearance: none !important; border: 1px solid #000 !important; width: 14px !important; height: 14px !important; border-radius: 50% !important; background-color: transparent !important; display: inline-block !important; margin-right: 6px !important; }
+            select { -webkit-appearance: none !important; appearance: none !important; border: none !important; border-bottom: 1px solid #000 !important; background: transparent !important; color: transparent !important; box-shadow: none !important; width: 60px !important; padding: 0 !important; }
+            #answerSection { page-break-before: always; border: none !important; background: none !important; padding: 0 !important; margin-top: 0 !important; }
+        }
+        
+        /* 增加平滑過渡效果 */
+        .modal-transition {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        /* 手機版底部導覽列留白 */
+        .mobile-pb {
+            padding-bottom: 5rem;
+        }
+        @media (min-width: 640px) {
+            .mobile-pb {
+                padding-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased mobile-pb">
+
+<!-- 測驗結果 Modal -->
+<div id="score-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
+    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl text-center max-w-sm w-full mx-auto transform transition-all scale-95 opacity-0" id="score-modal-content">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-gray-800">測驗結果</h2>
+        <div class="my-4 sm:my-6">
+            <span class="text-5xl sm:text-6xl font-extrabold text-indigo-600" id="score-display">0</span>
+            <span class="text-lg sm:text-xl text-gray-500 font-bold"> / 100</span>
+        </div>
+        <p class="text-sm sm:text-base text-gray-600 mb-6 font-medium">請往下捲動查看正確解答與詳解！</p>
+        <button id="score-close-btn" class="w-full bg-indigo-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-indigo-700 transition duration-200 shadow">查看試卷</button>
+    </div>
+</div>
+
+<!-- 學習紀錄 Modal -->
+<div id="history-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
+    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full mx-auto transform transition-all max-h-[85vh] flex flex-col scale-95 opacity-0" id="history-modal-content">
+        <div class="flex justify-between items-center border-b-2 border-yellow-200 pb-3 mb-4 shrink-0">
+            <h2 class="text-xl sm:text-2xl font-bold text-yellow-700">📊 學習紀錄 (本次練習)</h2>
+            <button id="history-close-x" class="text-gray-500 hover:text-red-500 text-2xl font-bold transition-colors">&times;</button>
+        </div>
+        <div class="overflow-y-auto flex-1 mb-4">
+            <table class="w-full text-center border-collapse text-sm sm:text-base">
+                <thead class="sticky top-0 bg-white">
+                    <tr class="bg-yellow-50 text-yellow-800">
+                        <th class="border border-yellow-200 p-2">時間</th>
+                        <th class="border border-yellow-200 p-2">題庫</th>
+                        <th class="border border-yellow-200 p-2">得分</th>
+                    </tr>
+                </thead>
+                <tbody id="history-tbody" class="bg-white">
+                    <tr><td colspan="3" class="p-4 text-gray-500">尚無測驗紀錄</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <button id="history-close-btn" class="w-full bg-gray-800 text-white px-4 py-3 rounded-lg font-bold hover:bg-gray-900 transition duration-200 shadow shrink-0">關閉</button>
+    </div>
+</div>
+
+<!-- 教師管理後臺 Modal (自訂匯入用) -->
+<div id="admin-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
+    <div class="bg-white p-5 sm:p-8 rounded-xl shadow-2xl max-w-3xl w-full mx-auto transform transition-all max-h-[90vh] overflow-y-auto flex flex-col scale-95 opacity-0" id="admin-modal-content">
+        <div class="flex justify-between items-center border-b-2 border-indigo-200 pb-3 mb-4 shrink-0">
+            <h2 class="text-xl sm:text-2xl font-bold text-indigo-800">⚙️ 自訂題庫管理</h2>
+            <button id="admin-close-x" class="text-gray-500 hover:text-red-500 text-2xl font-bold transition-colors">&times;</button>
+        </div>
+        
+        <div id="admin-bank-section" class="flex-1">
+            <p class="text-gray-700 mb-4 text-sm sm:text-base">請貼上您自行準備的單字庫與文章，系統會自動整合出卷。</p>
+            
+            <div class="mb-4 bg-indigo-50 p-3 sm:p-4 rounded border border-indigo-200">
+                <label class="block text-indigo-800 font-bold mb-2 text-sm sm:text-base">📥 選擇單字檔案上傳 (或直接貼於下方)</label>
+                <input type="file" id="file-upload" accept=".json, .txt" class="block w-full text-xs sm:text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer transition-colors">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-800 font-bold mb-2 text-sm sm:text-base">📋 1. 必填：單字題庫 JSON</label>
+                <textarea id="json-input" class="w-full h-24 sm:h-32 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-indigo-500 outline-none" placeholder='請貼上超過40個單字的 JSON 陣列。'></textarea>
+            </div>
+
+            <div class="mb-6 bg-green-50 p-3 sm:p-4 rounded border border-green-200">
+                <label class="block text-green-800 font-bold mb-2 text-sm sm:text-base">📝 2. 選填：克漏字文章題庫 JSON</label>
+                <textarea id="cloze-json-input" class="w-full h-24 sm:h-32 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-green-500 outline-none" placeholder='若留空，系統將自動使用符合進階程度的內建克漏字文章。'></textarea>
+            </div>
+
+            <button id="import-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition duration-200 text-base sm:text-lg">💾 儲存自訂題庫並出卷</button>
+            <p id="admin-msg" class="text-center font-bold mt-3 hidden text-sm sm:text-base"></p>
+        </div>
+    </div>
+</div>
+
+<!-- 單字總表 Modal -->
+<div id="wordlist-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
+    <div class="bg-white p-5 sm:p-8 rounded-xl shadow-2xl max-w-2xl w-full mx-auto transform transition-all max-h-[90vh] flex flex-col scale-95 opacity-0" id="wordlist-modal-content">
+        <div class="flex justify-between items-center border-b-2 border-blue-200 pb-3 mb-3 shrink-0">
+            <h2 class="text-xl sm:text-2xl font-bold text-blue-800">📖 本範圍單字總表</h2>
+            <button id="wordlist-close-x" class="text-gray-500 hover:text-red-500 text-2xl font-bold transition-colors">&times;</button>
+        </div>
+        <div class="mb-2 text-xs sm:text-sm text-gray-600 font-bold shrink-0" id="wordlist-count"></div>
+        <div class="overflow-y-auto flex-1 mb-4 border border-gray-200 rounded">
+            <table class="w-full text-left border-collapse text-xs sm:text-base">
+                <thead class="sticky top-0 bg-blue-100 shadow-sm z-10">
+                    <tr class="text-blue-900">
+                        <th class="p-2 border-b border-blue-200 whitespace-nowrap">單字</th>
+                        <th class="p-2 border-b border-blue-200 text-center whitespace-nowrap">詞性</th>
+                        <th class="p-2 border-b border-blue-200 hidden sm:table-cell">音標</th>
+                        <th class="p-2 border-b border-blue-200">中文解釋</th>
+                    </tr>
+                </thead>
+                <tbody id="wordlist-tbody" class="bg-white divide-y divide-gray-100">
+                    <tr><td colspan="4" class="p-4 text-center text-gray-500">載入中...</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <button id="wordlist-close-btn" class="w-full bg-gray-800 text-white px-4 py-3 rounded-lg font-bold hover:bg-gray-900 transition duration-200 shadow shrink-0">關閉</button>
+    </div>
+</div>
+
+<!-- 響應式懸浮按鈕/底部導覽列 -->
+<div class="fixed bottom-0 left-0 w-full sm:bottom-6 sm:right-6 sm:left-auto sm:w-auto z-50 no-print flex flex-row sm:flex-col justify-around sm:justify-end gap-1 sm:gap-2 bg-gray-900 sm:bg-transparent p-2 sm:p-0 shadow-[0_-4px_15px_rgba(0,0,0,0.2)] sm:shadow-none transition-opacity opacity-95 hover:opacity-100">
+    <div id="paper-indicator" class="hidden sm:block bg-gray-800 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-t-lg text-center shadow-lg tracking-wider">全真模擬試卷</div>
+    
+    <button id="nav-wordlist" class="flex-1 sm:flex-none bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
+        <span class="text-lg sm:text-xl leading-none">📖</span> 
+        <span class="hidden sm:inline">單字總表</span><span class="sm:hidden leading-none mt-1">單字</span>
+    </button>
+    
+    <button id="nav-history" class="flex-1 sm:flex-none bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
+        <span class="text-lg sm:text-xl leading-none">📊</span> 
+        <span class="hidden sm:inline">我的成績</span><span class="sm:hidden leading-none mt-1">成績</span>
+    </button>
+    
+    <button id="nav-admin" class="flex-1 sm:flex-none bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
+        <span class="text-lg sm:text-xl leading-none">⚙️</span> 
+        <span class="hidden sm:inline">管理題庫</span><span class="sm:hidden leading-none mt-1">管理</span>
+    </button>
+    
+    <button id="nav-new" class="flex-1 sm:flex-none bg-green-600 hover:bg-green-700 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded-b-lg shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
+        <span class="text-lg sm:text-xl leading-none">🎲</span> 
+        <span class="hidden sm:inline">產生新卷</span><span class="sm:hidden leading-none mt-1">新卷</span>
+    </button>
+</div>
+
+<!-- 主要試卷容器 -->
+<div class="paper-container bg-white max-w-5xl mx-auto my-0 sm:my-8 p-4 sm:p-10 md:p-14 sm:shadow-lg sm:rounded-xl">
+    <div class="flex flex-col sm:flex-row justify-between items-start border-b-2 border-gray-800 pb-4 mb-6 gap-4 sm:gap-0">
+        <div class="w-full">
+            <h1 class="text-xl sm:text-2xl font-bold tracking-wider">高級中等學校英文單字比賽</h1>
+            
+            <!-- 題庫下拉選單區 -->
+            <div class="mt-3 sm:mt-4 flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 bg-indigo-50 p-2 rounded border border-indigo-100 no-print w-full sm:w-auto">
+                <span class="font-bold text-indigo-800 text-sm sm:text-base shrink-0">選擇測驗範圍：</span>
+                <select id="bank-selector" class="border-2 border-indigo-300 rounded p-1 text-indigo-900 font-bold focus:outline-none focus:border-indigo-600 cursor-pointer bg-white transition-colors text-sm sm:text-base w-full sm:max-w-xs truncate">
+                    <optgroup label="📚 三民 Level 3">
+                        <option value="level3_1_10">Unit 1-10</option>
+                        <option value="level3_11_20">Unit 11-20</option>
+                        <option value="level3_21_30">Unit 21-30</option>
+                        <option value="level3_31_40">Unit 31-40</option>
+                    </optgroup>
+                    <optgroup label="📘 三民 Level 4">
+                        <option value="level4_1_10">Unit 1-10</option>
+                    </optgroup>
+                    <optgroup label="📙 三民 Level 5">
+                        <option value="level5_1_10">Unit 1-10</option>
+                        <option value="level5_11_20">Unit 11-20</option>
+                    </optgroup>
+                    <optgroup label="📕 三民 Level 6">
+                        <option value="level6_1_10">Unit 1-10</option>
+                        <option value="level6_11_20">Unit 11-20</option>
+                        <option value="level6_21_30">Unit 21-30</option>
+                        <option value="level6_31_40">Unit 31-40</option>
+                    </optgroup>
+                    <optgroup label="📗 三民 Plus">
+                        <option value="plus_1_10">Unit 1-10</option>
+                    </optgroup>
+                    <optgroup label="自訂">
+                        <option value="custom">⚙️ 自訂 / 上傳題庫...</option>
+                    </optgroup>
+                </select>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-gray-500 mt-2" id="pool-status-display">題庫單字量：載入中...</p>
+        </div>
+    </div>
+
+    <div class="mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed bg-gray-50 p-3 sm:p-4 rounded border border-gray-200">
+        <p class="font-bold mb-1 text-gray-800">競賽說明與注意事項：</p>
+        <ul class="list-decimal pl-5 space-y-1 text-gray-700">
+            <li>測驗一「聽英拼寫」10題；測驗二「詞彙題」15題 (含單選、配對、短文克漏字)。</li>
+            <li>請務必以<span class="font-bold text-red-600">全小寫</span>輸入正確拼字。</li>
+            <li>測驗二請依照題意，選擇最適合的選項。</li>
+        </ul>
+    </div>
+
+    <!-- 測驗一：聽英拼寫 -->
+    <div class="mb-8 sm:mb-10">
+        <h3 class="text-base sm:text-xl font-bold mb-3 sm:mb-4 bg-gray-200 p-2 border-l-4 border-gray-800">測驗一：「聽英拼寫」10 題</h3>
+        <p class="mb-3 text-xs sm:text-sm text-indigo-600 font-bold no-print animate-pulse">👉 提示：點擊喇叭圖示聆聽發音，並使用全小寫作答。</p>
+        <div class="w-full border border-gray-300 rounded shadow-sm overflow-hidden">
+            <table class="w-full text-left text-sm sm:text-base table-fixed sm:table-auto">
+                <thead>
+                    <tr class="bg-gray-50">
+                        <th class="w-10 sm:w-16 text-center py-2 sm:py-3">題號</th>
+                        <th class="w-12 sm:w-20 text-center speak-btn">發音</th>
+                        <th class="w-auto py-2 sm:py-3">英文單字拼寫</th>
+                        <th class="w-16 sm:w-24 text-center">詞性</th>
+                    </tr>
+                </thead>
+                <tbody id="spelling-tbody" class="bg-white divide-y divide-gray-200"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 測驗二：詞彙題 -->
+    <div id="exam-part-2">
+        <h3 class="text-base sm:text-xl font-bold mb-4 bg-gray-200 p-2 border-l-4 border-gray-800">測驗二：「詞彙題」15 題</h3>
+        
+        <h4 class="font-bold text-sm sm:text-lg mt-6 mb-3 text-gray-800 border-b border-gray-300 pb-1">一、 單句詞彙選擇題 (Multiple Choice)</h4>
+        <div id="mcq-container" class="space-y-3 sm:space-y-4"></div>
+
+        <h4 class="font-bold text-sm sm:text-lg mt-8 sm:mt-10 mb-3 text-gray-800 border-b border-gray-300 pb-1">二、 題組一：單句填空配對 (Sentence Matching)</h4>
+        <div class="border-2 border-indigo-200 bg-indigo-50 p-3 sm:p-4 flex flex-wrap gap-2 sm:gap-4 justify-center font-bold mb-4 sm:mb-6 rounded-lg shadow-inner text-sm sm:text-base" id="matching-wordbank"></div>
+        <div class="space-y-3 sm:space-y-4 pl-1 sm:pl-2 text-sm sm:text-base text-gray-800" id="matching-questions"></div>
+
+        <!-- 短文克漏字題組 -->
+        <h4 class="font-bold text-sm sm:text-lg mt-8 sm:mt-10 mb-3 text-gray-800 border-b border-gray-300 pb-1">三、 題組二：短文篇章克漏字 (Passage Cloze Test)</h4>
+        <div class="border-2 border-green-200 bg-green-50 p-3 sm:p-4 flex flex-wrap gap-2 sm:gap-4 justify-center font-bold mb-4 sm:mb-6 rounded-lg shadow-inner text-sm sm:text-base" id="cloze-wordbank"></div>
+        <div class="leading-relaxed sm:leading-loose text-justify text-sm sm:text-lg space-y-3 sm:space-y-4 px-1 sm:px-2 text-gray-800" id="cloze-text"></div>
+    </div>
+    
+    <div class="mt-10 sm:mt-12 text-center no-print">
+        <hr class="border-t border-dashed border-gray-400 mb-6">
+        <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+            <button id="submit-btn" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-3 sm:py-4 px-8 rounded-lg shadow-lg transition duration-300 transform hover:-translate-y-1 text-base sm:text-lg">
+                📝 交卷並查看成績
+            </button>
+            <button id="toggle-answers-btn" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 sm:py-4 px-6 rounded-lg shadow-lg transition duration-300 text-base sm:text-lg">
+                👨‍🏫 顯示測驗詳解
+            </button>
+        </div>
+    </div>
+
+    <div id="answerSection" class="hidden mt-8 sm:mt-10 bg-gray-50 p-4 sm:p-10 rounded-xl border-2 border-gray-300 shadow-inner">
+        <h2 class="text-lg sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 text-center border-b-2 border-gray-300 pb-2 sm:pb-3">解答與詳解 (Answer Key)</h2>
+        <div id="answers-container"></div>
+    </div>
+</div>
+
+<script>
+    // ==========================================
+    // 內建題庫資料庫 (Raw Text format)
+    // ==========================================
+    
+    const rawDataLevel3_1_10 = `award	n.	獎，獎品	Emma has won many _____ for swimming.
+award	v.	給予，授予	They _____ the athlete a gold medal for her excellent performance.
+bubble	n.	泡泡	It is relaxing to take a _____ bath after a long day of work.
+cave	n.	洞穴	There are many bats living in that _____.
+cave	v.	塌落，倒塌	Because of the chemical factory explosion, the roofs of the nearby houses all _____ in.
+communicate	v.	溝通	Many parents find it hard to _____ with their children.
+county	n.	縣	The Tropic of Cancer goes through Chiayi _____.
+dine	v.	享用正餐	The Smiths invited me to _____ with them.
+enable	v.	使能夠	The new treatment _____ the patient to recover very soon.
+hollow	adj.	中空的	The squirrel hid in a big _____ tree.
+hollow	n.	坑，洞	The government should do something about the _____ in the streets.
+hollow	v.	挖空	The green activists were angry at _____ out a tunnel in the mountain.
+inform	v.	通知	The leader held a meeting to _____ everyone of the new sales figures.
+knit	v.	編織	The grandmother is _____ a sweater for her grandson.
+mostly	adv.	大部分，主要地	The customers of that store are _____ women.
+ownership	n.	所有權	The _____ of the restaurant has changed.
+passage	n.	通行；通道	The reporter forced a _____ through the crowd.
+patience	n.	耐心	The teacher always has a lot of _____ with her students.
+persuade	v.	說服	The manager has _____ his boss that the project is a good investment.
+poverty	n.	貧窮	Unable to earn a living, the old woman lived in _____.
+replace	v.	取代	For the sake of health, many people nowadays _____ butter with olive oil in cooking.
+replacement	n.	取代，替代；替代品	In some factories, the _____ of human workers by robots has become common.
+risk	n.	風險，危險	Andy ran the _____ of losing all his savings when he invested in the stock market.
+risk	v.	冒...的風險	You should not _____ your health by smoking.
+rough	adj.	粗糙的	The man's hands are very _____.
+sticky	adj.	黏的	The glue left my fingers _____.
+stomach	n.	胃	Don't swim on a full _____.
+temporary	adj.	暫時的	Gary's house collapsed in the earthquake, so he and his family are living in a _____ shelter.
+vanish	v.	消失	When Betty heard the bad news, her smile _____ immediately.
+weekly	adj.	每週的	Sam pays a _____ visit to his parents in Taichung.
+bamboo	n.	竹子	_____ shoots are very delicious.
+bucket	n.	水桶	Mrs. Chen carried a _____ and a mop to clean the balcony.
+cheek	n.	臉頰	My mother kissed me on the _____ and said "Good night."
+connect	v.	連結，連接	The United Kingdom is _____ to France by the Channel Tunnel.
+dairy	n.	乳製品	Since Elena has an allergy to milk, the doctor asks her to avoid _____.
+dinosaur	n.	恐龍	The museum houses several _____ fossils.
+erase	v.	擦掉，抹去	The teacher asked Ella to _____ the words on the blackboard.
+imagination	n.	想像力	The poet has a vivid _____.
+intelligent	adj.	聰明的	Life becomes easier with the application of the _____ devices like computers and smartphones.
+leak	n.	漏洞，裂縫	Roger found a _____ in the roof of his house.
+opportunity	n.	機會	The attendees have the _____ to win a free concert ticket.
+passion	n.	熱情，熱愛	The councilor spoke with _____ about what she would do to help the people in need.
+pile	n.	一堆	There is a _____ of dirty clothes in the corner.
+pile	v.	堆放	The professor _____ his teaching materials on the desk.
+practical	adj.	實際的，實用的	Your plan is not very _____. I am afraid it won't be put into practice.
+process	n.	過程	My company is in the _____ of merging with another firm.
+puppet	n.	木偶	Children like to go to _____ shows.
+situation	n.	情況，處境	Frank still stays positive in such a difficult _____.
+strategy	n.	策略	The government should work out an effective _____ for fighting crime.
+tablet	n.	藥片，藥錠	Take three _____ a day after meals.
+threat	n.	威脅	Reckless driving poses a serious _____ to pedestrians.
+tourist	n.	觀光客	_____ attractions are always crowded with _____ in high season.
+vision	n.	視力，視覺；遠見	The boxer lost _____ in one of his eyes.
+yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
+
+    const rawDataLevel3_11_20 = `agriculture	n.	農業	People in this area depend on _____ for a living.
+attractive	adj.	有吸引力的	Everything about the singer is _____ to his loyal fans.
+bacon	n.	培根	Please give me a slice of _____.
+career	n.	職業，生涯	Pursuing a _____ in medicine, the young doctor committed himself to treating people in the poor village.
+clown	n.	小丑	Nancy likes the _____ best at the circus.
+cricket	n.	蟋蟀	Male _____ chirp at night in order to attract female _____.
+criminal	adj.	犯罪的	People with a _____ record sometimes find it hard to get a job.
+dramatic	adj.	戲劇性的，巨大的	Justin went abroad for only a few months, but you could notice a _____ change in his behavior.
+educate	v.	教育	Schools should _____ children about the importance of recycling.
+educational	adj.	有教育意義的	A good children's book is not only fun but _____ as well.
+expectation	n.	期望，預期	Eric has to study hard to live up to his parents' _____.
+expressive	adj.	表達的，表情豐富的	The poem was _____ of the writer's ideas about life.
+frank	adj.	坦白的，真誠的	Annie is pretty _____ about her opinions.
+kingdom	n.	王國	The king ruled over a large _____.
+lung	n.	肺	Hogan breathed deeply to fill his _____ with fresh air.
+motel	n.	汽車旅館	When traveling by car, you can choose a _____, where you can park your car outside the room.
+paradise	n.	天堂，樂園	It is generally believed that good people will go to _____ after they die.
+political	adj.	政治的	This country has several _____ parties.
+prevent	v.	預防，阻止	The heavy rain _____ my brother from going out.
+reserve	n.	儲備，保護區	My parents keep a large _____ of water and food for typhoons.
+reserve	v.	保留，預訂	Priority seats are _____ for the passengers in need.
+sorrow	n.	悲傷	A friend is someone that can share your joys and _____.
+technical	adj.	技術的，專門的	Josh played the piano with _____ precision but little warmth.
+tower	n.	塔，高樓	I got to the top of Tokyo _____ to enjoy the panorama of the city.
+urban	adj.	都市的	Fiona cannot stand the hectic pace of _____ life.
+wealthy	adj.	富有的	The _____ old man decided to donate all his money to charities.
+additional	adj.	額外的，附加的	There will be an _____ charge for overweight baggage when you check in.
+arrest	n.	逮捕	The thief was quickly put under _____.
+awful	adj.	糟糕的，可怕的	Ben had to cancel the picnic because of the _____ weather.
+basement	n.	地下室	Mrs. Lin stored the old furniture in the _____ of her house.
+cattle	n.	牛群	A herd of _____ is grazing in the field.
+complain	v.	抱怨	Mr. Liu often _____ about his monotonous job.
+decorate	v.	裝飾	The church is _____ with flowers for the wedding.
+decrease	v.	減少	People have to _____ the amount of water they use by 55% because of the worsening drought.
+designer	n.	設計師	The show features the clothes made by the fashion _____, Jason.
+election	n.	選舉	The mayoral _____ will be held tomorrow.
+engage	v.	聘用，從事，訂婚	The manager decided to _____ Tom as an office assistant.
+experiment	n.	實驗	It is in question whether scientists should do _____ on living animals.
+faith	n.	信心，信仰	Rita has lost _____ in Christianity since the church scandal erupted.
+gap	n.	裂縫，缺口，代溝	The little girl has a _____ between her two front teeth.
+majority	n.	大多數	The _____ of the elementary school students take part in after-school programs.
+march	n.	遊行，行軍	People held a _____ for freedom.
+mayor	n.	市長	The _____ assured the public that he would do his best to fight crime.
+murder	n.	謀殺	A _____ happened in the friendly neighborhood last night.
+politics	n.	政治	Though both his father and grandfather are legislators, Albert is not interested in entering _____.
+pollution	n.	汙染	The water _____ was due to the waste dumped by the factory.
+routine	n.	例行公事	Checking emails has become my daily _____.
+squeeze	v.	擠壓	Joe _____ toothpaste out from the tube onto his toothbrush.
+territory	n.	領土，領域	The plane was shot down when it overflew enemy _____.
+trunk	n.	樹幹，後車廂	Put your baggage in the _____.
+variety	n.	多樣化，種類	There is a wide _____ of books available at the bookstore.
+athlete	n.	運動員	Only the top _____ in the world can win the gold medals in the Olympic Games.
+awkward	adj.	笨拙的，令人尷尬的	The child is still _____ using a knife and fork.
+badly	adv.	嚴重地，非常	Leo was _____ hurt in the car accident.
+beneath	prep.	在...下方	To get away from the sunshine, we sat _____ the tree.
+collection	n.	收藏品	The baseball fan has a _____ of baseball cards.
+cone	n.	圓錐體	The police officer put some traffic _____ on the road to get drivers' attention.
+democracy	n.	民主	Some of the _____ still have a royal family.
+desire	n.	渴望，慾望	Seeking peace of mind, Rita has no _____ for fame.
+detect	v.	察覺，偵測	My father _____ a gas leak and phoned the emergency number immediately.
+elevator	n.	電梯	Take the _____ to the 14th floor.
+enjoyable	adj.	令人愉快的	Playing games or watching movies makes a long-distance flight _____.
+fearful	adj.	害怕的，擔心的	Gina is _____ of offending her teacher.
+gesture	n.	手勢，姿態	After reaching the finish line, John raised his arms in the air in a _____ of victory.
+impress	v.	使印象深刻	Joan _____ everyone at the party with her beauty.
+meanwhile	n.	期間	Gary was cleaning the house. In the _____, his wife went to school to pick up their children.
+missing	adj.	失蹤的，缺少的	The police have not found the _____ boy so far.
+naked	adj.	裸體的	That is a painting of a _____ woman and her children.
+native	adj.	本地的，原產的	Corn is _____ to America.
+promote	v.	促進，推銷，升遷	The YouTuber uploaded several videos to _____ public awareness of school bullying.
+racial	adj.	種族的	Laws on equality should be passed to stop _____ discrimination.
+rust	n.	鐵鏽	Fred cleans and oils his bike regularly to prevent _____.
+stadium	n.	體育場	Some athletes are launching a crowdfunding campaign to build football _____ in poor countries.
+theory	n.	理論，學說	The scientist's plan, though excellent in _____, is impractical.
+twist	n.	扭轉，曲折	You have to give the rope a few more _____.
+web	n.	網	A butterfly was caught in a spider's _____.
+awake	adj.	醒著的	Eric lay _____ in bed for hours last night.
+bang	n.	砰的聲響	Ian heard a _____, which sounded like a gunshot.
+banker	n.	銀行家	The child of the _____ was kidnapped by two masked men in Paris.
+beam	n.	光線，光束	The _____ of the car's headlights made me unable to open my eyes.
+bind	v.	綁，束縛	The thief was _____ hand and foot.
+confirm	v.	確認，證實	Leo called the airline to _____ his plane ticket.
+deposit	n.	存款，押金	Roy makes a _____ of US$1,000 into his wife's account every month.
+determine	v.	決定，下定決心	Quizzes are used to _____ how much students have learned.
+entry	n.	進入，入口	Although the door was locked, the burglar gained _____ to the house through a window in the backyard.
+excellence	n.	卓越，優秀	Constant practice can help you achieve _____ in your language skills.
+familiar	adj.	熟悉的	Since we just moved here, we are not _____ with the neighborhood.
+fond	adj.	喜歡的	Patty is _____ of juicy fruit like watermelons.
+graduate	n.	畢業生	A college _____ cannot find a decent job easily because more and more people have a master's degree.
+leather	n.	皮革	The _____ handbags are more expensive than those made of nylon.
+mighty	adj.	強大的，巨大的	It's impossible for us to cross the _____ river.
+moisture	n.	水分，濕氣	Trees use their roots to absorb _____ from the soil.
+necessity	n.	必需品，必要性	Due to the earthquake, many victims lacked the basic _____ like food and water.
+operation	n.	操作，手術	That machine is not in _____ yet.
+professor	n.	教授	After years of hard work, Nina finally got promotion from associate _____ to full _____ of English literature.
+rely	v.	依賴，依靠	You can _____ on Nancy to help handle the difficult problem.
+scarce	adj.	稀少的，缺乏的	When fresh vegetables are _____ in the winter, the country has to import them from other countries.
+stove	n.	爐子	Gina put a pot on the _____ and heated the milk.
+tend	v.	傾向，照顧	My brother _____ to shout when he gets excited.
+tide	n.	潮汐，潮流	Is the _____ in or out this morning?
+underwear	n.	內衣	Wendy prepared some clothes and _____ for her graduation trip.
+bacteria	n.	細菌	The _____ in drinking water spread the illness.
+bare	adj.	裸露的，赤裸的	You'd better not step onto the hot sandy beach in _____ feet.
+bay	n.	海灣	Our ship sailed into a beautiful _____ with crystal water.
+besides	adv.	此外	Planes are more comfortable; _____, they are faster.
+bitter	adj.	苦的，痛苦的	This medicine tastes _____.
+bloody	adj.	流血的，血腥的	That was a _____ battle with hundreds of soldiers slaughtered.
+conscious	adj.	意識到的，有知覺的	The explorer was not _____ of what was awaiting him.
+dime	n.	一角硬幣	Ten _____ make one dollar.
+elderly	adj.	年長的	The _____ artist is invited to give a speech on art appreciation.
+export	n.	出口，輸出品	Tea is one of India's main _____.
+fairly	adv.	相當地，公平地	Joe quit after he found out he had not been _____ treated by his boss.
+grab	v.	抓住，攫取	Amy _____ hold of the girl's arm before she fell.
+handful	n.	一把，少數	The old lady gave a _____ of candies to the kid.
+injury	n.	傷害	Luca had to quit jogging because of his knee _____.
+moral	adj.	道德的	A fable usually gives a _____ lesson at the end of the story.
+novelist	n.	小說家	My dream is to become a globally renowned _____.
+occasion	n.	場合，時機	I have helped Helen on several _____.
+rate	n.	比率，速率	The government has taken measures to boost the birth _____.
+react	v.	反應	Some people like the new policy while others _____ differently.
+recognize	v.	認出，承認	My nephew has changed so much that I can't _____ him at all.
+scholarship	n.	獎學金	Mike won a _____ to the prestigious university due to his good grades.
+scientist	n.	科學家	Some _____ agree that salmon locate home streams by smell.
+substance	n.	物質	Rita asked me if this powdery _____ was harmful.
+trend	n.	趨勢，潮流	The upward _____ in the price of gold still continues.
+union	n.	工會，結合	Many employees joined a _____ to protect their rights.
+barely	adv.	幾乎不，勉強	Wendy has _____ enough money to pay her bills this month.
+beetle	n.	甲蟲	The biologist did some research on different kinds of _____.
+bore	v.	令人厭煩	My neighbor always _____ me with the same complaints.
+brake	n.	煞車	The scooter couldn't stop because the _____ failed.
+crash	n.	碰撞，墜毀	The car _____ killed five persons.
+donkey	n.	驢子	Can you tell the difference between a _____ and a mule?
+exchange	n.	交換，交流	The student _____ program allows students to study in one of the three colleges in Japan.
+fairy	n.	小精靈，仙子	The little girl always imagines herself as a graceful _____.
+fare	n.	票價，車資	What is the train _____ to Hualien?
+guidance	n.	指導，引導	Tim turned to his teacher for _____ on how to choose a major.
+heal	v.	治癒，癒合	Time _____ all wounds.
+honor	n.	榮譽，敬意	The soldiers did not fight for their own lives but for the _____ of their country.
+mental	adj.	心理的，精神的	Carol suffers from _____ illness, whose symptoms include mood disorders and anxiety disorders.
+nickname	n.	綽號，暱稱	The boy's friends give him the _____ "Rocky."
+observe	v.	觀察，遵守	Farmers in ancient times would _____ the stars to predict the weather.
+optimistic	adj.	樂觀的	Willy is _____ about his new job in the thriving city.
+reaction	n.	反應	An emergency fund was set up in _____ to the devastating flood.
+represent	v.	代表	The government spokesman _____ the president at the conference.
+scientific	adj.	科學的	_____ evidence has proved that doing exercise can make people look younger.
+scream	v.	尖叫	Kelly _____ at Henry for breaking her favorite mug.
+senior	adj.	年長的，資深的	Most _____ citizens live on social welfare while only a small percentage of them depend on their pensions.
+superior	adj.	較優秀的，上等的	My new computer is _____ to my old one.
+vacant	adj.	空的，空缺的	The hotel has no _____ rooms.
+vehicle	n.	車輛，交通工具	_____ are not permitted on this street, which is always filled with tourists.
+victim	n.	受害者	The government provided a temporary shelter for the earthquake _____.`;
+
+    const rawDataLevel3_21_30 = `angel	n.	天使	There are two pictures of _____s on the wall of the church.
+boot	n.	靴子	I bought a pair of riding _____s in the clearance sale.
+charm	n.	魅力；護身符	The rabbit's foot is Lillian's lucky _____.
+cooker	n.	炊具	You have to be careful when using a pressure _____.
+disk	n.	磁碟	A hard _____ can be used to store information from a computer.
+envy	n.	羨慕，嫉妒	Cinderella's sisters stared with _____ when Cinderella was dancing with the prince.
+float	v.	漂浮	There is a volleyball _____ing in the river.
+gasoline	n.	汽油	Cars mainly run on _____.
+heater	n.	暖氣機	A _____ is used to heat the room.
+hopeful	adj.	抱有希望的	The candidate is _____ about the outcome of the election.
+jeep	n.	吉普車	A _____ can be used for driving on rough ground.
+ladder	n.	梯子	Walking under a _____ is considered bad luck.
+magnet	n.	磁鐵	The _____ attracts bits of iron.
+moist	adj.	潮濕的	The flowers grew well in _____ soil.
+nest	n.	鳥巢	There is a bird's _____ in the tree.
+penguin	n.	企鵝	_____s are native to the Antarctic.
+pump	n.	幫浦，抽水機	The non-governmental organization installed _____s in the village.
+raw	adj.	生的，未加工的	You will probably get sick if you eat _____ meat.
+rush	n.	匆忙，急忙	The worshippers all came into the temple in a _____.
+shrimp	n.	蝦	My friend is allergic to _____s.
+someday	adv.	有朝一日	I hope I can visit Iceland _____.
+stale	adj.	不新鮮的	Don't eat that bread because it has gone _____.
+teenage	adj.	十幾歲的	This mobile app is very popular with _____ girls and boys.
+tub	n.	浴缸，桶	Andrew used some _____s to grow plants and flowers.
+twin	n.	雙胞胎之一	The _____s look so alike that I can hardly tell one from the other.
+anyhow	adv.	無論如何	The doors were locked and we couldn't get in _____.
+brass	n.	黃銅	_____ is a hard metal made of copper and zinc.
+chimney	n.	煙囪	The smoke rising from a _____ always reminds me of my sweet home.
+cough	n.	咳嗽	The patient had a bad _____.
+ditch	n.	溝渠	The workers are digging _____es to prevent flooding during the typhoon seasons.
+faint	adj.	微弱的	The sound is too _____ to be heard clearly.
+flock	n.	群	_____s of wild geese are flying south.
+governor	n.	州長，首長	The amateur politician was elected as the _____.
+hell	n.	地獄	The prison is like a _____ on earth.
+horrible	adj.	可怕的	Waking up from a _____ nightmare, the little boy cried for his parents.
+jet	n.	噴射；噴射機	_____s of water spurted from the fountain.
+lately	adv.	最近	The team went through a hard time last season, but _____ things have been improving.
+maid	n.	女僕，女傭	The _____ comes twice a week to clean our house.
+multiply	v.	乘，倍增	The math teacher asked the students to _____ 15 by 8.
+nun	n.	修女	The _____ is saying her prayers in the church.
+penny	n.	一分錢	A _____ saved is a _____ earned.
+punch	n.	拳打	The drunk man threw a _____ at his friend.
+receipt	n.	收據	The store should give you a _____ after you make a purchase.
+sack	n.	麻布袋	_____s of flour and rice were donated to the earthquake victims by several charitable groups.
+sin	n.	罪	Many people think it is a _____ to treat animals cruelly.
+spaghetti	n.	義大利麵	My parents like to have Italian food like _____ and pizza for lunch on weekends.
+starve	v.	挨餓，餓死	People _____d to death during the long war.
+temper	n.	脾氣	The boss has a short _____.
+tunnel	n.	隧道	The hostages escaped through a secret _____ under the house.
+unite	v.	聯合，團結	The two companies were _____d to form a new one.
+apologize	v.	道歉	Ann _____d to her teacher for being late for school.
+bravery	n.	勇敢	The soldier was awarded a medal for his _____.
+chin	n.	下巴	The tutor rubbed his _____ when he thought about that matter.
+countable	adj.	可數的	The word "dream" is a _____ noun, so it has a plural form.
+dizzy	adj.	暈眩的	Tina felt _____ after riding the roller coaster.
+fake	adj.	假的	The man who sells _____ medicine has been caught.
+fountain	n.	噴泉	There is a large _____ in the middle of the shopping mall.
+grasp	v.	抓住，理解	The child _____ed his mother by the arm.
+helmet	n.	安全帽	Never forget to wear a _____ when you are riding a scooter.
+horror	n.	恐懼	The boy screamed in _____ when he found himself in the dark house.
+juicy	adj.	多汁的	I like _____ and tender steak.
+leap	n.	跳躍	Jim crossed the stream with a flying _____.
+marble	n.	大理石；彈珠	Many little boys like to play with _____s.
+mushroom	n.	蘑菇	Mark became sick after eating some poisonous _____s.
+oak	n.	橡樹	"Tie a Yellow Ribbon Round the Old _____ Tree" is a famous song.
+pepper	n.	胡椒	Can you pass the salt and _____, please?
+queer	adj.	奇怪的	Jeremy had a _____ feeling that he was being followed.
+receiver	n.	話筒，接收器	Lauren picked up the _____ and dialed the number.
+sauce	n.	醬汁	The chef has cooked tomato _____ for pasta.
+sip	v.	啜飲	Gary _____ped coffee and read the newspapers this morning.
+spill	v.	灑出	One guest tripped and _____ed coffee on the carpet of the restaurant.
+sting	n.	螫針	A bee dies when it loses its _____.
+tender	adj.	溫柔的；嫩的	Rachel gave me a warm and _____ smile.
+underlying	adj.	潛在的	The government shouldn't ignore any _____ reason of the rising crime rate.
+vase	n.	花瓶	The visitor knocked the _____ over accidentally.
+assist	v.	協助	Doris _____ed her brother with his homework.
+brunch	n.	早午餐	I am going to have _____ with my friend this Saturday.
+chip	n.	碎片；洋芋片	The camper threw some wood _____s into the fire to keep it burning.
+crab	n.	螃蟹	_____ season usually begins from September to December in Taiwan.
+dock	n.	碼頭	The ship is in _____ for routine maintenance.
+faucet	n.	水龍頭	To conserve water, you should turn off the _____ immediately after use.
+freeze	v.	結冰，凍結	When water _____s, it becomes ice.
+grassy	adj.	長滿草的	Some sheep are grazing in the _____ field.
+hint	n.	暗示	Frank kept dropping a _____ to me, but I couldn't take it.
+humid	adj.	潮濕的	The weather becomes very _____ in the summer.
+jungle	n.	叢林	Edward had some exciting adventures in the Amazon _____.
+leisure	n.	閒暇	Amber likes to do yoga in her _____ time.
+marker	n.	標記	The dancer had placed some _____s on the floor.
+mystery	n.	謎，神祕	The police never solved the _____ of the boy's disappearance.
+omit	v.	遺漏，省略	You have _____ted several important points in your report.
+pigeon	n.	鴿子	The old man feeds _____s in the park every morning.
+quote	v.	引用	The student _____d a passage from Shakespeare.
+relief	n.	減輕，鬆一口氣	It is a _____ to know that the children have been rescued.
+saucer	n.	茶碟	The lady gave the stray dog a _____ of water.
+skate	v.	溜冰	Let's go _____ing in the park!
+spin	n.	旋轉	The car slid on the icy road and went into a _____.
+stitch	n.	一針	John cast some _____es to secure the two pieces of cloth together.
+tent	n.	帳篷	Do you know how to pitch a _____?
+unity	n.	團結，一致	The film lacks _____.
+verse	n.	詩，韻文	This is a story written in _____.
+assistant	n.	助手，助理	Clare had her _____ demonstrate the latest smartwatch to the clients.
+bud	n.	芽，花蕾	The trees in the park were in _____ in early spring.
+chop	n.	排骨	The restaurant's signature dish is grilled lamb _____.
+crane	n.	起重機；鶴	The _____ driver operated the _____ to move the container.
+dolphin	n.	海豚	A school of _____s is leaping out of the water.
+feather	n.	羽毛	The little girl tickled her father's feet with a _____.
+geography	n.	地理學	Vincent is interested in human _____ rather than physical _____.
+greenhouse	n.	溫室	The farmer grows some vegetables in the _____.
+historian	n.	歷史學家	The _____ will give a lecture on the civilization of ancient Rome.
+hunger	n.	飢餓	The student felt faint from _____.
+knight	n.	騎士	The _____ finally killed the evil king at the end of the story.
+lemonade	n.	檸檬水	This homemade _____ is really fresh.
+mathematical	adj.	數學的	Richard is considered a _____ genius.
+nap	n.	小睡	Ella usually takes a _____ after lunch.
+outdoors	adv.	在戶外	The rock concert was held _____ last night.
+pill	n.	藥丸	Mr. Lee has to take _____s to control his blood pressure every day.
+rag	n.	抹布，破布	Mary used a _____ to clean the floor.
+resist	v.	抵抗，抗拒	Many people strongly _____ed raising income tax.
+sausage	n.	香腸	Jacob had some scrambled eggs, mushrooms, and _____s for breakfast.
+ski	n.	滑雪板	Tom brought his _____s with him.
+steal	v.	偷竊	The best-selling author was accused of _____ing ideas from the book.
+stormy	adj.	暴風雨的	As the typhoon approaches, a _____ wind starts to blow.
+terrific	adj.	極好的	Tommy looks _____ today.
+vest	n.	背心	The old man likes to wear a wool _____ to keep warm.
+wage	n.	工資	The laborers demanded higher _____s because of long working hours.
+automobile	n.	汽車	The _____ industry in this country is growing faster than any other country in the world.
+buffalo	n.	水牛	My grandparents raise some _____es on the farm.
+cigarette	n.	香菸	The woman lit a _____ but soon put it out.
+crawl	v.	爬行	The baby _____ed across the floor on his hands and knees.
+doughnut	n.	甜甜圈	We had _____s and latte for breakfast.
+firework	n.	煙火	The government sets off _____s to celebrate the country's birthday.
+glance	n.	瞥見	At first _____, the fallen leaf looks like a cockroach.
+grin	n.	露齒的笑	Luke gave me a wide _____.
+holy	adj.	神聖的	A church is considered to be _____.
+icy	adj.	結冰的	The roads became _____ during the snowfall.
+knot	n.	結	The clerk tied the ribbon in a beautiful _____ and then attached it to the gift box.
+lettuce	n.	萵苣	Would you like some _____ on your sandwich?
+melon	n.	瓜	Debby ate a slice of _____ for dessert.
+navy	n.	海軍	Ronald joined the _____ when he was twenty.
+oven	n.	烤箱	Check the turkey in the _____ to see if it is cooked thoroughly.
+pint	n.	品脫	Please buy a _____ of milk for me on your way home.
+ray	n.	光線	A _____ of sunlight came through the dark cloud.
+ripe	adj.	成熟的	Peaches turn sweet when they are _____.
+scale	n.	規模；秤	The full _____ of the accident was reported in the morning news.
+skillful	adj.	熟練的	Most of the teenagers are _____ at using social media.
+steam	n.	蒸氣	_____ is rising from the boiling soup.
+subtract	v.	減去	_____ three from eight and you get five.
+thankful	adj.	感謝的	I'm _____ to you for giving me this chance.
+violet	adj.	紫羅蘭色的	The actor has beautiful _____ eyes.
+warmth	n.	溫暖	The _____ of the fire made me feel sleepy.`;
+
+    const rawDataLevel3_31_40 = `barn	n.	穀倉	The farmer stored hay and some tools in the _____.
+bunch	n.	串，束	Buck gave his girlfriend a _____ of roses.
+clothe	v.	給...穿衣	The models were _____d in the latest fashion.
+darling	n.	親愛的人	My _____, I love you very much.
+drugstore	n.	藥妝店	Many tourists buy medicine and cosmetics at _____s in Japan.
+flute	n.	長笛	John plays the _____ in the orchestra.
+grasshopper	n.	蚱蜢	Most _____s feed on crops.
+hammer	n.	鐵鎚	The paintings went under the _____ at an auction.
+hum	v.	哼唱，發出嗡嗡聲	I heard bees _____ming around flowers in the park yesterday.
+jail	n.	監獄	The man spent 10 years in _____ for robbery.
+lifetime	n.	一生	Society has changed greatly during my _____.
+loose	adj.	寬鬆的，鬆脫的	It's more comfortable to wear _____ clothes when you exercise.
+microphone	n.	麥克風	The chairman spoke into a _____ in the meeting.
+parade	n.	遊行	Many cities in the United States usually have _____s on Independence Day.
+pat	v.	輕拍	My friend _____ted me on the shoulder.
+poll	n.	民意調查	Most recent _____s show that support for the government is declining.
+ribbon	n.	緞帶	Nina wore a purple _____ in her hair today.
+scatter	v.	撒，散布	The workers are _____ing gravel on the road.
+scrub	n.	刷洗	The street vender gives the food truck a good _____ every day.
+snap	v.	斷裂	The rope _____ped when we pulled it too tight.
+surround	v.	圍繞	Due to the scandal, the actor was _____ed by many reporters.
+swear	v.	發誓	Amy swore she knew nothing about the news.
+timber	n.	木材	Japan imports most of its _____ from Thailand.
+wax	n.	蠟	The special doll is made of _____.
+wisdom	n.	智慧	The old man, with great _____ and experience, gave me a piece of advice.
+barrel	n.	桶	The wine is put in oak _____s and left to mature in the cellar.
+bundle	n.	捆，束	The singer receives a _____ of letters from her fans every day.
+cock	n.	公雞	At 5 a.m. the _____ starts to crow.
+dash	n.	衝刺	When the door opened, the worshippers made a _____ for the incense burner.
+hut	n.	小屋	The mountain _____ where the man lives hardly has any modern facilities.
+jazz	n.	爵士樂	Brian is a huge fan of _____.
+lighthouse	n.	燈塔	A _____ shows ships the way into the port.
+loser	n.	輸家	You have to learn to be a good _____.
+missile	n.	飛彈	The army attacked a terrorist base with _____s.
+parcel	n.	包裹	_____s of food and clean water were delivered to the disaster area within 24 hours.
+permit	v.	允許	The teacher doesn't _____ his students to chat in class.
+porcelain	n.	瓷器	Mr. Wang has a valuable _____ collection in his house.
+roar	n.	吼叫聲	The tiger in the zoo let out a _____ when we walked past its cage.
+scholar	n.	學者	Mr. Wang is a distinguished _____ of ancient Greek civilization.
+separation	n.	分離	The couple began to live together again after a _____ of two years.
+sometime	adv.	在某個時候	My friend will call on me _____ next month.
+survivor	n.	生還者	The boy was the only _____ of the car crash.
+sword	n.	劍	The brave king drew his _____ to kill a poisonous snake.
+tobacco	n.	菸草	The government is considering a ban on _____ advertising in public places.
+weaken	v.	使虛弱	The high fever _____ed the patient.
+wrap	v.	包裝，包覆	Kelly felt cold and _____ped herself in a wool blanket.
+ache	n.	疼痛	Jerry felt a dull _____ in his chest.
+bead	n.	珠子	The actress walked the red carpet wearing a necklace of crystal _____.
+bury	v.	埋葬	My grandparents were _____ed in the same cemetery.
+cocktail	n.	雞尾酒	My favorite _____ is mojito.
+database	n.	資料庫	The company's reputation was damaged because its online _____ was hacked.
+dumpling	n.	餃子	Do you prefer beef or pork _____s?
+follower	n.	追隨者	Although Sue lost the legislator's race, her _____s want her to run for the president.
+handy	adj.	方便的	With the _____ cash on delivery, more and more people shop online now.
+harvest	n.	收成	Due to climate change, the farmers have been having bad _____s for years.
+inn	n.	小旅館	An _____ is a small hotel.
+jealous	adj.	嫉妒的	Ian is _____ of such a well-paid job that Mike has got.
+lightning	n.	閃電	A flash of _____ lit up the sky.
+mall	n.	購物中心	The company planned to build a shopping _____ in the downtown.
+mob	n.	暴民	The angry _____ surrounded the mayor's official residence.
+parrot	n.	鸚鵡	Can your _____ learn to talk like a human being?
+photographer	n.	攝影師	As a professional _____, Tina always carries her camera.
+portion	n.	一部分	The investor took away a large _____ of the profit.
+roast	adj.	烘烤的	Would you like some _____ beef for dinner?
+seal	n.	印章，封印	The file carried a _____ of the President.
+sexual	adj.	性別的	The woman thought her boss broke the _____ equality law.
+spice	n.	香料	Herbs and _____s enrich the flavors of our food.
+swan	n.	天鵝	There are several _____s gliding across the water.
+tag	n.	標籤	If you want to return the shirt purchased online, you can't remove its price _____.
+ton	n.	噸	The total weight of the coal is roughly twenty _____s.
+wed	v.	結婚	After an 8-year relationship, the couple eventually decides to _____ next spring.`;
+
+    const rawDataLevel4_1_10 = `alert	adj.	警覺的	Parents should be _____ to their children's strange behavior.
+anniversary	n.	週年紀念日	Ben held a party to celebrate his parents' fiftieth wedding _____.
+approval	n.	贊成，同意	Sara took a week's leave with her supervisor's _____.
+authentic	adj.	真正的，可靠的	The businessman spent at least a million dollars acquiring this _____ Picasso painting.
+confidence	n.	信心	Ian has _____ that he can win.
+consist	v.	組成，構成	The tennis club _____ of twelve boys and ten girls.
+context	n.	上下文，背景	To fully understand what the drama tries to express, we should see it in historical _____.
+creativity	n.	創造力	Being a good artist requires a lot of _____.
+endure	v.	忍受	People have to _____ extreme heat when traveling in the desert.
+enthusiasm	n.	熱情	Vince shows great _____ for his work.
+fragile	adj.	脆弱的，易碎的	The parcel was labeled "_____."
+habitual	adj.	習慣的	Robert is a _____ drinker, and he almost gets drunk every day.
+harmony	n.	和諧	In order to protect the earth, people should live in _____ with nature.
+intelligence	n.	智力	The dolphin is an animal with high _____.
+launch	v.	發起，推出	The new product is set to _____ tomorrow.
+margin	n.	邊緣，空白處	Please write your comments in the _____.
+overcome	v.	克服	To achieve success, you should _____ all the difficulties.
+paragraph	n.	段落	A _____ usually contains five to ten sentences and focuses on one main idea.
+protein	n.	蛋白質	In addition to animal products, beans and nuts are also rich in _____.
+protest	n.	抗議	The opposing party held a _____ against the new policy.
+researcher	n.	研究人員	According to some _____, excessive vitamins are harmful to human health.
+severe	adj.	嚴厲的，嚴重的	Spanking is considered a _____ punishment by some modern parents.
+strengthen	v.	增強，加強	An ambassador's job is to _____ the relationship between two countries.
+sympathy	n.	同情心	The mayor expressed deep _____ for the victims of that accident.
+analysis	n.	分析	We must make a careful _____ of the causes of the accident.
+arms	n.	武器	It is against the law for ordinary people to carry _____ in Taiwan.
+artificial	adj.	人造的，人工的	An _____ flower may last forever.
+blend	v.	混合	_____ butter and flour before adding the other ingredients.
+container	n.	容器	Olivia kept her jewels in an unbreakable _____.
+continuous	adj.	連續的，不斷的	There was something wrong with the air-conditioner because it made a _____ noise.
+contribution	n.	貢獻	Hawking's black hole theory is a major _____ to the modern science.
+depression	n.	憂鬱症，蕭條	Lily traveled abroad in order to come out of her _____.
+digital	adj.	數位的	A _____ watch shows the time through digits rather than through hands.
+equality	n.	平等	Those laborers campaigned for social _____.
+experimental	adj.	實驗性的	The new treatment is still in the _____ stage.
+gallery	n.	畫廊，美術館	The modern art exhibition at the _____ is worth seeing.
+handwriting	n.	筆跡，字跡	Will's _____ is very hard to read.
+laboratory	n.	實驗室	Scientists from around the world work together in the cancer research _____.
+license	n.	執照，許可證	Peter passed the driving test and got a driver's _____.
+maturity	n.	成熟	Despite the young age, Owen showed great _____ when he faced difficulties.
+oxygen	n.	氧氣	We cannot live without _____.
+psychological	adj.	心理的	That child has _____ problems, which prevents him from interacting with other people.
+quotation	n.	引言，引語	If you use a _____ in your paper, you must cite the source.
+research	n.	研究	The experts are carrying out some _____ into the effects of music on children.
+resistance	n.	抵抗，阻力	When they came to arrest him, the man offered no _____ to the police.
+surroundings	n.	環境，周圍的事物	After Dylan moved to the new city, it took him a few weeks to get used to the new _____.
+tolerable	adj.	可忍受的	The extreme cold in high mountain areas is barely _____ to some tourists.
+appropriate	adj.	適當的	Jason made a speech highly _____ to the occasion.
+association	n.	協會，聯想	Sally is interested in joining the student _____.
+broke	adj.	破產的，身無分文的	The businessman was flat _____ after the investment failed.
+brutal	adj.	殘忍的	The terrorists were arrested because they had been involved in the _____ attack.
+community	n.	社區	The crime rate is very low in this _____.
+contribute	v.	貢獻，促成	Penicillin, a type of antibiotic, has _____ greatly to mankind.
+conventional	adj.	傳統的，常規的	Herbal medicine may provide a cure when _____ medicine cannot.
+cooperate	v.	合作	The children _____ with their parents in cleaning the rooms.
+disability	n.	殘疾，無能	The disabled young man never lets his _____ prevent him from doing whatever he wants to do.
+essential	adj.	必要的，不可或缺的	The sun is absolutely _____ to the living things on earth.
+establish	v.	建立，設立	The oldest theater in this town was _____ in 1950.
+fasten	v.	繫緊，固定	To ensure your safety, please _____ your seat belt during the flight.
+gene	n.	基因	Although the baby carried a defective _____, he looked normal.
+hardship	n.	艱難，困苦	The soldier has gone through all kinds of _____ in the war.
+incident	n.	事件	The government refused to comment on the _____ at the border.
+keenness	n.	敏銳，熱切	Each contestant on the stage showed _____ for success.
+machinery	n.	機器，機械	To reduce personnel expenses, the factory installed some _____ to replace workers.
+maximum	adj.	最大的	What is the _____ speed of that sports car?
+measure	n.	措施，測量	The police have taken strong _____ against drunken driving.
+penalty	n.	處罰，刑罰	Anyone who breaks the company rules will face _____.
+psychologist	n.	心理學家	The _____ is an expert in child development.
+reference	n.	提及，參考	Greg made several _____ to his school life in London.
+route	n.	路線	We took the quickest _____ from the airport to the hotel.
+tragedy	n.	悲劇	The wedding party ended in _____ because the restaurant was on fire.
+universal	adj.	普遍的，宇宙的	Extreme weather is a _____ problem in the world.
+athletic	adj.	運動的	The _____ competition will be held next week.
+battery	n.	電池	The _____ in the camera is dead and we have to replace it with a new one.
+behavior	n.	行為	Parents should teach their children to distinguish between socially appropriate and inappropriate _____.
+canoe	n.	獨木舟	Bella finally learned how to paddle a _____ by trial and error.
+constructive	adj.	建設性的	The best way to put democracy into practice is to welcome _____ criticism from the opposition parties.
+convince	v.	說服，使確信	The suspect tried hard to _____ the judge of his innocence.
+cooperation	n.	合作	Since the witness is willing to be in full _____ with the police, the case will be solved soon.
+economics	n.	經濟學	Carol received a PhD in _____.
+estimate	n.	估計	The mechanic gave me a rough _____ of NT$8,000 for the repairs.
+ethnic	adj.	種族的	Misunderstandings often occur among different _____ groups.
+fetch	v.	拿來，去拿	Please _____ me a plate from the cupboard.
+guilty	adj.	有罪的，內疚的	Karen felt _____ about forgetting her boyfriend's birthday again.
+humanity	n.	人類，人性	Nuclear weapons are a threat to _____.
+install	v.	安裝	Allen _____ the new software to increase the processing speed of the computer.
+landscape	n.	風景，景色	The painter depicted beautiful rural _____ in her recent works.
+makeup	n.	化妝(品)	Many teenagers dress themselves up and wear some _____ for the Halloween parade.
+motivation	n.	動機，動力	Emily lacks _____ and seldom involves herself in school activities.
+nowadays	adv.	現今	_____, women have more opportunities than ever before.
+percentage	n.	百分比	With the popularity of smartphones, a larger _____ of people can get easy access to the Internet.
+publisher	n.	出版商	At first, the author had difficulty finding a _____ for her new book.
+reflect	v.	倒影，反映	Wilson was fascinated by the still lake with the big round moon _____ in it.
+satellite	n.	衛星	People can watch the broadcast of the Olympic Games via _____.
+tragic	adj.	悲劇的	The director's death was a _____ loss to the entertainment industry.
+vessel	n.	船艦，血管	The fishing _____ was finally released ten months after it was hijacked by the pirates.
+absolute	adj.	絕對的	All of the hockey team members have _____ confidence in the coach's judgment.
+annual	adj.	一年一度的	To most families in America, the _____ celebration of Christmas is a very important event.
+atmosphere	n.	大氣，氣氛	The toxic gases from these chemical factories caused damage to the _____.
+breed	n.	品種	The Labrador retriever is my favorite _____ of dog.
+cargo	n.	貨物	The _____ ship sank in the Indian Ocean.
+communication	n.	溝通，通訊	Sue and Eva will be in _____ with each other by exchanging emails.
+consumer	n.	消費者	_____ need protection against dishonest dealers.
+council	n.	委員會，理事會	The city _____ decided to build a library near the station.
+critical	adj.	批評的，關鍵的	Melody is always _____ of the clothes her boyfriend wears.
+cruelty	n.	殘忍	Those old soldiers suffered from the _____ of the war.
+eventual	adj.	最終的	The outstanding runner was the _____ winner of the marathon.
+fiction	n.	小說，虛構的故事	Nash is addicted to reading crime _____.
+genius	n.	天才	Mozart is a musical _____.
+identical	adj.	完全相同的	The reproduction looks almost _____ to the original.
+influential	adj.	有影響力的	The legislators are _____ in deciding on the government's policies.
+interpret	v.	解釋，口譯	Blaire's frequent absence from school is _____ as a lack of interest in learning.
+manufacturer	n.	製造商	The car _____ urgently recalled all the defective vehicles.
+memorial	adj.	紀念的	Many friends and relatives attended Jackson's _____ service.
+numerous	adj.	許多的	Our office gets _____ phone calls every day.
+observation	n.	觀察	The patient was kept under close _____ in the hospital.
+predict	v.	預測	The fortune-teller _____ that Lucas would get promoted next year.
+quarrel	n.	爭吵	Ella had a _____ with her sister about some trivial things last week.
+reform	n.	改革	The government carried out a series of _____ to the educational system.
+significance	n.	重要性，意義	The winning of this award has great _____ to the director.
+transform	v.	改變，轉換	The sleepy town has been _____ into a bustling city.
+absorb	v.	吸收	You can use the sponge to _____ the water on the kitchen floor.
+application	n.	申請，應用	We regret that your _____ for a loan has not been accepted.
+attraction	n.	吸引力，景點	Horror movies hold no _____ for me.
+cabinet	n.	櫥櫃，內閣	The antique collector had an ancient china _____ in the living room.
+carrier	n.	運輸工具，帶原者	They transported helicopters and troops by a freight _____.
+construction	n.	建設，建築物	This temple is a _____ made of wood and metal.
+contest	n.	比賽	Ten students entered the _____ for a scholarship.
+criticism	n.	批評	There was a lot of _____ of the president's speech.
+curiosity	n.	好奇心	To satisfy my _____, I decided to find out the stranger's identity.
+definite	adj.	明確的，肯定的	What I want is a _____ answer.
+evidence	n.	證據	Scientists are looking for the _____ of the existence of life on other planets.
+evident	adj.	明顯的	It is _____ that hard work will pay off in the end.
+flexible	adj.	靈活的，有彈性的	Rubber is a _____ material.
+grace	n.	優雅	The Princess of Wales walked on to the stage with _____.
+ignorance	n.	無知	I was shocked by the young man's _____ of his own country's history.
+intention	n.	意圖，打算	Maggie had no _____ of attending Sophie's birthday party.
+knob	n.	旋鈕，把手	Terry turned the _____ to open the door to the backyard.
+merit	n.	優點，價值	PowerPoint presentations have the _____ of being clear.
+moderate	adj.	適度的，中等的	_____ exercise such as walking for half an hour every day is fundamental to good health.
+occasional	adj.	偶爾的	The weather forecast says it will be cloudy with _____ showers tomorrow.
+prime	adj.	首要的，主要的	Asian tourists are the _____ target for pickpockets in the area.
+rebel	n.	叛徒，反叛者	The _____ forces tried to overthrow the government.
+refugee	n.	難民	The volunteers from the charity helped deliver food and clothes to the _____ in Syria.
+spark	n.	火花	I struck _____ from that flint.
+tremble	v.	顫抖	Pamela's hands _____ as she opened the envelope.
+adequate	adj.	足夠的，適當的	The food is _____ for five people.
+category	n.	種類，類別	This song falls into the _____ of K-pop music.
+celebration	n.	慶祝(活動)	My parents held a _____ on their 25th wedding anniversary.
+charity	n.	慈善機構，慈善	The _____ originates in Sydney, but it has become an international one now.
+competition	n.	競爭，比賽	Ella entered the swimming _____ and took first place.
+declare	v.	宣布，聲明	The new police chief _____ war on drugs.
+delight	n.	高興，愉快	Gary takes _____ in watching horror movies.
+dependent	adj.	依賴的	The man has to be on welfare because he is unemployed and has three _____ children.
+desperate	adj.	絕望的，拼命的	Trapped in the net, the fish made _____ efforts to escape.
+exception	n.	例外	Bruce is a workaholic and works every day, but today is an _____ because it is his wedding day.
+fossil	n.	化石	It is surprising that _____ of fish have been found in the rocks gathered from the mountains.
+guarantee	v.	保證	I cannot _____ you will be satisfied with our plan.
+illustrate	v.	說明，舉例說明	The following examples _____ how advertisements influence consumer buying behavior.
+interact	v.	互動	Our teacher doesn't allow us to _____ with each other during class.
+legend	n.	傳說，傳奇人物	_____ has it that the hero killed a fierce tiger with his bare hands.
+messenger	n.	使者，信差	The _____ delivered this document to the king secretly.
+multiple	adj.	多個的，多種的	My boss asked me to make _____ copies of the reports before the meeting.
+offense	n.	冒犯，違法行為	Drug dealing is an _____ that can carry the death penalty.
+phenomenon	n.	現象	A rainbow is a natural _____ after the rain.
+physical	adj.	身體的，物理的	_____ exercise is good for the body.
+productive	adj.	多產的，有生產力的	Alexander is a _____ writer and has written three books in the past six months.
+recall	v.	回想，召回	I can't _____ seeing any stranger outside the house then.
+reluctant	adj.	不情願的	Although the party was over, the girl was _____ to leave.
+surgery	n.	外科手術	Walking slowly or stretching muscles can help speed up recovery from heart _____.
+triumph	n.	勝利，成就	The new play was a _____.
+admission	n.	承認，入場許可	It is generally believed that silence is an _____ of guilt.
+circular	adj.	圓形的，循環的	A large vase full of flowers is sitting in the center of the _____ table.
+collapse	n.	倒塌，崩潰	The _____ of the building left 20 people dead.
+contrast	n.	對比，差異	Tom, by _____ with Bob, is well behaved.
+convention	n.	慣例，大會	In my country, it is a _____ to wear black clothes at funerals.
+defeat	n.	失敗，擊敗	Much to our disappointment, we suffered an unexpected _____ in the championship game.
+deserve	v.	值得，應得	Jeremy _____ the promotion for his good work.
+disorder	n.	混亂，失調	The files on Fred's desk were all in _____.
+distinguish	v.	區分，辨別	The baby was born color-blind, so he has difficulty _____ between red and green.
+exhibit	n.	展覽品，展出	All the _____ at the museum are valuable works of art.
+explosive	adj.	爆炸的，爆發性的	Firecrackers contain _____ materials and must be handled with care.
+frame	n.	框架，骨架	The portrait of Mr. Lin was put in a wooden _____.
+gulf	n.	海灣，鴻溝	The _____ of Mexico is a large ocean basin near the southeastern United States.
+immigrant	n.	移民	New York City with _____ from all over the world is a melting pot.
+invest	v.	投資	Emma _____ some of her savings in stocks.
+magnificent	adj.	壯麗的，宏偉的	They sat on the beach, enjoying the _____ sunset.
+miserable	adj.	悲慘的，痛苦的	After his parents passed away, the little boy led a _____ life.
+nevertheless	adv.	儘管如此，然而	It is raining. _____, Joe still wants to go jogging.
+oppose	v.	反對	The locals strongly _____ the government tearing down the old theater.
+profession	n.	職業，專業	Eva was encouraged to go into the legal _____.
+recovery	n.	恢復，復原	I hope you make a full _____ from the illness.
+refer	v.	提及，參考	Michelle often _____ to her older sister as her guardian angel.
+representation	n.	代表，表現	The underprivileged need effective _____ in parliament.
+tendency	n.	傾向，趨勢	Susan's _____ to speak ill of her neighbors got herself into trouble.
+urgent	adj.	緊急的，急迫的	The captain of the fishing boat received an _____ message informing him of an approaching typhoon.
+abandon	v.	放棄，拋棄	The sailors decided to _____ ship as it began sinking fast.
+adopt	v.	採納，收養	The school _____ a new method of teaching English.
+civilization	n.	文明	The nuclear war would end modern _____.
+colleague	n.	同事	My husband introduced his _____ to me at the party.
+creation	n.	創造，創造物	The only thing that Tom is interested in is the _____ of wealth.
+defend	v.	防禦，辯護	The soldiers vowed to _____ their country against the enemy.
+detective	n.	偵探，刑警	Kobe hired a private _____ to find out if his wife had an affair.
+distinguished	adj.	卓越的，著名的	In addition to being a statesman, Churchill was also a _____ writer.
+economic	adj.	經濟的	The _____ situation is getting worse in the shadow of the trade war.
+exposure	n.	暴露，接觸	Prolonged _____ to radiation may cause cancer.
+fulfill	v.	實現，履行	Eventually Amy _____ her dream of studying abroad.
+gender	n.	性別	The _____ of a baby can be known about 4 months after pregnancy.
+harsh	adj.	嚴厲的，殘酷的	The scientist's new scientific theory was met with _____ criticism.
+including	prep.	包括	The Thanksgiving feast will cost nearly NT$8,000, _____ a turkey and several bottles of white wine.
+infant	n.	嬰兒	The _____ is sleeping in the cradle.
+investigation	n.	調查	The police have conducted an _____ into the mysterious murder case.
+literature	n.	文學	With a passion for reading and writing, John chose to major in _____ in college.
+minister	n.	部長，牧師	The _____ of Education is going to give a speech.
+monitor	n.	監視器，班長	The security guard is watching the _____ and has to report to his supervisor if there is any unusual activity.
+occupation	n.	職業，佔領	Gina's previous _____ was bus driver, but now she works as a server in a restaurant.
+overlook	v.	忽略，俯瞰	You should not _____ any detail of the contract.
+promising	adj.	有前途的，有希望的	The boss has decided to hire Tom because he thinks he is a _____ young man.
+refusal	n.	拒絕	When David asked Linda out, she gave him a flat _____.
+reservation	n.	預訂，保留	I'll make a _____ for dinner at the famous restaurant.
+transfer	n.	轉移，調動	The police officer asked for a _____ to her hometown.
+abstract	adj.	抽象的	It is said that children have developed their capability of _____ thinking by the age of twelve.
+agency	n.	機構，代理處	My brother works for a travel _____.
+classification	n.	分類	There are millions of different _____ of insects.
+competitive	adj.	競爭的，有競爭力的	Only those who are creative and innovative can survive in this highly _____ world.
+defense	n.	防禦，辯護	The high walls were built as a _____ against the enemy.
+differ	v.	不同，相異	The United States greatly _____ from China in political systems.
+distribution	n.	分配，分佈	The government officials discussed the unequal _____ of wealth.
+durable	adj.	耐用的，持久的	Jeans were first made to be _____ because they were designed for miners.
+extent	n.	程度，範圍	The _____ of the damage caused by the big fire is still unknown now.
+furthermore	adv.	此外，而且	The book is worth reading. It gives useful information, and _____, it is interesting.
+generation	n.	世代，產生	It takes time and effort to bridge the _____ gap between parents and children.
+hesitation	n.	猶豫	Lance told the truth without the slightest _____.
+impact	n.	影響，衝擊	Every important decision we make will have a lasting _____ on our future.
+ingredient	n.	成分，原料	I bought all the _____ needed for making cookies.
+involve	v.	包含，涉及	My new job _____ traveling around the world.
+modest	adj.	謙虛的，適度的	All I need is not a mansion but a _____ house with a small garden.
+needy	adj.	貧窮的，有需要的	The woman often donates money to the _____ families.
+objective	n.	目標，目的	The manager urged her team to achieve the _____ of increasing sales by 20%.
+peer	v.	凝視，端詳	Isabella _____ at the approaching figure through the fog.
+prompt	v.	促使，引起	What _____ Jeff to quit the well-paid job?
+relieve	v.	減輕，緩解	The new economic policy aims to _____ the inflation.
+restriction	n.	限制，約束	To ensure safety, there is a speed _____ in the residential areas.
+species	n.	物種	The lion and tiger are two different _____ of cats.
+vast	adj.	廣大的，巨大的	_____ amounts of money and effort have been put into the research on causes of cancer.`;
+
+    const rawDataLevel5_1_10 = `attendance	n.	出席	All the executives were in _____ at yesterday's meeting.
+briefcase	n.	公事包	My neighbor usually wears a suit and carries a _____ to work.
+clinical	adj.	臨床的	_____ trials show that the new medicine is quite effective.
+compliment	n.	讚美	The whole class paid the student great _____s on her speech.
+conversion	n.	轉變	The country is undergoing a _____ from monarchy to democracy.
+defendant	n.	被告	The _____ denied all charges and pleaded not guilty.
+directory	n.	姓名地址錄，通訊錄，名錄	Joe found the company's number in the telephone _____.
+entitle	v.	為(書籍等)命名；使享有...資格或權利	The magazine is _____d Newsweek.
+exterior	n.	外表	The teacher hid his anger behind a calm _____.
+gloomy	adj.	沮喪的；陰暗的	My aunt was very _____ after losing her job.
+ideology	n.	意識形態，思想體系	Some people say that elections are about _____.
+interval	n.	(時間或空間的)間隔	The singer returned to the stage after an _____ of two years.
+masterpiece	n.	傑作	Van Gogh's Sunflowers is considered a _____ of Impressionist art.
+narrative	n.	故事，敘述	This novel is a gripping _____ of the explorer's adventures across the Sahara Desert.
+pastry	n.	油酥麵團；(派、塔等)油酥糕點	Cut the _____ into small pieces and then roll them into balls.
+porch	n.	門廊	On summer nights, Ted and his family would sit on the _____ and gaze up at the stars.
+quota	n.	配額，限額	The boxer avoids exceeding her daily _____ of calories so as not to gain weight.
+republican	n.	共和主義者	Many _____s want an elected leader instead of a king or queen.
+scope	n.	範圍；機會	The task lies beyond the _____ of the novice's ability.
+sibling	n.	手足，兄弟姊妹	Tom has 4 _____s: 2 brothers and 2 sisters.
+spectrum	n.	光譜；範圍	When light passes through a prism, you can see the _____.
+stink	n.	臭味	Do you smell a _____?
+testify	v.	(尤指出庭)作證	The victim's neighbor _____ied that she heard a gunshot.
+trim	v.	修剪；削除；裝飾	I got my hair _____med.
+verdict	n.	判決，裁決	It took the jury 5 hours to reach a _____ of not guilty.
+attic	n.	閣樓	The kids found boxes of old books and letters in the _____.
+bronze	n.	青銅；銅牌	The statue is made of _____.
+cluster	n.	串，團，群	Sightseers were standing in a _____ around the famous statue.
+comply	v.	遵從，遵守	All of us should _____ with the epidemic control regulations.
+convict	v.	宣判...有罪	That man over there was _____ed of theft and fraud.
+defy	v.	違抗	The couple got into trouble because they openly _____ied the law.
+disapprove	v.	不贊同，不認可，反對	Eunice strongly _____s of drunk driving.
+entity	n.	獨立存在的個體，實體	These countries are all regarded as separate _____ies.
+fabulous	adj.	很棒的	I am a big fan of the _____ dancer.
+gorgeous	adj.	非常漂亮的，很美的；美好的，令人愉快的	Jenny looked _____ in her new dress.
+idiot	n.	笨蛋	It's not polite to talk down to people as if they were _____s.
+intervention	n.	干涉，介入	People are opposed to military _____ in other countries' affairs.
+mattress	n.	床墊	Many people prefer to sleep on soft _____es.
+negotiation	n.	商議，協商，談判	The treaty is still under _____.
+patch	n.	補丁；(與周圍不同的)一小片	The frugal farmer often wears jeans with _____es on the knees.
+practitioner	n.	(醫界等的)從業人員	Dr. Lin is a _____ of Chinese medicine.
+racism	n.	種族歧視	Many immigrants stood together to fight against _____.
+resemblance	n.	相似	That boy bears a close _____ to his father.
+scramble	v.	(手腳並用地)攀爬；爭搶	Those mountain climbers _____d along the edge of the cliff.
+siege	n.	圍攻；包圍	The town was under _____ in the war.
+speculate	v.	推測；做投機買賣	Bob don't want to _____ about the future.
+straighten	v.	弄直；整理	The clerk _____ed his tie before entering the office.
+theology	n.	神學	John wants to study _____ and philosophy at college.
+triple	adj.	三倍的；由三部分組成的	The applicant demanded _____ pay.
+versus	prep.	與...對抗，...對...；與...對比	Tonight's match is Brazil _____ Uruguay.
+attorney	n.	律師	The _____ advised her client to remain silent.
+bulk	n.	巨大的東西，龐然大物；大部分	The elephant heaved its _____ out of the river.
+coherent	adj.	(論述等)條理清楚的，合乎邏輯的，連貫的；(人)說話有條理的	The witness gave a _____ account of the accident.
+comprise	v.	包含，包括；組成	The U.S. _____s 50 states.
+correlation	n.	相互關係，相關性，關聯	There is a close _____ between smoking and many diseases such as lung cancer and heart attack.
+delegate	n.	代表	My cousin is the Australian _____ to the United Nations.
+disclose	v.	揭露，透露	The CEO _____d that she will retire next month.
+entrepreneur	n.	企業家	The young _____ made his money in the stock market.
+faculty	n.	全體教職員；(感官、心智等的)機能，能力	We had a party to welcome the new members of our school's _____.
+grant	n.	(政府或機構的)補助金	The girl was awarded a student _____ from the government to complete her education.
+illusion	n.	錯誤的想法或認知，幻想	I had no _____s about my chances of success.
+investigator	n.	調查者，調查員	The _____s are examining the crime scene.
+meantime	n.	期間	My car is under repair; in the _____, I take the bus to work.
+nominate	v.	提名	The film was _____d for 11 Academy Awards.
+patent	n.	專利(權)	The inventor took out a _____ on her invention.
+predator	n.	掠食者，肉食性動物	Most frogs are natural _____s of insects.
+rack	n.	架子	I put my bag onto the luggage _____.
+resident	n.	居民；住院醫師	Many _____s of the town travel by boat.
+scrap	n.	(紙、布等的)小片，小塊，碎片；(資訊等的)少量，一點點	The boy wrote the message on a _____ of paper.
+slam	n.	砰的一聲	The door shut with a _____.
+sphere	n.	球體；範圍，領域	The Earth is a _____.
+strand	v.	使進退不得，使陷於困境；使(船、魚等)擱淺	Because of the typhoon, many people were left _____ed at the airport.
+therapist	n.	治療師	My cousin works as a physical _____ in a hospital.
+trophy	n.	獎盃；戰利品	The tennis player finally won a _____ in the tournament.
+vertical	adj.	垂直的	The tower is not completely _____ to the ground.
+auction	n.	拍賣	A couple bought the antique vase at _____ yesterday.
+bureaucracy	n.	官僚的體制或作風	Dealing with _____ can sometimes be annoying.
+coincidence	n.	巧合	George and Mary met again by _____.
+compulsory	adj.	強制性的	Military service is _____ in some countries.
+corridor	n.	走廊	The children ran down the _____.
+delegation	n.	代表團	The government sent a _____ to the United Nations to attend a conference.
+disconnect	v.	切斷(水、電或瓦斯等)；切斷(電話、網路等的連線)	_____ the computer from the electricity supply before fixing it.
+envious	adj.	羨慕的，嫉妒的	My friends are _____ of my good fortune.
+fascinate	v.	使著迷	The idea of sailing around the world _____d John.
+gravity	n.	(地心)引力，重力；重大，嚴重性	Objects fall to the ground because the force of _____ pulls them down.
+implication	n.	可能的影響或後果；含意，暗示	The proposal will have far-reaching _____s for our future.
+irony	n.	嘲諷；出人意料或啼笑皆非的事	"Thank you so much," the angry man said with _____.
+mentor	n.	指導者	Judy's college professor is her _____ and close friend.
+nomination	n.	提名	The movie got 6 _____s for the Academy Awards.
+pathetic	adj.	悲慘的；差勁的	Eric looked _____ after the serious illness.
+premier	adj.	首要的，最重要的	South Africa is one of the _____ producers of diamonds.
+radiation	n.	輻射	Exposure to high levels of _____ can cause some forms of cancer.
+residential	adj.	住宅的，有住宿設施的	No factories should be built in the _____ areas.
+script	n.	劇本，講稿；文字	Who wrote the _____ for this movie?
+slot	n.	溝槽；時段	After putting a coin in the _____, the kid pressed the button to get a can of soda from the vending machine.
+spine	n.	脊椎；(仙人掌、豪豬等的)刺	The poor man injured his _____ in a car accident.
+strategic	adj.	戰略的	The enemy occupied an important _____ location.
+thereby	adv.	因此，藉此	Brian signed the document, _____ gaining control of the firm.
+tuition	n.	學費；家教	College _____ can be very expensive.
+veteran	n.	老手，經驗豐富者；退伍軍人	My uncle is a _____ of several political campaigns.
+authorize	v.	授權，認可	The president _____d the foreign minister to negotiate with the U.S.
+butcher	n.	肉販，肉店；屠夫	Some local _____s do not sell bacon.
+collaboration	n.	合作	Jack is working in _____ with Alice on a book.
+concede	v.	承認；讓出，讓與	I _____ that I am wrong.
+corrupt	adj.	墮落的；貪汙腐敗的	The drug dealer leads a _____ life.
+deliberate	adj.	刻意的；慎重的	That kid told a _____ lie to cover his mistake.
+discourse	n.	演講，論文	Mr. Wang delivered a _____ on critical thinking.
+envision	v.	預想，設想	We can _____ the future by learning from the past.
+filter	n.	過濾器	We bought a water _____ to purify the drinking water.
+greed	n.	貪心	In Shakespeare's play, Macbeth's _____ for power cost him his life.
+indulge	v.	縱容；沉迷，沉溺	Some parents _____ their children dreadfully.
+journalism	n.	新聞業，新聞工作	Susan plans to begin her career in _____ after graduation.
+merge	v.	合併；融入，融合	The two lanes _____ into one.
+nominee	n.	被提名人	Many celebrities attended the party, including several Oscar _____s.
+patron	n.	贊助者；顧客，常客	This lady is well-known as a _____ of the arts.
+premise	n.	前提	The detective's reasoning is based on the _____ that the crime scene was not actually a locked room.
+raid	n.	突擊，突襲；警方的突擊搜查	The enemy launched air _____s on the capital.
+respondent	n.	(問卷調查等的)受訪者	A majority of _____s agreed with the plan.
+sector	n.	(國家經濟或商業活動的)領域，產業；戰區	Salaries in the public _____ can be quite different from those in the private sector.
+smash	v.	打碎，打破；猛擊	The boy accidentally _____ed the mirror to pieces.
+sponsorship	n.	資助，贊助	We are looking for _____ for our school team.
+submit	v.	呈遞，提交；服從，順從，屈服	I'll _____ my homework to the teacher on Monday.
+thesis	n.	學位論文，畢業論文	My sister is writing a _____ on Taiwanese cuisine.
+tumor	n.	腫瘤	The patient had an operation to remove a brain _____.
+viewer	n.	觀眾	The TV program is popular and attracts many _____s.
+autonomy	n.	自治(權)；自主(權)	The local government enjoys a high degree of _____.
+canal	n.	運河	Venice has a complex system of _____s.
+collective	adj.	集體的，共同的，集合的	All of us take _____ responsibility for the environment.
+conceive	v.	想出，想像；懷孕	The writer _____d the plot for her novel when she visited London.
+corruption	n.	貪汙腐敗	The government officer was accused of _____ and bribery.
+democrat	n.	民主主義者；美國民主黨員	_____s oppose dictators.
+disrupt	v.	擾亂	Protesters stormed the building and _____ed the meeting.
+episode	n.	事件；(連載小說、連續劇等的)一集，一回	The first landing on the moon was an important _____ in human history.
+fiscal	adj.	財政稅收的，金融的	The government needs sound _____ policies to combat inflation.
+grieve	v.	(因為某人去世而)悲痛	The old woman _____d for her son.
+inevitable	adj.	不可避免的，必然的	It is _____ that all living creatures will die.
+judicial	adj.	司法的	People in that country don't quite trust the _____ system.
+metropolitan	adj.	大都會的，大都市的	The _____ area is notorious for its terrible air pollution.
+notify	v.	正式告知，通知	_____ing your supervisor of your resignation in advance is necessary.
+pedal	n.	腳踏板	One of the _____s came off my bike.
+premium	n.	保險費，保費；額外的費用，附加費	I hope that the monthly _____ for my health insurance will not go up again.
+rally	n.	大會；(價格、景氣等)止跌回升，復甦	The group held an antiwar _____ appealing for peace.
+resume	v.	(中斷後)繼續，重新開始；回到，重返(座位、職位等)	The speaker _____d his talk after a long silence.
+seminar	n.	研討會	Dr. Chen will attend a _____ on juvenile crime tomorrow.
+smog	n.	煙霧，霧霾，霾害	Vehicle exhaust is one major source of _____ in the cities.
+spouse	n.	配偶	Please bring your _____ to the party.
+subsidy	n.	補助金，補貼，津貼	The government is criticized for abolishing _____ies to farmers.
+thigh	n.	大腿	Many girls want to have slender _____s.
+tuna	n.	鮪魚	Mom bought some bread and several cans of _____ to make sandwiches for us.
+viewpoint	n.	觀點	From an economic _____, the plan has no merits.
+backyard	n.	後院	Mom grew flowers and vegetables in our _____.
+canvas	n.	帆布；油畫	We bought a tent that is made of _____.
+collector	n.	收藏家；收取或收集...的人	My father is an avid coin _____.
+conception	n.	想法，概念，觀念；懷孕	Many young children have no _____ of money management.
+counsel	n.	建議，勸告	The young man listened to his parents' wise _____ and remained patient.
+denial	n.	否認；拒絕	The official issued a strong _____ of all the charges against her.
+doctrine	n.	教義，信條	The missionary believes in Christian _____.
+equity	n.	公平，公正	Many people want a society in which _____ and justice prevail.
+fleet	n.	艦隊；(同家公司的)車隊或船隊等	The war finally ended after the Spanish _____ was defeated.
+grill	n.	烤肉架，燒烤架；烤肉，燒烤的食物	My neighbor cooked pork on the _____.
+inherent	adj.	本質上的，固有的	Competition is an _____ part of the free market economy.
+jug	n.	罐，壺；一壺的量	Please rinse the bottles and _____s before placing them in the trash can.
+minimal	adj.	極少或極小的，最低限度的	We only made _____ changes when renovating the old temple.
+notion	n.	概念；(心血來潮或異想天開的)想法	I didn't have the slightest _____ of the answer.
+pedestrian	n.	行人	This area used to be open to _____s only.
+prescribe	v.	開藥，開處方；(法律等)規定	The doctor _____d medicine for the patient's stomachache after diagnosis.
+ranch	n.	大牧場，大農場	My brother is going to work part-time on a _____ during the summer vacation.
+retail	n.	零售	The sportswear is for _____ only.
+senator	n.	參議員；評議委員	This young man is a _____ from the state of California.
+snatch	v.	一下子搶走，一把抓起，奪取；抓住機會(做)...，趁機抽空(做)...	The thief _____ed the old lady's purse and ran.
+squad	n.	分隊，小隊，小組	A bomb _____ soon arrived to defuse the time bomb.
+substantial	adj.	(在數量、重要性等方面)大的，可觀的；堅固的	The billionaire has donated a _____ amount of money to charity.
+threshold	n.	門檻；閾，界限	You shall never cross the _____ of this house again!
+uncover	v.	打開...的蓋子；揭發，揭露	The waiter _____ed the dish.
+vinegar	n.	醋	The dish is so sour. You could have added too much _____.
+ballot	n.	無記名投票，投票表決；選票	We elected the president of the club by _____.
+carnival	n.	嘉年華會	Judy and Jack met each other when they went to the _____ in Rio de Janeiro, Brazil.
+columnist	n.	專欄作家	Ann Landers was a famous American _____ in the 20th century.
+condemn	v.	公開譴責；將...判刑	Most countries _____ed Russia for its invasion of Ukraine.
+counselor	n.	諮商師，顧問；(兒童夏令營的)輔導員	The couple talked to a marriage _____ about their problem.
+deploy	v.	部署，調度(軍隊、武器等)；運用(資源等)	Troops and weapons were _____ed in this area.
+documentary	n.	紀錄片	We saw a _____ on the aboriginal peoples in Taiwan.
+erect	v.	建立；使直立，豎起	The villagers _____ed a statue in memory of the great poet.
+fluency	n.	流利，流暢	The professor speaks English with _____.
+grip	n.	抓牢，抓緊，緊握；掌握，控制	Olive kept a _____ on my hands.
+inherit	v.	繼承；遺傳	My friend _____ed a million dollars from her father.
+jury	n.	陪審團；(競賽等的)評審團	After full discussion, the _____ found the defendant not guilty.
+minimize	v.	將...減到最低	Make preparations in advance of the typhoon to _____ the damage.
+nutrient	n.	營養，養分，營養素，營養物質	Vegetables and fruits provide many essential _____s.
+perspective	n.	觀點；理性客觀的判斷力	What's your _____ on life?
+presume	v.	以為，認為，認定，假定；冒昧，膽敢，擅自	I _____d that we could reason with the salesman.
+rational	adj.	合理的；理性的	You must give _____ arguments to be persuasive.
+rhetoric	n.	(煽動或浮誇的)言詞，華麗的詞藻，花言巧語；修辭學	The politician's speech was full of empty _____.
+sensor	n.	感應器，感應裝置	I'm looking for a _____ that can detect smoke or fire.
+sniff	v.	嗅，聞；吸鼻子	The dog _____ed at the stranger.
+squash	n.	南瓜屬的植物或其果實；壁球	I planted some _____ in the field.
+successor	n.	繼任者	Ted was chosen to be the _____ to the current president.
+thrill	n.	激動，興奮刺激，戰慄	It gave us a _____ to meet the superstar.
+undergraduate	n.	大學生	A group of Harvard _____s threw a party at the bar last night.
+visa	n.	簽證	My visitor's _____ expired. I need to extend it.
+banner	n.	橫幅標語	The protesters carried _____s which said, "No More Chernobyls."
+casino	n.	賭場	Las Vegas is known for many _____s.
+combat	n.	戰鬥	Many soldiers were killed in _____.
+confession	n.	坦白，供認	The killer was relieved after making a full _____.
+credibility	n.	可信度，信用	The bribery has undermined that man's _____ as a judge.
+depress	v.	使沮喪	Failing to get into his ideal college _____ed Jimmy.
+domain	n.	領域，範圍	Is this issue outside or within the _____ of medicine?
+erupt	v.	(火山)爆發；(動亂、戰爭、抗議等)突發	The volcano _____ed and left several tourists injured.
+forum	n.	討論會，研討會；網路論壇，討論區	There will be a _____ for discussion on economic development.
+guideline	n.	指導方針	The government issued _____s on the stock market for would-be investors.
+initiative	n.	主動，自主性，主導權	We took the _____ in starting diplomatic relationships with that country.
+landlord	n.	房東或地主	Few _____s would lower their tenants' rents; some _____s even raise the rents.
+missionary	n.	傳教士	The _____ies built buildings for their religious work.
+observer	n.	觀察者，觀察員；觀察家，評論家	UN _____s will also attend the conference.
+pessimism	n.	悲觀，悲觀主義	Because of the pandemic, _____ about the economy could remain for a while.
+prevail	v.	流行，盛行；占上風，占優勢，勝過	Internet slang _____s among the younger generation.
+rattle	v.	嘎嘎作響，發出卡嗒聲；使緊張，使惶恐不安	The windows were _____ing in the violent wind.
+rib	n.	肋骨；排骨	The thief fell off a ladder and broke a _____.
+sentimental	adj.	情感的；多愁善感的，感傷的	For _____ reasons, the old man came back to his hometown.
+soar	v.	暴增；高聳，高飛翱翔	The temperature _____ed to 46°C, and many people died from the heat.
+squat	adj.	矮胖的	The _____ guy over there is a lawyer.
+suite	n.	(旅館等的)套房	I want to reserve a _____.
+thriller	n.	驚悚片或驚悚小說等文藝作品	This movie is the best _____ I have ever seen.
+underline	v.	在(字句等)之下劃線，(為了強調而)將...劃底線；強調，突顯	I _____d the important words in red.
+vomit	n.	嘔吐物	The nurse made sure that the unconscious patient didn't choke on his own _____.
+batch	n.	一批	The dealer delivered the goods in _____es.
+cemetery	n.	(常指非附屬於教會的)墓地	They buried their mother in a public _____.
+comedian	n.	喜劇演員	Chaplin is one of the most famous _____s in the 20th century.
+confine	v.	限制，使侷限於；關住，困住，使離不開	During the lockdowns, many people were _____d to their homes.
+creek	n.	小溪	When I was little, I used to catch tadpoles in the _____.
+deputy	n.	代理人，副手	Who'll be your _____ while you are away?
+dome	n.	半球形屋頂，圓頂，穹頂	The _____ of the cathedral was painted gold.
+escalator	n.	電扶梯，自動手扶梯	We took the _____ down to the lower level.
+foster	adj.	寄養的，(暫時)收養的	This child will be placed with a nice _____ family.
+gut	n.	腸道；內臟	To help food pass through the _____ smoothly, consume enough water.
+inject	v.	注射；注入，增添(活力、資金等)	The doctor _____ed the patient with antibiotics.
+laser	n.	雷射	_____s can be used to perform eye surgery or to read bar codes on products.
+moan	n.	呻吟聲	The rescue team heard a _____ from under the rubble.
+odds	n.	可能性	The _____ are against us.
+petty	adj.	微不足道的，瑣碎的	Some adolescents are involved in shoplifting or other _____ crimes.
+proclaim	v.	宣布，聲明，宣稱	The famous actor _____ed that he would run for president.
+realism	n.	務實，實際；(文學、藝術等的)逼真，寫實(主義)	There is a mood of _____ at the conference.
+ridge	n.	山脊；(屋脊等)狹長的隆起	The mountain climber walked carefully along the _____.
+server	n.	伺服器；服務生；(大湯匙等)分菜用具；(網球、排球等的)發球者	"Did the _____ crash?" "Yes, the _____ is down again!"
+sob	n.	啜泣(聲)，抽噎(聲)，嗚咽(聲)	Tess asked her father for forgiveness with _____s.
+stability	n.	安定(性)，穩定(性)	The job offers _____ and a good salary.
+supervise	v.	監督	The teacher _____d the students taking their final exam.
+throne	n.	王位	The incident happened when the old king was still on the _____.
+undertake	v.	從事，進行，承擔(任務等)；承諾，答應	The directors of the company were reluctant to _____ a risky venture.
+voucher	n.	抵用券，兌換券	This _____ is valid till May and entitles you to 10% off all books.`;
+
+    const rawDataLevel5_11_20 = `acquaint	v.	使熟悉	It is Laura's job to _____ newcomers with the rules of the office.
+anticipate	v.	預期	The patient recovered faster than _____.
+arrogant	adj.	傲慢的	The _____ official refused to answer any questions about her scandals.
+arrogance	n.	傲慢	Paul's friends all left him because they could not put up with his _____.
+athletics	n.	體育運動	Wendy was praised for her impressive performance in school _____.
+awe	n.	敬畏	The sights of Taroko National Park filled me with _____.
+awe	v.	使敬畏	All the tourists were _____ by the majestic view.
+communist	adj.	共產主義的	North Korea is a _____ country.
+communist	n.	共產主義者	Mark is a _____; he wants to create a society where everyone is equal.
+coverage	n.	新聞報導	The newscaster is giving live _____ of the election campaign.
+deficit	n.	赤字	The startup tried to reduce its budget _____ by cutting spending.
+extension	n.	延伸，擴展	The research is an _____ of the topic Dr. Lin introduced in the book.
+federal	adj.	聯邦的	The _____ government is criticized for being slow to react to the disastrous impacts of hurricane.
+mount	n.	山，峰	The mountain climbers overcame all the difficulties and got to the top of _____ Everest.
+mount	v.	增加，上升	The students' pressure is _____ as the exam draws nearer.
+performer	n.	表演者	Amy's dream is to become a brilliant _____.
+plea	n.	懇求，請求	Doris made a _____ to the police to look for her missing son.
+questionnaire	n.	問卷	Participants were asked to fill in the _____s after the workshop.
+recite	v.	背誦，朗誦	At the request of the audience, the poet _____d several poems she had written.
+recital	n.	獨奏會，朗誦會	Venus is going to give a violin _____ at the cultural center.
+revenue	n.	收益，稅收	Ten percent of the company's _____ will be spent on charity.
+sponsor	n.	贊助者	Before signing the contract, you need to find a _____.
+sponsor	v.	贊助	The road running race is _____ed by a bank.
+stock	n.	存貨，股票	Emily always keeps a good _____ of cosmetics.
+texture	n.	質地，觸感	This lotion can give your skin a silky _____.
+tribute	n.	敬意，尊崇	The president paid _____ to the soldiers who fought bravely in the battle.
+vague	adj.	模糊的	The politician only made _____ promises to abolish nuclear power.
+vaguely	adv.	模糊地	The girl's face looked _____ familiar but I couldn't remember where we had met.
+wildlife	n.	野生動植物	Construction of highways is very likely to endanger _____.
+accessible	adj.	可進入的，可得到的	The village is only _____ by air. There is no other way to reach it.
+acquisition	n.	獲得，習得	Amy's _____ of writing skills is mainly through continuous practice.
+antique	adj.	古董的	The _____ china is worth millions of dollars.
+antique	n.	古董	Kathy has a fine collection of _____s.
+assess	v.	評估	Some experts are invited to _____ if the seaside resort meets the requirements of environmental protection.
+assessment	n.	評估	Greg made a careful _____ before investing in the property market.
+ban	n.	禁令	Some argued that the total _____ on smoking violates human rights.
+ban	v.	禁止	Caught drunk driving, Bill was _____ned from driving for one year.
+commute	v.	通勤	Carrie _____s between Taipei and Keelung by intercity bus every day.
+contemporary	adj.	當代的	The use of electronic sounds is one characteristic of _____ music.
+contemporary	n.	同時代的人	Tang Xianzu was a _____ of Shakespeare.
+cruise	n.	乘船遊覽	The newlyweds went on a 10-day Mediterranean _____.
+cruise	v.	乘船遊覽，航行	Maria _____d around the Caribbean for 5 days.
+depict	v.	描繪	The painting vividly _____s what a church was like 100 years ago.
+depiction	n.	描寫，敘述	The bloody _____ of the war on TV disgusted the viewers.
+fabric	n.	布料，織物	You can find various kinds of _____s in that _____ market.
+flexibility	n.	彈性，靈活性	Because of its _____, rubber is used for tires.
+genre	n.	類型，流派	The novels on Molly's bookshelf are arranged according to the _____s.
+howl	n.	長嚎，號叫	The _____ of dogs made me toss and turn all night.
+howl	v.	長嚎，號叫	Wolves _____ to call the pack together.
+midst	n.	中間	A school in the _____ of the city doesn't usually have a large campus.
+midst	prep.	在...之中	A swarm of bees fly _____ the flowers.
+nasty	adj.	惡劣的，令人不快的	Don't be so _____ to those who care about you.
+nastily	adv.	險惡地，令人不快地	The violent criminal smiled _____ at the police.
+pledge	n.	誓言，保證	Will made a _____ to take his kids to the aquarium.
+pledge	v.	發誓，保證	The government _____d to rebuild the bridge ruined by the typhoon as soon as possible.
+prey	n.	獵物	Spiders use their webs to catch their _____.
+prey	v.	捕食	Sparrows _____ on worms and fruits.
+random	adj.	隨機的	The survey used a _____ sample of 500 students throughout the town.
+randomly	adv.	隨機地	The magician asked the little girl to pick a card _____.
+refuge	n.	避難，避難所	A thunderstorm forced the passers-by to take _____ from the rain in the arcade.
+reverse	v.	逆轉，反轉	It will take some time to _____ the economic decline.
+reverse	adj.	相反的，顛倒的	The FBI agent says one way to spot liars is to ask them to tell their stories in _____ order.
+reverse	n.	相反的事物	Many of Julia's friends think Julia is outgoing; however, the _____ is true.
+reversal	n.	逆轉，翻轉	The clothing factory experienced a _____ of fortune, but now it's getting better.
+strain	n.	拉力，壓力	Thomas is learning to cope with the stresses and _____s of his studies.
+strain	v.	拉緊，竭力	Without subtitles, Vicky needs to _____ her ears to catch the conversations in the movie.
+strained	adj.	緊張的，勉強的	Relations between the Soviet Union and the United States were _____ during the Cold War.
+toxic	adj.	有毒的	The factory was caught releasing _____ chemicals into the river.
+transaction	n.	交易	Remember to get a receipt after the _____.
+vendor	n.	小販	Jacob bought a hot dog from a street _____ on the sidewalk.
+via	prep.	經由，透過	Sophia flew to Taiwan from London _____ Bangkok.`;
+
+    const rawDataLevel6_1_10 = `admiral	n.	海軍上將	_____ are highest ranking navy officers who direct military operations.
+annoyance	n.	惱怒	To my _____, my brother took my digital camera without telling me and broke it.
+arithmetic	n.	算術	If my _____ is correct, you have been playing the video game for 48 hours.
+bilateral	adj.	雙邊的，雙方的	We have signed a _____ agreement to help economic growth.
+broth	n.	高湯	If you make corn soup with chicken _____, it will be tastier.
+Celsius	n.	攝氏	To kill all the bacteria, the water is heated to 100 degrees _____.
+colloquial	adj.	口語的	Some _____ expressions are not suitable for academic essays.
+consonant	n.	子音	Ben has difficulty pronouncing the _____ "z."
+coral	n.	珊瑚	The Great Barrier Reef attracts many tourists coming to explore the colorful _____ reefs.
+courtyard	n.	中庭	My parents are used to taking a walk in the _____.
+crossing	n.	穿越道	Drivers should stop at the _____ and yield to pedestrians.
+detach	v.	拆開，使分離	Some workers _____ed the engine from the rest of the train.
+enrich	v.	使(心靈、生活等)豐富	Pursuing some hobbies such as cooking and gardening has _____ed the retired man's life.
+eternity	n.	永恆，漫長的時間	On the wedding ceremony, Matt told his wife that he would love her for _____.
+hospitable	adj.	友好熱情的，好客的	Mr. and Mrs. Smith are always _____ to their guests.
+liberate	v.	解放，使自由	The prisoner of war was _____d from the prison camp.
+merchandise	n.	貨品	Keep the receipt in case you want to return the _____.
+nickel	n.	鎳	Though some people are allergic to _____, the British government still uses it as the material for making coins.
+notorious	adj.	惡名昭彰的	The king is _____ for his cruelty to his people.
+radius	n.	半徑	Please draw a circle with a _____ of 10 cm.
+solidarity	n.	團結	Supporters will march to show their _____ tomorrow.
+strangle	v.	勒死，扼殺，壓制	That man _____d his wife with a necktie.
+trek	n.	(徒步)長途跋涉	Tony is on a _____ through the Sahara Desert.
+vanilla	n.	香草	_____ ice cream is my favorite dessert.
+veil	n.	面紗，覆蓋物	The widow wore a black _____ at the funeral.
+advisory	adj.	顧問的	John acts in an _____ role in our company.
+antibiotic	n.	抗生素	The doctor prescribed some _____s for my sore throat.
+ascend	v.	上升，登上，攀登	My grandfather panted heavily after _____ing the stairs.
+beforehand	adv.	預先，事先	We reserved a table at the restaurant two days _____.
+blaze	n.	火焰，大火	Within minutes the firemen controlled the _____.
+brotherhood	n.	手足情誼，親善友愛	The Statue of Liberty is a symbol of _____ between France and the U.S.
+cement	n.	水泥	Concrete is made of _____, stones, sand, and water.
+comet	n.	彗星	Do you know when Halley's _____ will come back?
+conspiracy	n.	共謀或密謀策劃	The woman was found guilty of _____ in the murder of her husband.
+crutch	n.	(夾在腋下用的)拐杖	Allen broke his leg and has been on _____es for two months.
+cumulative	adj.	累積的	Your _____ grade in class depends on homework, test scores, and attendance.
+defect	n.	毛病，缺陷	The mechanic checked the machine for _____s.
+detain	v.	羈押，拘留，耽擱	The suspect was _____ed at the police station for 24 hours.
+examinee	n.	應試者，考生	There are thousands of _____s at school today.
+hybrid	adj.	混合的	Ken just bought a _____ car yesterday as his birthday present for himself.
+liberation	n.	解放(運動)	Lara is a spokesperson for the women's _____ movement.
+mimic	v.	模仿	This comedian can _____ the way other people talk.
+nourish	v.	提供營養或養育，懷有，培養	Teenagers need lots of fresh food to _____ them.
+orient	n.	東方國家	Many westerners are curious about the cultures of the _____.
+rap	n.	饒舌音樂	Sue wants to be a _____ artist.
+soothe	v.	安慰，撫慰，舒緩，減輕(疼痛)	The mother _____d her crying baby.
+stride	n.	大步，闊步	Tom has a long _____ that is hard to keep up with.
+underneath	prep.	在...之下	The criminal hid the weapon _____ his coat.
+versatile	adj.	多才多藝的，多功能的	Alex is a _____ actor.
+affiliate	n.	隸屬機構，分支機構	Our company is an _____ of A&Q Corp.
+applicable	adj.	適用的	The new law is _____ to all motorcycle riders.
+aspire	v.	渴望	The baseball team _____d to win the championship so much.
+bleach	n.	漂白劑	Shelly used _____ to remove the stain on the white shirt.
+bureaucrat	n.	官僚	The newly elected legislator turned out to be a nasty _____.
+census	n.	人口普查	It is important to have a _____ every ten years.
+commonwealth	n.	聯邦，國協	Australia is a member of the British _____.
+contention	n.	論點，看法，爭議，爭吵	Our main _____ is that the project would be too expensive.
+cub	n.	(狼、獅、熊等肉食性動物的)幼獸	The bear took care of its _____.
+cynical	adj.	憤世嫉俗的	Lily became so _____ after her job application was rejected.
+detention	n.	羈押，拘留	The criminal was held in _____ before a date was set for his trial.
+drastic	adj.	嚴厲的或激烈的	The mayor took _____ measures to sweep away the sex industry.
+excerpt	n.	摘錄	An _____ from the government's latest report on domestic violence will appear in tomorrow's newspapers.
+fable	n.	寓言	There are some moral values in _____s.
+glacier	n.	冰河	We planned to see the _____s in New Zealand.
+hygiene	n.	衛生	My dentist always emphasizes the importance of good oral _____.
+linger	v.	留連	The audience still _____ed in their seats, hoping the singer would come back onstage for an encore.
+navigate	v.	導航，向駕駛指示行車路線	You should drive, and I can _____.
+oath	n.	(在法庭上的)宣誓，誓言	You have to take the _____ before you give testimony in court.
+orphanage	n.	孤兒院	The _____ devoted itself to caring for the orphans.
+realization	n.	領悟，意識到	Judy felt sad after the _____ of her failure.
+sorrowful	adj.	悲傷的，傷心的	Bill told us a _____ story about the death of his younger brother.
+subjective	adj.	主觀的	Most of our likes and dislikes are _____.
+vigorous	adj.	活力充沛或強而有力的	Stretch after you do _____ exercise. Otherwise, your muscles would be sore the next day.
+villain	n.	惡棍，歹徒，流氓	The police caught the _____ who robbed the convenience store.
+accumulate	v.	累積	Daisy worked diligently to _____ wealth, hoping to pay off her student loan soon.
+affirm	v.	斷言，確定	Mr. Brown _____ed that everything was fine.
+assassinate	v.	暗殺	Mr. Smith fought for freedom but was _____d one day.
+astronaut	n.	太空人	_____s require a high level of physical fitness.
+blond	n.	(尤指)金髮男子	Who is the _____ that is talking to Ann?
+bypass	n.	(繞過城市或城鎮的)旁道，外環道路	Contractors are building a new _____ around the town.
+ceramic	adj.	陶器的，瓷器的	They decorated the walls with colorful _____ tiles.
+communicative	adj.	健談的	Salespeople need to be patient and very _____.
+contestant	n.	競爭者，參賽者	Hundreds of _____s from all over the country fought for first place in the boxing championship.
+cucumber	n.	黃瓜	_____s are often made into pickles.
+dedication	n.	奉獻，盡心盡力	Tom's _____ to his work impressed his boss.
+deter	v.	阻止，使打消念頭	The installation of cameras in the store is aimed at _____ring people from shoplifting.
+excess	adj.	多餘的，過多的，過度的	For the sake of health, Thomas wants to lose the _____ weight.
+fragrance	n.	芳香，香氣	The _____ of coffee filled the kitchen.
+illuminate	v.	照亮	These trees were _____d at night during the Christmas and New Year holidays.
+imperial	adj.	帝國的，皇帝的	The _____ palace is being renovated.
+lizard	n.	蜥蜴	Tony's new pet is a _____.
+odor	n.	(常指難聞的)氣味，臭味	When smelling a gas _____, never turn on or off any electrical equipment around you.
+offspring	n.	子女，孩子	Many parents have trouble getting along with their teenage _____.
+outbreak	n.	爆發	An _____ of food poisoning led to dozens of school children being hospitalized earlier today.
+outward	adj.	表面的	To all _____ appearances, this couple seem to be fine and happy.
+reckless	adj.	魯莽的	David was fined for _____ driving.
+spacecraft	n.	太空船	An unmanned _____ has been successfully launched into deep space.
+surname	n.	姓氏	We guess the man may come from Japan because his _____ is Suzuki.
+vitality	n.	活力	The young person is always full of _____.
+aboriginal	adj.	原始的，土生土長的，原住民的	Many _____ people used to make a living by farming and hunting.
+airway	n.	氣道	Before giving the patients artificial respiration, you have to make sure their _____s are clear.
+apprentice	n.	學徒	Mr. Twain was an _____ in a printing factory when he was young.
+asthma	n.	氣喘	Sandra suffers from _____.
+attendant	n.	接待員	The museum _____ told me not to bring any food into the building.
+blot	v.	(用紙或布)吸乾	Eric tried to _____ the stains on the tablecloth.
+calculator	n.	計算機	The teacher asked the students not to use the _____s in class.
+certify	v.	證實，證明	The authorities _____ied that the proposal had been rejected.
+compile	v.	彙編	The encyclopedia took ten years to _____.
+continuity	n.	連續性	Several episodes in the novel lack _____.
+cultivate	v.	耕種，培養或塑造	The settlers _____d the wilderness.
+dental	adj.	牙科的	Although _____ treatment costs a lot of money, it will save future problems.
+detergent	n.	清潔劑	It is important to use the _____ to do the dishes.
+exclusion	n.	排除，除外	Mason spent all his time with his girlfriend to the _____ of his other friends.
+frantic	adj.	忙亂的	The rescuers made _____ attempts to save people from the earthquake rubble.
+indifference	n.	漠不關心	Many people showed _____ to the political issue.
+literacy	n.	知識，能力	Computer _____ is crucial to surviving in the workplace.
+longevity	n.	長壽，壽命	What's the secret to your grandfather's _____.
+oriental	adj.	東方的	_____ cuisine is getting popular in western countries.
+outnumber	v.	在數量上超過	The enemy greatly _____ed us. Our chance of winning was slim.
+outright	adj.	徹底的	Helen gave me an _____ refusal.
+recreational	adj.	休閒娛樂的	The hotel compiled a list of its top ten _____ activities.
+spontaneous	adj.	自發的或不由自主的	There was _____ applause from the audience after the performance.
+symbolize	v.	象徵	Generally, doves _____ peace.
+wardrobe	n.	衣櫥	Judy has many new dresses in the _____.
+algebra	n.	代數	My best subject in high school was _____.
+astray	adv.	迷路地，誤入歧途地	The child went _____ in the woods.
+awesome	adj.	很棒的	The concert last night was _____.
+banquet	n.	(正式的)宴會	Many heads of government and industry are invited to the state _____.
+blunt	adj.	鈍的，直率的	The knife is too _____ to cut anything.
+calligraphy	n.	書法	Chinese _____ is the art of writing with a brush.
+champagne	n.	香檳	I like to watch the small bubbles rise to the surface when _____ is poured into a glass.
+complement	v.	使完善，補足，與...互補或相配	The necklace _____s your dress perfectly.
+contradict	v.	與...矛盾，反駁	Eric's behavior _____s his principles.
+curb	n.	抑制	If you cannot put a _____ on spending, you will not be able to make both ends meet.
+destined	adj.	命中注定的，預定前往...的	Eddie was _____ for the medical profession.
+devour	v.	狼吞虎嚥地吃光	It is so impressive that such a petite girl can _____ all the dishes on the table.
+fascination	n.	魅力，吸引力，著迷	Venice holds a _____ for me.
+graze	v.	(牛、羊等)吃草，擦傷，擦破	The cattle _____d on the hillside.
+induce	v.	誘使，導致	Nothing will _____ me to change my mind.
+lullaby	n.	催眠曲，搖籃曲	The mother was humming a _____ in a low voice.
+lunar	adj.	月球的	_____ eclipses usually last for a few hours or so.
+originate	v.	創始，開始	That style of dancing was _____d in Ireland.
+oyster	n.	牡蠣	Ken doesn't dare to eat raw _____s.
+paradox	n.	矛盾的人或事物	The _____ is that the more one owns, the more one wants.
+rehearse	v.	預演	The stage actors will _____ the play the day before the performance.
+solitary	adj.	(喜歡)獨處的	Rather than going out with friends, Arthur likes to be _____.
+spotlight	n.	大眾關注的焦點，聚光燈	The actor's romance is in the _____.
+telecommunications	n.	電信(科技)	Bad management has led to this _____ company going bankrupt.
+weary	adj.	疲倦的	After working all day, Linda lies in bed and rests her _____ eyes.
+alienate	v.	使疏遠	Mike is _____d from his friends.
+anthem	n.	(團體組織的)頌歌	After the game, the team members sang the national _____ to celebrate their victory.
+astronomer	n.	天文學家	The _____s discovered a planet that was similar to the Earth.
+bachelor	n.	單身漢，學士	The poet remained a _____ all his life.
+bodily	adj.	身體的	The virus spreads through contact with infected blood, other _____ fluids, or dead patients.
+cape	n.	岬，海角	The boat sailed around the _____ before it entered the harbor.
+captive	adj.	被俘虜的，受制於人的，無選擇權的	The man was held _____ as a political prisoner.
+chemist	n.	化學家	A _____ spends a lot of time working in a laboratory.
+complexion	n.	臉色	The little girl has a pale _____.
+convene	v.	召開	Henry _____d a meeting of the students to discuss an issue of dress code.
+curfew	n.	宵禁	The government announced to impose a _____ because of a state of political turmoil.
+dictate	v.	口述，命令	The president of the company _____d a letter to his secretary.
+differentiate	v.	辨別，使不同	Children at this age still cant _____ between right and wrong.
+fertility	n.	肥沃，生育能力	The farmer uses animal waste to maintain the _____ of his farm soil.
+grease	n.	油	The car mechanic had a lot of _____ on his hands.
+infer	v.	推論	Mandy _____red from John's statement that he was not satisfied with his present situation.
+lush	adj.	茂盛的，豪華的	The villa is surrounded by _____ meadows.
+ornament	n.	裝飾品，裝飾	My mom is putting _____s on the Christmas tree.
+outgoing	adj.	外向的	Ken's _____ personality makes it easy for him to make friends.
+peacock	n.	孔雀	A _____ is eating the peas in front of a rooster.
+pianist	n.	鋼琴家	The concert hall was filled with sweet music as the _____ moved his fingers swiftly on the keyboard.
+relentless	adj.	持續的	Many people blamed the death of Princess Diana on paparazzi's _____ pursuit.
+stimulation	n.	刺激	Reading a book can act as great _____ of the mind.
+vice	n.	壞習慣，惡習，罪行，惡行	Mr. Chen's only _____ is smoking.
+woodpecker	n.	啄木鳥	A _____ is making holes on the trunks with its beak, finding insects for food.
+abundance	n.	大量，充足，富足	Our garden produced an _____ of cabbages last year.
+align	v.	(使)成一直線，(使)對齊	The librarian carefully _____ed the books on the shelf.
+attain	v.	獲得	Van Gogh _____ed no fame during his lifetime.
+beverage	n.	飲料	The restaurant doesn't serve alcoholic _____s.
+bosom	n.	前胸	The mother held the baby to her _____.
+capsule	n.	膠囊	Medicine in _____s is easier to swallow.
+caretaker	n.	管理員	The school _____s clean up the campus every day.
+chestnut	n.	栗子	Lisa made a birthday cake with the flavor of _____.
+compute	v.	計算	It's easy to _____ such a complicated math problem by computer.
+corpse	n.	屍體	The police found the old man's _____ in the room.
+curry	n.	咖哩	Nick gave us a cooking demonstration; he taught us how to cook beef _____.`;
+
+    const rawDataLevel6_11_20 = `abound	v.	為數眾多，充滿	Game birds _____ in this area.
+accountable	adj.	負有責任的	Henry must be _____ for his own actions.
+aluminum	n.	鋁	Take a large piece of _____ foil, put some onions and potatoes on it, and place it in the oven.
+astronomy	n.	天文學	Jenny majored in _____ at Penn State.
+avert	v.	轉移	Mark _____ed his eyes from the horrible sight.
+boycott	n.	抵制	The citizens called for a _____ against the company's new products to protest animal testing.
+bulky	adj.	龐大的	This refrigerator was so _____ that we couldn't get it through the door.
+cardboard	n.	厚紙板	My dad made a toy out of _____.
+civilize	v.	教化	They tried to _____ the barbarians.
+collision	n.	碰撞	The man's car was completely wrecked in a _____ with a big truck.
+concession	n.	讓步	The labor union has made it clear that no _____s will be made to the employers.
+counterpart	n.	相對應的人或事物	Tokyo Disneyland is much smaller than its American _____.
+deafen	v.	使聽不見	The fireworks _____ed us, so we couldn't hear each other.
+diesel	n.	柴油	The _____ engine is reliable and long-lasting.
+dispense	v.	分發	The nuns _____d food to the poor.
+folklore	n.	民間傳說	According to _____, the ghosts in the mountains would make people get lost.
+imperative	adj.	迫切的	It is _____ that we finish the urgent task today.
+intruder	n.	侵入者	The smart dog secured the house against the _____.
+mingle	v.	混合；交際	Allie's excitement about college life _____d with some fear.
+permissible	adj.	可容許的	Smoking in public places is not _____ under the new law.
+playwright	n.	劇作家	Shakespeare is regarded as the greatest _____ in English literature.
+radiate	v.	放射；散發情感	Light and heat _____ from the sun.
+respective	adj.	各自的	The girls returned to their _____ homes as night fell.
+retrieve	v.	檢索；取回	Enter the password and then you can _____ information from the computer.
+tenant	n.	租客	The landlord sued the _____ for not paying the rent.
+abstraction	n.	抽象	Tim often talks in empty _____s without real examples.
+accumulation	n.	累積物；累積	An _____ of rubbish ruined the beautiful view.
+amid	prep.	在...之間	The hikers moved along a narrow trail _____ trees.
+aviation	n.	航空	The Boeing Company is the major and most influential company in _____ industry.
+brace	n.	牙齒矯正器	John wore _____s to straighten his crooked teeth.
+broaden	v.	拓展	Both reading and travel _____ the mind.
+caffeine	n.	咖啡因	A study found that _____ consumed 6 hours before bedtime had a significant effect on sleep disturbance.
+cardinal	n.	紅衣主教	The man has received a clear directive from the _____.
+clam	n.	蛤，蚌	For real Japanese _____ miso soup, just follow the recipe.
+comparative	adj.	比較的	With double income, they now live in _____ comfort.
+concise	adj.	簡潔的	The report is _____ and to the point.
+coupon	n.	優待券	With this _____, you can get one free cheeseburger.
+deduct	v.	扣除	When you buy something with your debit card, the amount of money will be _____ed from your account.
+diplomacy	n.	外交手腕	Skillful _____ was needed to prevent a war.
+diversify	v.	使多樣化	The radio station _____ied its programs to attract more listeners.
+gay	adj.	男同性戀的；鮮豔的	The celebrities spoke up for the _____ and lesbian community through the song.
+inclusive	adj.	包含的	The list is _____ of 3 girls.
+invaluable	adj.	無價的，無比貴重的，非常寶貴的	Thank you for your _____ comments on my essay.
+miraculous	adj.	奇蹟似的	The magician made a _____ escape from the prison.
+pneumonia	n.	肺炎	People could take precautions to prevent _____, such as washing hands regularly.
+refresh	v.	使恢復活力；喚起記憶	Mike felt _____ed after the bath.
+resistant	adj.	抗拒的	Oliver likes handwritten letters. He is _____ to change.
+robust	adj.	強健的；堅固的	The boxer is very _____.
+screwdriver	n.	螺絲起子	The worker tightened a screw with a _____.
+tentative	adj.	暫定的，不確定的	Margot and Tom have a _____ plan for their honeymoon.
+academy	n.	學院	Mr. Black graduated from a military _____.
+adolescence	n.	青春期	During _____, most boys and girls are strongly influenced by their peers.
+analytical	adj.	分析的	Students can learn more by applying an _____ learning strategy.
+awhile	adv.	片刻	Let's rest _____.
+brassiere	n.	胸罩	The shop sells different types of _____s.
+carefree	adj.	無憂無慮的	Meg and David live a _____ life in each other's company.
+carton	n.	硬紙盒	Ted's father asked him to buy a _____ of cigarettes at a convenience store.
+chimpanzee	n.	黑猩猩	The intelligent _____ quietly dies at the end of this movie.
+clasp	v.	抱緊	The mother _____ed her baby in her arms.
+compass	n.	羅盤；圓規	People used to rely on the _____ to sail.
+condense	v.	濃縮	My boss's secretary _____d his statement into an abstract.
+cowardly	adj.	膽小的	The soldiers were ashamed of their _____ retreat.
+deem	v.	認為	The area has been _____ed safe by government officials.
+directive	n.	指令，命令	The company received a _____ from the government.
+diversion	n.	轉移；消遣	The woman was under investigation because of the illegal _____ of funds into her personal account.
+geographical	adj.	地理的	This supermarket has a good _____ location and is often crowded with customers.
+intellect	n.	智慧	Dr. Lee is a man of great _____.
+invariably	adv.	總是，老是	Believe it or not, it _____ rains after I have my car washed.
+mischievous	adj.	搗蛋的	The little boy had a _____ grin on his face.
+ponder	v.	仔細思考，考慮	My parents asked me to _____ my future.
+renowned	adj.	著名的	The country is _____ for its beautiful scenery.
+royalty	n.	王權；王室成員	The crown is a symbol of _____.
+serving	n.	一份	An adult should eat 3 _____s of vegetables and 2 _____s of fruit every day.
+thereafter	adv.	從那以後，之後	You will work alone for the first week, but _____ you will work with a group.
+virgin	n.	處女	The girl decided to remain a _____ until she got married.
+accessory	n.	裝飾品；幫凶	The actress is wearing a green dress with matching _____ies.
+accordingly	adv.	照著，相應地	Nancy has told you the situation, and you had better behave _____.
+aesthetic	adj.	美學的	This artist's painting has many _____ values.
+animate	v.	使生氣勃勃	Vivien's face was _____d with joy at the sight of her father.
+animated	adj.	活躍的	Tommy and I had an _____ discussion about politics.
+backbone	n.	脊椎；支柱；勇氣	The man fell off his horse and broke his _____.
+breakdown	n.	故障；崩潰	Stop the car on the shoulder and wait for the _____ service.
+cashier	n.	收銀員	After graduating from high school, Helen worked as a _____ at a supermarket.
+catastrophe	n.	大災難	Rachel Carson warned us of the upcoming ecological _____.
+clearance	n.	間距；許可	The _____ between the water and the bridge is 4 meters.
+confederation	n.	同盟，聯盟	These two countries are celebrating the anniversary of _____.
+correspondence	n.	通信	Chloe's _____ with Jim lasted many years.
+cozy	adj.	舒適的	It was _____ in front of the fireplace.
+default	n.	拖欠	This bankrupt company is in _____ on its loan.
+diabetes	n.	糖尿病	Work out regularly can prevent _____.
+disable	v.	使失能，使殘疾	The accident _____d the young worker.
+downward	adj.	向下的	Be careful. There's a _____ slope ahead.
+geometry	n.	幾何學	A basic understanding of _____ can help you learn art and design.
+intimidate	v.	恫嚇	The gangsters _____d us into agreeing to their demands.
+irritate	v.	使惱怒	The teacher was a bit _____d by the students' jokes.
+mobilize	v.	動員	The purpose of the movement is to _____ public support for women's rights.
+preview	n.	試映(會)或試演	Critics are invited to attend the _____ of the film.
+sanitation	n.	衛生(設備或系統)	The mayor must solve the problem of the city's poor _____.
+scenic	adj.	風景的	Naples is famous for its _____ beauty.
+skeptical	adj.	懷疑的	Penny's mom is _____ about her chances of success.
+tornado	n.	龍捲風	A series of _____es ripped through America's heartland.
+accusation	n.	控訴	The singer is under a false _____.
+addiction	n.	上癮	The man is trying to cure himself of his _____ to drugs.
+affectionate	adj.	深情的	My sister gave her baby an _____ kiss.
+anticipation	n.	期盼	The fans waited for the arrival of the singer with eager _____.
+badge	n.	徽章	How will I know you're a policeman if you don't show me your _____?
+breakup	n.	瓦解；破裂	The _____ of the Soviet Union led to the unstable condition in Eastern Europe.
+casualty	n.	死傷者，傷亡人員	There were many _____ies in the plane crash.
+chairperson	n.	主席	Alma has been appointed as the new _____ of the committee.
+climax	n.	高潮	The _____ of the movie takes place in the sewer where the buried treasure is found.
+congressman	n.	美國國會議員	The married _____ is having an affair with a celebrity.
+crackdown	n.	鎮壓	The president made a public statement in support of the _____.
+credible	adj.	可信的	Stories on tabloids are hardly _____.
+defiance	n.	違反	In _____ of the school rules, some students smoke in the classrooms.
+disbelief	n.	懷疑，不相信	Ken stared at Luna in _____.
+eclipse	n.	(日或月的)虧蝕	A solar _____ plunged the city into darkness.
+eyelid	n.	眼皮，眼瞼	Both the man's upper and lower _____s were swollen, so it's hard for him to open his eyes.
+glamorous	adj.	有魅力的，迷人的	The _____ movie star attracted a large crowd wherever she went.
+jade	n.	玉	My older brother bought a pair of _____ earrings as a gift for my mother.
+lifelong	adj.	終身的	I regard Ben as my _____ friend.
+modernization	n.	現代化	The government has planned for _____ of the transportation system.
+priceless	adj.	無價的	The childhood memory is _____ to me.
+scorn	n.	鄙夷	Most people have only _____ for the politician's speech.`;
+
+    const rawDataLevel6_21_30 = `dictation	n.	聽寫	The secretary can take _____ in shorthand.
+disastrous	adj.	災難性的	This decision will have a _____ impact on the economy.
+eccentric	adj.	古怪的	Carrying an open umbrella indoors is just one of his _____ acts.
+fertilizer	n.	肥料	Ammonium nitrate is commonly used to make _____s and explosives.
+harness	n.	馬具	The horseman is putting a _____ on a horse.
+inflict	v.	施加(痛苦等)，使遭受(傷害等)	These bullies take delight in _____ing pain on their classmates.
+maiden	adj.	初次的	It's the singer's _____ appearance on TV.
+overflow	n.	容納不下(的人或物)	There are enough wards to accommodate the _____ of patients from the other hospitals.
+persistent	adj.	堅持的，固執的，持續的	Mark is _____ in seeing you.
+pimple	n.	青春痘，面皰	Many people try to hide their _____s by wearing makeup.
+remainder	n.	剩餘的部分	My mom gave the _____ of the meal to my dog.
+subscription	n.	訂閱	Don't forget to renew your _____ to the magazine.
+suspension	n.	(作為處罰的)暫令停止活動，懸吊裝置	The athlete received a two-year _____.
+workforce	n.	勞動人口	Two-thirds of the _____ is affected by the financial crisis.
+abbreviate	v.	縮寫	People _____ Sunday to "Sun."
+acclaim	n.	(公開的)讚賞	The writer's novel received _____.
+allege	v.	(未經證實地)宣稱	A man _____d that the U.S. government had covered up an alien visit to the Earth.
+audit	n.	審計，查帳	Our company's annual _____ will take place next Friday.
+booklet	n.	小冊子	Everyone will get a _____ before entering the meeting room.
+boulevard	n.	林蔭大道，大道	It is nice to explore the city by taking a stroll along its tree-lined _____s.
+caption	n.	(照片、圖畫的)說明文字	_____s underneath the photos explain the details of the pictures.
+chant	n.	反覆呼喊或吟唱的詞語	When Jackie arrived at the airport, he was greeted by the _____ of "Jackie! We love you!"
+chili	n.	辣椒	Mexican dishes are usually very spicy, as they contain a lot of _____es.
+computerize	v.	電腦化	To increase efficiency, they _____d their office.
+cosmetic	adj.	美容的，表面的	This best-selling _____ cream uses natural ingredients.
+customary	adj.	慣例的	In Japan, it is _____ to wear kimonos on formal occasions.
+dictator	n.	獨裁者	This country has been ruled by the military _____ for two decades.
+discharge	n.	釋放，排放	The prisoner got his _____ from jail last week.
+firecracker	n.	鞭炮	People in Taiwan like to set off _____s during Chinese New Year.
+fortify	v.	(在防禦、體力等方面)增強，加強	The soldiers are _____ing the town for the coming battle.
+haunt	v.	(幽靈等)時常出沒於，使困擾	That house is said to be _____ed by its former occupant's ghost.
+inhabit	v.	居住於	The tribes _____ the desert all the year round.
+majestic	adj.	雄偉的	A _____ monument stands at the center of the city.
+patriot	n.	愛國者	Three _____s sacrificed themselves for their country.
+polar	adj.	極地的	The scientists were sent out to the _____ region for research.
+preventive	adj.	預防的	_____ measures must be taken to avoid influenza.
+reproduce	v.	重現，複製，繁殖	The scene was vividly _____d in the film.
+synonym	n.	同義字	Vick wants to find _____s for "love" in a thesaurus.
+yoga	n.	瑜伽	Practicing _____ helps me relax my muscles.
+abide	v.	忍受，遵守	The woman cannot _____ the mess in her son's room.
+accordance	n.	遵照	People must act in _____ with the rules.
+alligator	n.	短吻鱷	Many people don't know how to distinguish _____s from crocodiles.
+anchor	n.	錨	The captain decided to lift the _____ right away.
+auditorium	n.	禮堂	The graduation ceremony will take place in the _____.
+boxing	n.	拳擊	The woman is the youngest world _____ champion ever.
+breadth	n.	寬度	A standard basketball court is 28 meters in length and 15 meters in _____.
+captivity	n.	監禁	After two years of _____, the prisoner was finally released.
+cholesterol	n.	膽固醇	More and more people choose foods that are low in _____.
+cigar	n.	雪茄	The merchant offers _____s imported directly from Cuba.
+comrade	n.	戰友	The veteran visited several of his _____s from wartime.
+cosmetics	n.	化妝品	The actress uses _____ to cover up her wrinkles.
+dazzle	v.	使目眩，使驚嘆	Nancy was _____d by the headlights of an approaching car.
+dictatorship	n.	獨裁統治的國家，獨裁統治	Myanmar became a military _____ in 1962.
+dispensable	adj.	非必要的	The company will get rid of any _____ workers.
+flake	n.	(雪的)小薄片，碎片	_____s of snow are falling.
+healthful	adj.	有益健康的	It is necessary for a pregnant woman to have a _____ diet.
+inquire	v.	詢問，查詢	The tourist called the museum and _____d about the opening hours.
+martial	adj.	戰鬥的，軍事的	Bruce Lee was known for his mastery of _____ arts.
+marvel	n.	奇蹟	That new invention is truly a _____ of modern technology.
+pharmacy	n.	藥房，藥局，藥劑學	John went to a _____ to have his prescription filled.
+prose	n.	散文	Mr. Lee started his literary career writing _____.
+prototype	n.	原型	The company has developed the _____ of the modern car.
+reside	v.	居住，定居	Mrs. Wang longs to _____ in the U.K.
+synthetic	adj.	合成的，人造的	Are _____ nutrients as healthy as natural vitamins that come from food?`;
+
+    const rawDataLevel6_31_40 = `cigar	n.	雪茄	The merchant offers _____s imported directly from Cuba.
+comrade	n.	戰友	The veteran visited several of his _____s from wartime.
+cosmetics	n.	化妝品	The actress uses _____ to cover up her wrinkles.
+dazzle	v.	使目眩，使驚嘆	Nancy was _____d by the headlights of an approaching car.
+dictatorship	n.	獨裁統治的國家，獨裁統治	Myanmar became a military _____ in 1962.
+dispensable	adj.	非必要的	The company will get rid of any _____ workers.
+flake	n.	小薄片，碎片	_____s of snow are falling.
+healthful	adj.	有益健康的	It is necessary for a pregnant woman to have a _____ diet.
+inquire	v.	詢問，查詢	The tourist called the museum and _____d about the opening hours.
+martial	adj.	戰鬥的，軍事的	Bruce Lee was known for his mastery of _____ arts.
+marvel	n.	奇蹟	That new invention is truly a _____ of modern technology.
+pharmacy	n.	藥房，藥局	John went to a _____ to have his prescription filled.
+prose	n.	散文	Mr. Lee started his literary career writing _____.
+prototype	n.	原型	The company has developed the _____ of the modern car.
+reside	v.	居住，定居	Mrs. Wang longs to _____ in the U.K.
+synthetic	adj.	合成的，人造的	Are _____ nutrients as healthy as natural vitamins that come from food?
+abound	v.	為數眾多，充滿	Game birds _____ in this area.
+accountable	adj.	負有責任的	Henry must be _____ for his own actions.
+aluminum	n.	鋁	Take a large piece of _____ foil, put some onions and potatoes on it.
+astronomy	n.	天文學	Jenny majored in _____ at Penn State.
+avert	v.	轉移	Mark _____ed his eyes from the horrible sight.
+boycott	n.	抵制	The citizens called for a _____ against the company's new products.
+bulky	adj.	龐大的	This refrigerator was so _____ that we couldn't get it through the door.
+cardboard	n.	厚紙板	My dad made a toy out of _____.
+civilize	v.	教化	They tried to _____ the barbarians.
+collision	n.	碰撞	The man's car was completely wrecked in a _____ with a big truck.
+concession	n.	讓步	The labor union has made it clear that no _____s will be made.
+counterpart	n.	相對應的人或事物	Tokyo Disneyland is much smaller than its American _____.
+deafen	v.	使聽不見	The fireworks _____ed us, so we couldn't hear each other.
+diesel	n.	柴油	The _____ engine is reliable and long-lasting.
+dispense	v.	分發	The nuns _____d food to the poor.
+folklore	n.	民間傳說	According to _____, the ghosts in the mountains would make people get lost.
+imperative	adj.	迫切的	It is _____ that we finish the urgent task today.
+intruder	n.	侵入者	The smart dog secured the house against the _____.
+mingle	v.	混合，交際	Allie's excitement about college life _____d with some fear.
+permissible	adj.	可容許的	Smoking in public places is not _____ under the new law.
+playwright	n.	劇作家	Shakespeare is regarded as the greatest _____ in English literature.
+radiate	v.	放射，散發情感	Light and heat _____ from the sun.
+respective	adj.	各自的	The girls returned to their _____ homes as night fell.
+retrieve	v.	檢索，取回	Enter the password and then you can _____ information from the computer.
+tenant	n.	租客	The landlord sued the _____ for not paying the rent.
+abstraction	n.	抽象	Tim often talks in empty _____s without real examples.
+accumulation	n.	累積物，累積	An _____ of rubbish ruined the beautiful view.
+amid	prep.	在...之間	The hikers moved along a narrow trail _____ trees.
+aviation	n.	航空	The Boeing Company is the major and most influential company in _____ industry.
+brace	n.	牙齒矯正器	John wore _____s to straighten his crooked teeth.
+broaden	v.	拓展	Both reading and travel _____ the mind.
+caffeine	n.	咖啡因	A study found that _____ consumed 6 hours before bedtime had a significant effect.
+cardinal	n.	紅衣主教	The man has received a clear directive from the _____.
+clam	n.	蛤，蚌	For real Japanese _____ miso soup, just follow the recipe.
+comparative	adj.	比較的	With double income, they now live in _____ comfort.
+concise	adj.	簡潔的	The report is _____ and to the point.
+coupon	n.	優待券	With this _____, you can get one free cheeseburger.
+deduct	v.	扣除	When you buy something with your debit card, the amount of money will be _____ed.
+diplomacy	n.	外交手腕	Skillful _____ was needed to prevent a war.
+diversify	v.	使多樣化	The radio station _____ied its programs to attract more listeners.
+gay	adj.	男同性戀的，鮮豔的	The celebrities spoke up for the _____ and lesbian community through the song.
+inclusive	adj.	包含的	The list is _____ of 3 girls.
+invaluable	adj.	無價的，非常寶貴的	Thank you for your _____ comments on my essay.
+miraculous	adj.	奇蹟似的	The magician made a _____ escape from the prison.
+pneumonia	n.	肺炎	People could take precautions to prevent _____, such as washing hands regularly.
+refresh	v.	使恢復活力，喚起記憶	Mike felt _____ed after the bath.
+resistant	adj.	抗拒的	Oliver likes handwritten letters. He is _____ to change.
+robust	adj.	強健的，堅固的	The boxer is very _____.
+screwdriver	n.	螺絲起子	The worker tightened a screw with a _____.
+tentative	adj.	暫定的，不確定的	Margot and Tom have a _____ plan for their honeymoon.
+academy	n.	學院	Mr. Black graduated from a military _____.
+adolescence	n.	青春期	During _____, most boys and girls are strongly influenced by their peers.
+analytical	adj.	分析的	Students can learn more by applying an _____ learning strategy.
+awhile	adv.	片刻	Let's rest _____.
+brassiere	n.	胸罩	The shop sells different types of _____s.
+carefree	adj.	無憂無慮的	Meg and David live a _____ life in each other's company.
+carton	n.	硬紙盒	Ted's father asked him to buy a _____ of cigarettes at a convenience store.
+chimpanzee	n.	黑猩猩	The intelligent _____ quietly dies at the end of this movie.
+clasp	v.	抱緊	The mother _____ed her baby in her arms.
+compass	n.	羅盤，圓規	People used to rely on the _____ to sail.
+condense	v.	濃縮	My boss's secretary _____d his statement into an abstract.
+cowardly	adj.	膽小的	The soldiers were ashamed of their _____ retreat.
+deem	v.	認為	The area has been _____ed safe by government officials.
+directive	n.	指令，命令	The company received a _____ from the government.
+diversion	n.	轉移，消遣	The woman was under investigation because of the illegal _____ of funds.
+geographical	adj.	地理的	This supermarket has a good _____ location and is often crowded with customers.
+intellect	n.	智慧	Dr. Lee is a man of great _____.
+invariably	adv.	總是，老是	Believe it or not, it _____ rains after I have my car washed.
+mischievous	adj.	搗蛋的	The little boy had a _____ grin on his face.
+ponder	v.	仔細思考，考慮	My parents asked me to _____ my future.
+renowned	adj.	著名的	The country is _____ for its beautiful scenery.
+royalty	n.	王權，王室成員	The crown is a symbol of _____.
+serving	n.	一份	An adult should eat 3 _____s of vegetables and 2 _____s of fruit every day.
+thereafter	adv.	從那以後，之後	You will work alone for the first week, but _____ you will work with a group.
+virgin	n.	處女	The girl decided to remain a _____ until she got married.
+accessory	n.	裝飾品，幫凶	The actress is wearing a green dress with matching _____ies.
+accordingly	adv.	照著，相應地	Nancy has told you the situation, and you had better behave _____.
+aesthetic	adj.	美學的	This artist's painting has many _____ values.
+animate	v.	使生氣勃勃	Vivien's face was _____d with joy at the sight of her father.
+backbone	n.	脊椎，支柱，勇氣	The man fell off his horse and broke his _____.
+breakdown	n.	故障，崩潰	Stop the car on the shoulder and wait for the _____ service.
+cashier	n.	收銀員	After graduating from high school, Helen worked as a _____ at a supermarket.
+catastrophe	n.	大災難	Rachel Carson warned us of the upcoming ecological _____.
+clearance	n.	間距，許可	The _____ between the water and the bridge is 4 meters.
+confederation	n.	同盟，聯盟	These two countries are celebrating the anniversary of _____.
+correspondence	n.	通信	Chloe's _____ with Jim lasted many years.
+cozy	adj.	舒適的	It was _____ in front of the fireplace.
+default	n.	拖欠	This bankrupt company is in _____ on its loan.
+diabetes	n.	糖尿病	Work out regularly can prevent _____.
+disable	v.	使失能，使殘疾	The accident _____d the young worker.
+downward	adj.	向下的	Be careful. There's a _____ slope ahead.
+geometry	n.	幾何學	A basic understanding of _____ can help you learn art and design.
+intimidate	v.	恫嚇	The gangsters _____d us into agreeing to their demands.
+irritate	v.	使惱怒	The teacher was a bit _____d by the students' jokes.
+mobilize	v.	動員	The purpose of the movement is to _____ public support for women's rights.
+preview	n.	試映(會)或試演	Critics are invited to attend the _____ of the film.
+sanitation	n.	衛生(設備或系統)	The mayor must solve the problem of the city's poor _____.
+scenic	adj.	風景的	Naples is famous for its _____ beauty.
+skeptical	adj.	懷疑的	Penny's mom is _____ about her chances of success.
+tornado	n.	龍捲風	A series of _____es ripped through America's heartland.
+accusation	n.	控訴	The singer is under a false _____.
+addiction	n.	上癮	The man is trying to cure himself of his _____ to drugs.
+affectionate	adj.	深情的	My sister gave her baby an _____ kiss.
+anticipation	n.	期盼	The fans waited for the arrival of the singer with eager _____.
+badge	n.	徽章	How will I know you're a policeman if you don't show me your _____?
+breakup	n.	瓦解，破裂	The _____ of the Soviet Union led to the unstable condition in Eastern Europe.
+casualty	n.	死傷者，傷亡人員	There were many _____ies in the plane crash.
+chairperson	n.	主席	Alma has been appointed as the new _____ of the committee.
+climax	n.	高潮	The _____ of the movie takes place in the sewer where the buried treasure is found.
+congressman	n.	美國國會議員	The married _____ is having an affair with a celebrity.
+crackdown	n.	鎮壓	The president made a public statement in support of the _____.
+credible	adj.	可信的	Stories on tabloids are hardly _____.
+defiance	n.	違反	In _____ of the school rules, some students smoke in the classrooms.
+disbelief	n.	懷疑，不相信	Ken stared at Luna in _____.
+eclipse	n.	(日或月的)虧蝕	A solar _____ plunged the city into darkness.
+eyelid	n.	眼皮，眼瞼	Both the man's upper and lower _____s were swollen, so it's hard for him to open his eyes.
+glamorous	adj.	有魅力的，迷人的	The _____ movie star attracted a large crowd wherever she went.
+jade	n.	玉	My older brother bought a pair of _____ earrings as a gift for my mother.
+lifelong	adj.	終身的	I regard Ben as my _____ friend.
+modernization	n.	現代化	The government has planned for _____ of the transportation system.
+priceless	adj.	無價的	The childhood memory is _____ to me.
+scorn	n.	鄙夷	Most people have only _____ for the politician's speech.`;
+
+    const rawDataPlus_1_10 = `jockey	v.	運用手段謀取	There were several politicians _____ing for power before the election.
+liter	n.	公升	I drink two _____s of water every day.
+mar	v.	弄糟，破壞	The trip was _____red by bad weather and the poor service of the hotel.
+mow	v.	割草	Peter _____s the lawn for his neighbors as a part-time job on weekends.
+octopus	n.	章魚	An _____ has eight tentacles.
+overlap	n.	重疊或相同之處	There are some _____s between these two dissertations.
+petroleum	n.	石油	The country is known for producing _____.
+premiere	n.	首映(會)	All the main actors of the movie attended its world _____.
+radioactive	adj.	放射性的，有輻射的	Laura is conducting a study of _____ waste.
+reliant	adj.	依靠的，依賴的	Sam is still _____ on his parents' support after graduating from college.
+rubbish	n.	垃圾；廢話	Please clean out the _____ in your room.
+shred	n.	碎片	Shelly tore the letter to _____s after breaking up with her boyfriend.
+solemn	adj.	莊嚴的	All the attendees looked very _____ at the funeral.
+strait	n.	海峽	Taiwan is separated from mainland China by the Taiwan _____.
+surgical	adj.	手術的，外科手術的	The doctor explained the details of _____ procedures carefully.
+transmit	v.	傳送；傳播(疾病等)	The message will be _____ted through the computer system.
+usher	v.	引導，接待	Can you _____ the guest in?
+wag	v.	搖擺或搖動(尾巴、手指等)	My dog will _____ its tail and jump on me whenever it greets me home.
+distraction	n.	令人分心或分散注意力的事物；娛樂，消遣	I like to study in a quiet place free from _____s.
+emigration	n.	移居他國	The war caused mass _____ of Jews from Germany to the U.S.
+faction	n.	派系	The party leader resigned because of the pressure from different _____s within the party.
+fracture	n.	骨折	The rider suffered a skull _____ in the motorcycle accident.
+groan	n.	(因疼痛、不悅等的)呻吟聲	The wounded soldier let out a _____.
+hospitality	n.	殷勤待客	Taiwan is known for its beautiful scenery and _____.
+inland	adj.	內陸的	There are some large or famous areas of _____ water in the world.
+jolly	adj.	(令人)愉快的	The winter vacation is coming, and we are looking forward to a _____ trip.
+literate	adj.	有讀寫能力的；精通的，很懂的	Growing up in a slum, the man is barely _____ and has trouble writing his name.
+mastery	n.	精通，熟練；控制	Students work hard to achieve _____ of English.
+muse	n.	給與靈感的人或事物，靈感的來源	My girlfriend is my _____.
+offshore	adj.	離岸的，海上的；近海的	Do you know how many people working on these _____ oil rigs?
+overwork	n.	工作過度	We have been exhausted from _____ these days.
+pharmacist	n.	藥劑師	The _____ soon made up my prescription.
+preside	v.	主持，擔任主席	Mr. Smith often _____s at the company's meetings.
+radish	n.	櫻桃蘿蔔	I tossed together lettuces, onions, and _____es to make salad.
+relic	n.	遺跡，遺物；遺風，遺俗	The pieces of pottery were _____s from prehistoric times.
+rugged	adj.	崎嶇的，起伏不平的；(長相)粗獷而好看的	The trail through the forest is _____.
+shriek	n.	尖叫聲；尖銳刺耳的聲音	Hearing the good news, Tom hugged Mary with a _____ of delight.
+solitude	n.	獨處	I enjoy spending the morning in _____.
+stray	adj.	走失的，流浪的；偏離的	There is a _____ dog lying on the sidewalk.
+surpass	v.	勝過，超過	The new product helped us to _____ our competitors.
+transplant	n.	移植	The patient had a heart _____ yesterday.
+utensil	n.	(廚房等家庭)用具	The couple bought some kitchen _____s, including knives, spoons, spatulas, and whisks.
+walnut	n.	胡桃，核桃	The lady added some chopped _____s in her salad.
+divert	v.	使轉向，使改道；轉移(注意力等)	The river has been _____ed away from the city.
+endowment	n.	資助，捐款，捐贈	The hospital received a generous 10 million _____ last year.
+Fahrenheit	n.	華氏(溫標)，華氏溫度	Please give me the temperature in _____.
+fragrant	adj.	芳香的	This island is known for its beautiful scenery and _____ tea.
+growl	n.	低吼聲，咆哮聲	The cat arched its back and exposed its teeth in a threatening _____.
+hospitalize	v.	送醫治療，使住院治療	My neighbor was _____d for appendicitis.
+innumerable	adj.	無數的，數不清的，很多的	The brave girl's story has inspired _____ people.
+junction	n.	(公路、鐵路、河流等的)交會點，交叉口	Formosa Boulevard is one of the biggest metro _____s in Kaohsiung.
+livestock	n.	家畜，牲畜	The farmer used to keep _____ on his farm.
+mediate	v.	調停，調解；藉調解找到解決辦法，達成或促成(協議等)	The government tried to _____ between labor and management.
+mustache	n.	(長在上唇上方的)鬍子，八字鬍	The general has a _____, looking very tough.
+operative	adj.	運作中的，有效的	When will the agreement become _____?
+ozone	n.	臭氧	_____ protects us from harmful ultraviolet radiation.
+pickpocket	n.	扒手	I saw a sign of "Beware of _____s" in the crowded market.
+prestige	n.	聲望，名聲	The piracy of computer software has damaged the nation's _____.
+rash	n.	疹子；(壞事等的)接連發生	I break out in a _____ if I eat seafood.
+reminiscent	adj.	令人想起…的	Old songs can be strongly _____ of old days.
+ruthless	adj.	冷酷無情的，殘忍的	The _____ dictator was finally overthrown.
+shrub	n.	灌木	The couple planted evergreen _____s as well as flowering shrubs in the garden.
+sovereign	adj.	有主權的，獨立自主的；至高無上的	_____ states enjoy autonomy; they are independent and govern themselves.
+stroll	n.	閒逛，散步	I went for a leisurely _____ in the woods.
+suspense	n.	懸疑	The movie kept me in _____ till the end.
+treasury	n.	國庫；寶庫	Officials should not steal from the nation's _____.
+utter	adj.	全然的，完全的，極度的	Jason stared at me in _____ astonishment.
+ward	n.	病房；受監護人	There are just a few patients in the emergency _____s today.
+dividend	n.	股息，股利	Shareholders can receive _____s from the company once or twice a year.
+endurance	n.	耐力	It requires great _____ to run a marathon.
+falter	v.	躊躇，猶豫，動搖；說話結結巴巴，支支吾吾	My faith in my brother never _____ed.
+freak	n.	怪人，怪物；狂熱的愛好者，…狂，…迷	Wearing that strange heavy makeup, the actor looked like a _____.
+grumble	v.	抱怨	The students _____d about having too many exams.
+hostel	n.	(廉價)旅社	To save money, Albert stayed at youth _____s while traveling.
+insistence	n.	堅持	We were surprised by the teacher's _____ on perfection.
+kin	n.	親戚，親屬	The missing child's _____ are all looking for him.
+locker	n.	(可上鎖的)儲物櫃，置物櫃	I usually keep my books in my _____ at school.
+meditate	v.	沉思	The writer _____d on the theme of his next novel.
+mute	adj.	沉默的；啞的	The accused remained _____ about the charges against him.
+oppress	v.	壓迫；使鬱悶，使心情沉重	The aboriginal people have been _____ed by the tyrant for years.
+packet	n.	小包，小袋	Alice poured a _____ of sugar into her coffee.
+pilgrim	n.	朝聖者，香客	Some _____s make a long journey to Mecca every year.
+privatize	v.	使(國營企業等)民營化，使私有化	Do you agree that the government should _____ education?
+ratify	v.	批准，使正式生效	The Senate refused to _____ the agreement.
+reptile	n.	爬蟲類動物；卑鄙的人	_____s, such as snakes and lizards, are cold-blooded animals that lay eggs.
+salute	n.	敬禮	The general gave the president a _____.
+shuffle	v.	拖著腳走路；坐立不安	I was so tired that I just _____d along.
+spectacle	n.	奇觀；壯觀	It's a _____ to see the cat taking care of the new-born puppies.
+stun	v.	使不省人事，使昏厥；使震驚，使大吃一驚	The robber _____ned the victim with a blow to the head.
+swamp	n.	沼澤，溼地	Alligators usually live in _____s.
+trifle	n.	瑣事，小事	The couple often quarreled over _____s.
+vaccine	n.	疫苗	Is there any _____ against this virus?
+warrant	n.	(逮捕令、搜索令等)執行令，授權令，令狀	The court issued _____s for several suspects' arrest.
+doom	n.	厄運，劫數	A sense of impending _____ hung over the small island as the hurricane approached.
+enhance	v.	提升(品質等)	The company sponsored the music festival to _____ its image.
+familiarity	n.	熟悉；親切	_____ with English helped us enjoy our trip to London.
+freeway	n.	高速公路	Driving on the _____ for the first time can be exciting or frightening for a new driver.
+hamper	v.	妨礙，阻礙	Bad weather severely _____ed rescue efforts.
+hover	v.	盤旋	An eagle _____ed over the tent.
+instinctive	adj.	本能的，直覺的，天生的	Animals have an _____ fear of fire.
+knowledgeable	adj.	知識豐富的	The scholar is _____ about marine life.
+lodge	n.	小屋	During the storm, the hikers took refuge in a hunting _____ in the mountains.
+meditation	n.	沉思，冥想	The noise interrupted my morning _____s.
+nag	v.	嘮叨，碎碎念	Some parents are always _____ging their children to clean their rooms.
+oppression	n.	壓迫	The revolution freed the people from political _____.
+paddle	n.	槳	We found only one _____ inside the canoe.
+pinch	n.	一小撮，少量；捏，掐，擰，夾	I put a _____ of salt in the soup and stirred it.
+prohibition	n.	禁令；禁止	There is a _____ on the import of weapons.
+reap	v.	收割(農作物)；獲得(報酬等)	The old farmer needs some workers to help him _____ the crops.
+resent	v.	憤恨，憎恨，怨恨	The lady _____ed her husband's ignorance.
+salvage	v.	搶救(財物等)	Divers are trying to _____ some cargo from the sunken ship.
+shutter	n.	護窗板，窗戶的活動遮板；(照相機的)快門	_____s are wooden or metal covers that can be opened or closed like a door.
+splendor	n.	壯麗，輝煌，富麗堂皇	Architects are working hard to restore the decaying palace to as much as possible of its original _____.
+stutter	n.	結巴，口吃	The king had a _____ when he was young.
+symmetry	n.	對稱	The perfect _____ of the leaf is amazing.
+tropic	n.	回歸線；熱帶(地區)	Taiwan is crossed by the _____ of Cancer.
+vanity	n.	虛榮(心)	The girl bought the diamond necklace for reasons of _____.
+warranty	n.	(商品的)保證書，保固單	This _____ covers the laptop for a year.
+dormitory	n.	學生宿舍	Students live in the school's _____.
+enlighten	v.	啟發	The essence of education is not only to teach but also to _____ students.
+feasible	adj.	可實行的，行得通的，可行的	Your plan may work in a small company, but it is not _____ in a large corporation like this.
+friction	n.	(物體的)摩擦；(人際的)摩擦，不和	Tires wear down because of _____ between the tires and the road.
+handicap	n.	身心障礙；阻礙，障礙	The social workers treat people with physical or mental _____s well.
+humiliate	v.	使蒙羞，使丟臉，羞辱	The criminal's actions _____d his family.
+intake	n.	攝取(量)	The doctor told my parents to reduce their daily _____ of salt, fat, and sugar.
+lad	n.	小伙子，少男	Two _____s are fighting outside the shop.
+lofty	adj.	(地位、理想等)崇高的	My teacher is a man of _____ ideals.
+melancholy	n.	憂鬱，憂傷	Karen sometimes sinks into deep _____.
+narrate	v.	敘述	The story is _____d by a nine-year-old boy.
+ordeal	n.	苦難，磨難	The refugees went through a terrible _____.
+paperback	n.	平裝書，平裝本	This novel is published both in _____ and hardback.
+plague	n.	瘟疫	There was an outbreak of _____ in the village.
+propel	v.	推動，推進；驅使，促使	This boat is _____led by a motor.
+reckon	v.	猜想，覺得；認為，視為	I _____ that there will be an afternoon thunderstorm soon.
+restoration	n.	恢復；修復	We are hoping for the _____ of peace.
+savage	adj.	猛烈的；凶殘的，野蠻的	The speaker made a _____ attack on the government's policies.
+simplify	v.	簡化，使變簡單	The introduction of the computer into the workplace has _____ied many jobs.
+spokesperson	n.	發言人	A government _____ denied the rumors.
+stylish	adj.	時髦的	You can find a variety of _____ clothes in that shop.
+sympathize	v.	同情	We _____ with the orphan.
+trout	n.	鱒魚	We had _____ for lunch yesterday.
+vapor	n.	蒸氣	Dense clouds of _____ rise from the hot spring.
+waterproof	adj.	防水的	Jessica bought a new _____ jacket.
+doze	v.	小睡	Mom usually _____s for half an hour in the afternoon.
+equalize	v.	使平等，使均等，使相等	The company tried to _____ the workload among the staff.
+feeble	adj.	虛弱的；微弱的	The patient was too _____ to utter a word.
+fume	v.	發怒，發火，發脾氣	The customer _____d at the clumsy waiter.
+handicraft	n.	手工藝；手工藝品	Jenny has been learning _____s, and her favorite handicraft is pottery.
+hunch	n.	直覺	I have a _____ (that) you will pass the exam.
+interpreter	n.	口譯員	My friend was the _____ when we were in Poland.
+landlady	n.	女房東，女地主	The _____ promised to redecorate the house before we move in.
+logo	n.	商標	The athlete wore a T-shirt with her sponsor's _____.
+mentality	n.	心態	Can you understand the _____ of those people?
+narrator	n.	敘述者	The _____ of that film is a pig.
+orderly	adj.	井然有序的，有規律的	After retirement, Sam lives a simple and _____ life.
+paralyze	v.	使癱瘓	The accident _____d traffic in the downtown area.
+plantation	n.	(熱帶地區的)大農場，種植園，種植場	In the past, many people who worked on _____s were slaves.
+prosecute	v.	起訴；繼續進行(戰爭等)	That man was _____d for murder.
+reconcile	v.	使和解；調和，使一致	The couple was _____d with each other after a brief separation.
+restrain	v.	抑制，克制，制止	I could barely _____ myself from striking him.
+scrape	v.	擦傷，刮壞；刮除，削去	The kid _____d his knee on a stone.
+simultaneous	adj.	同時的	Betty works as a _____ interpreter.
+sportsman	n.	運動員	Charles is considered a talented all-round _____.
+subordinate	adj.	次要的	Some people think environmental protection is _____ to economic growth.
+symphony	n.	交響樂	Grace is impressed with Beethoven's Fifth _____.
+trustee	n.	受託人	Who will act as the _____ for the estate until this child grows up?
+velvet	n.	天鵝絨	The lady dressed in dark purple _____ over there is my teacher.
+wharf	n.	碼頭	The sailor unloaded the crates onto the _____.`;
+
+    // ==========================================
+    // 系統預設克漏字題庫 (內建 5 篇高階短文)
+    // ==========================================
+    const builtinClozePool = [
+        {
+            words: ["(A) abundant", "(B) imperative", "(C) thorough", "(D) enhance", "(E) skeptical", "(F) republican"],
+            paras: [
+                "In recent decades, the rapid advancement of artificial intelligence has sparked widespread debate across various academic and industrial sectors. While some tech enthusiasts strongly believe that AI will significantly <span class='px-1 border-b border-black font-bold text-red-600'> 21 </span> our productivity and elevate our overall quality of life, others remain deeply <span class='px-1 border-b border-black font-bold text-red-600'> 22 </span> about the ethical implications of allowing autonomous machines to make critical decisions on our behalf. These concerns are not completely unfounded, considering the potential risks of algorithmic biases and severe job displacement.",
+                "Given the incredibly <span class='px-1 border-b border-black font-bold text-red-600'> 23 </span> amount of personal and behavioral data generated by users on the internet every single day, digital privacy and data breaches are a constantly growing concern. Consequently, it has become absolutely <span class='px-1 border-b border-black font-bold text-red-600'> 24 </span> for global tech companies to implement a <span class='px-1 border-b border-black font-bold text-red-600'> 25 </span> and rigorous review process to ensure user privacy and digital security. Ultimately, the delicate balance between technological innovation and legal regulation will dictate how smoothly these unprecedented tools are integrated into our modern society."
+            ],
+            ans: ["D", "E", "A", "B", "C"],
+            trans: "近幾十年來，人工智慧的快速發展在各個學術和工業領域引發了廣泛的爭論。儘管科技迷相信 AI 能顯著「提升 (enhance)」我們的生產力並提高生活品質，但其他人對允許機器代做決策的倫理影響深感「懷疑 (skeptical)」。考慮到演算法偏見，這些擔憂並非毫無根據。\n鑑於每天產生「大量的 (abundant)」數據，數位隱私成為日益嚴重的問題。因此，對於全球科技公司來說，實施「徹底的 (thorough)」和嚴格的審查流程以確保隱私安全已變得絕對「迫切的 (imperative)」。最終，科技創新與法律規範之間的平衡，將決定這些工具如何融入現代社會。",
+            exp: ["語氣判斷：搭配 productivity (生產力)，正面語氣選 enhance (提升)。", "轉折語氣：前面為正面相信，while 帶出反面語氣 skeptical (懷疑的)。", "語意搭配：形容 amount of data (資料量) 需用 abundant (大量的)。", "句型結構：it is absolutely imperative for sb to V (對某人來說做某事是絕對必須的)。", "語意判斷：搭配 review process (審查流程)，指 thorough (徹底且嚴格的) 審查。"],
+            distractor: "(F) republican (adj. 共和主義的) - 政治術語，在此科技語境中為無效干擾。"
+        },
+        {
+            words: ["(A) capability", "(B) conventional", "(C) diagnosis", "(D) genetic", "(E) minimal", "(F) overcome"],
+            paras: [
+                "Modern medicine has undergone a massive paradigm shift from traditional, one-size-fits-all approaches toward highly personalized treatments. In the past, medical practitioners relied heavily on <span class='px-1 border-b border-black font-bold text-red-600'> 21 </span> therapies that applied standard, uniform procedures to all patients regardless of their unique physical conditions. However, recent groundbreaking advancements in biotechnology have allowed dedicated researchers to successfully <span class='px-1 border-b border-black font-bold text-red-600'> 22 </span> these historical limitations.",
+                "Today, by meticulously analyzing a patient's DNA sequencing, healthcare professionals can pinpoint the exact <span class='px-1 border-b border-black font-bold text-red-600'> 23 </span> factors that inherently contribute to specific hereditary diseases. This greatly enhanced analytical <span class='px-1 border-b border-black font-bold text-red-600'> 24 </span> ensures that individuals receive a highly accurate and timely <span class='px-1 border-b border-black font-bold text-red-600'> 25 </span> long before the symptoms worsen. Furthermore, this revolutionary approach significantly improves the chances of a successful, long-term recovery while simultaneously keeping severe side effects to a bare minimum."
+            ],
+            ans: ["B", "F", "D", "A", "C"],
+            trans: "現代醫學經歷了巨大的典範轉移，從傳統的一體適用方法轉向高度個人化治療。過去，醫療人員嚴重依賴「傳統的 (conventional)」療法，將統一程序應用於所有患者。然而，生物科技的突破性進展使研究人員成功地「克服 (overcome)」了這些歷史限制。\n今天，透過仔細分析患者的 DNA 測序，醫療專業人員可以準確找出導致特定遺傳性疾病的確切「基因 (genetic)」因素。這種增強的分析「能力 (capability)」確保個人在症狀惡化前就能獲得高度準確的「診斷 (diagnosis)」。此外，這種革命性方法顯著提高了長期康復的機會。",
+            exp: ["前後對比：與 modern / personalized (現代/個人化) 對比，過去依賴 conventional (傳統的/常規的) 療法。", "語意搭配：overcome limitations 意為克服限制。", "跨科知識：與 DNA 分析相關的為 genetic (基因的/遺傳的) 因素。", "語意判斷：enhanced analytical capability 指的是提升的分析「能力」。", "語意搭配：receive an accurate diagnosis 意為獲得準確的「診斷」。"],
+            distractor: "(E) minimal (adj. 最少的) - 雖有關聯但缺乏合適的名詞搭配。"
+        },
+        {
+            words: ["(A) excessive", "(B) interaction", "(C) whereas", "(D) vulnerable", "(E) foster", "(F) initially"],
+            paras: [
+                "The ubiquitous presence of social media has drastically altered the landscape of teenage communication and psychological well-being. <span class='px-1 border-b border-black font-bold text-red-600'> 21 </span>, these digital platforms were ingeniously designed to connect marginalized individuals and facilitate global networking. However, recent longitudinal studies in psychology clearly indicate that <span class='px-1 border-b border-black font-bold text-red-600'> 22 </span> screen time may inevitably lead to severe anxiety, sleep deprivation, and depression among the youth.",
+                "Teenagers, still developing their identities, are particularly <span class='px-1 border-b border-black font-bold text-red-600'> 23 </span> to the highly curated and unrealistic standards portrayed online, which can rapidly erode their fragile self-esteem. <span class='px-1 border-b border-black font-bold text-red-600'> 24 </span> traditional face-to-face communication naturally builds genuine empathy and trust, virtual interactions often lack profound emotional depth. To combat this disturbing social trend, educators and parents must actively collaborate to <span class='px-1 border-b border-black font-bold text-red-600'> 25 </span> healthy digital habits and encourage outdoor recreational activities."
+            ],
+            ans: ["F", "A", "D", "C", "E"],
+            trans: "社群媒體無所不在，大幅改變了青少年的溝通與心理健康。「最初 (Initially)」，這些平台被設計用來連結邊緣化個體並促進全球網路。然而，近期的心理學研究明確指出，「過度的 (excessive)」螢幕時間必然導致青少年嚴重的焦慮、睡眠剝奪與憂鬱。\n還在發展自我認同的青少年，對於網路上呈現的不切實際標準特別「脆弱/易受傷害 (vulnerable)」，這會迅速侵蝕他們的自尊。「儘管 (Whereas)」傳統的面對面溝通能建立同理心與信任，虛擬互動往往缺乏情感深度。為了對抗這個令人不安的社會趨勢，教育者和父母必須積極合作以「培養 (foster)」健康的數位習慣。",
+            exp: ["篇章結構：搭配後句的 However，帶出「最初」設計理念與後來發展的反差，填入 Initially。", "語意判斷：帶來焦慮和憂鬱的應是 excessive (過度的) 螢幕時間。", "搭配詞：be vulnerable to... 對...感到脆弱/易受傷害。", "邏輯判斷：比較 traditional communication 與 virtual interactions，需填入表對比的連接詞 Whereas (然而/儘管)。", "語意搭配：foster healthy habits 意為「培養」健康習慣。"],
+            distractor: "(B) interaction (n. 互動) - 詞性與語意無法契合空格。"
+        },
+        {
+            words: ["(A) conventional", "(B) prominent", "(C) objectively", "(D) capture", "(E) rejected", "(F) harmony"],
+            paras: [
+                "In the late 19th century, a revolutionary art movement known as Impressionism emerged in France, fundamentally challenging the established academic norms. Before this period, painters were strictly required to follow <span class='px-1 border-b border-black font-bold text-red-600'> 21 </span> rules, which heavily favored historical and mythological subjects portrayed in dark, solemn tones. The Impressionists, however, boldly <span class='px-1 border-b border-black font-bold text-red-600'> 22 </span> these rigid constraints.",
+                "Instead of painting inside studios, they stepped outdoors to paint everyday landscapes and modern urban life. Their primary objective was not to depict reality <span class='px-1 border-b border-black font-bold text-red-600'> 23 </span>, but rather to <span class='px-1 border-b border-black font-bold text-red-600'> 24 </span> the fleeting, transient effects of sunlight and color at a specific moment in time. Using short, visible brushstrokes, <span class='px-1 border-b border-black font-bold text-red-600'> 25 </span> figures like Claude Monet and Edgar Degas created works that vibrated with life and movement. Today, these masterpieces are universally celebrated for their vibrant energy and profound influence on the evolution of modern art."
+            ],
+            ans: ["A", "E", "C", "D", "B"],
+            trans: "在 19 世紀末，法國興起了一場被稱為印象派的革命性藝術運動，從根本上挑戰了既定的學術規範。在此之前，畫家被嚴格要求遵循「傳統的 (conventional)」規則，偏好以黑暗莊嚴的色調描繪歷史和神話題材。然而，印象派畫家大膽地「拒絕 (rejected)」了這些僵化的限制。\n他們沒有在工作室內畫畫，而是走到戶外，畫日常風景和現代城市生活。他們的主要目標不是「客觀地 (objectively)」描繪現實，而是「捕捉 (capture)」特定時刻陽光和色彩稍縱即逝的效果。透過短促可見的筆觸，像莫內和竇加這樣「著名的 (prominent)」人物創作出了充滿生命力和動感的作品。如今，這些傑作因其充滿活力的能量及其對現代藝術演變的深遠影響而受到世人的讚譽。",
+            exp: ["語意判斷：過去的畫家遵循 conventional (傳統的/常規的) 規則。", "邏輯判斷：however 帶出對比，他們大膽地 rejected (拒絕) 了這些限制。", "語氣判斷：not to depict reality objectively (不是客觀地描繪現實)，but rather... 帶出轉折。", "語意搭配：capture the fleeting effects 意為「捕捉」稍縱即逝的效果。", "語意搭配：用 prominent (著名的/傑出的) 來形容莫內等代表性人物。"],
+            distractor: "(F) harmony (n. 和諧) - 詞性不符且語意無關。"
+        },
+        {
+            words: ["(A) transitions", "(B) inevitable", "(C) destructive", "(D) exclusively", "(E) species", "(F) mitigate"],
+            paras: [
+                "As the devastating impacts of global climate change become increasingly evident, the urgent need for environmental conservation has never been more critical. For centuries, human industrial activities have relied almost <span class='px-1 border-b border-black font-bold text-red-600'> 21 </span> on burning fossil fuels, which systematically releases massive amounts of greenhouse gases into the atmosphere. This ongoing ecological disruption not only causes extreme weather anomalies but also poses a <span class='px-1 border-b border-black font-bold text-red-600'> 22 </span> threat to countless fragile habitats.",
+                "Consequently, thousands of vulnerable plant and animal <span class='px-1 border-b border-black font-bold text-red-600'> 23 </span> are currently facing the grim prospect of extinction. To effectively <span class='px-1 border-b border-black font-bold text-red-600'> 24 </span> this escalating global crisis, governments worldwide must implement aggressive policies to promote sustainable alternatives, such as solar and wind power. Although the financial cost of these structural <span class='px-1 border-b border-black font-bold text-red-600'> 25 </span> might be substantial in the short term, investing in renewable energy infrastructure is absolutely necessary to ensure the long-term survival of our planet."
+            ],
+            ans: ["D", "C", "E", "F", "A"],
+            trans: "隨著全球氣候變遷的破壞性影響日益明顯，對環境保育的迫切需求變得前所未有地關鍵。幾個世紀以來，人類的工業活動幾乎「唯一/專門 (exclusively)」依賴燃燒化石燃料，這系統性地向大氣中釋放大量的溫室氣體。這種持續的生態破壞不僅導致極端天氣異常，而且對無數脆弱的棲息地構成了「具破壞性的 (destructive)」威脅。\n結果，數千種脆弱的動植物「物種 (species)」目前正面臨滅絕的嚴峻前景。為了有效地「減輕/緩解 (mitigate)」這場不斷升級的全球危機，世界各國政府必須實施積極的政策以推廣永續的替代方案，如太陽能和風能。雖然這些結構性「轉型 (transitions)」的財務成本在短期內可能相當龐大，但投資再生能源基礎設施絕對是確保我們地球長期生存的必要條件。",
+            exp: ["副詞修飾：relied almost exclusively on... 幾乎完全依賴...。", "語意搭配：poses a destructive threat (構成具破壞性的威脅)。", "跨科知識：plant and animal species (動植物物種)。", "語意搭配：mitigate the crisis (緩解/減輕危機)。", "語境判斷：structural transitions (結構性的過渡/轉型)。"],
+            distractor: "(B) inevitable (adj. 無可避免的) - 語意與詞性無法融入空格。"
+        }
+    ];
+
+    // 全域變數
+    window.learningRecords = [];
+    let totalWordPool = [];
+    let currentClozePool = [...builtinClozePool];
+    let currentBank = null;
+    let paperCount = 0;
+
+    // ==========================================
+    // TXT 自動解析引擎
+    // ==========================================
+    function parseTextToJSON(text) {
+        const wordList = [];
+        
+        if (text.split('\t').length > 10) {
+            const lines = text.split(/[\r\n]+/);
+            for (let line of lines) {
+                if (!line.trim()) continue;
+                const parts = line.split('\t');
+                
+                if (parts.length >= 3) {
+                    if (parts[0].trim() === '單字') continue; 
+
+                    let wordRaw = parts[0].trim().replace(/^\d+\.?\s*/, ''); 
+                    let kkMatch = wordRaw.match(/\[(.*?)\]/);
+                    let kk = kkMatch ? `[${kkMatch[1]}]` : "";
+                    let word = wordRaw.replace(/\[.*?\]/, '').trim();
+
+                    let pos = parts[1].trim();
+                    let meaning = parts[2].trim();
+                    let englishSentence = parts.length >= 4 ? parts[3].trim() : "";
+                    
+                    if (!englishSentence) {
+                        let sentenceMatch = meaning.match(/([A-Z][A-Za-z0-9\s\,\-\'\"\;\:]+[.?!])/);
+                        if (sentenceMatch) {
+                            englishSentence = sentenceMatch[1].trim();
+                            meaning = meaning.substring(0, sentenceMatch.index).trim();
+                        }
+                    }
+
+                    // 處理句子中奇怪的數字標籤，例如 [1]
+                    englishSentence = englishSentence.replace(/\s*\[\d+\]$/, '');
+                    
+                    meaning = meaning.replace(/\[.*?\]|\<.*?\>|\(.*?\)/g, '').trim();
+                    meaning = meaning.split('|')[0].split('；')[0].split(';')[0].trim();
+
+                    if (word && englishSentence) {
+                        wordList.push({ word, pos, kk, meaning: meaning || "詳見原稿", sentence: englishSentence });
+                    }
+                }
+            }
+            if (wordList.length >= 10) return wordList; 
+        }
+
+        const pattern = /(?:\b|^)(\d+)\.?\s+([a-zA-Z\-]+)\s*(?:\[([^\]]+)\])?\s*(n\.|v\.|adj\.|adv\.|prep\.|conj\.|pron\.|phr\.)(.*?)(?=(?:\b\d+\.?\s+[a-zA-Z\-]+\s*(?:\[[^\]]*\])?\s*(?:n\.|v\.|adj\.|adv\.|prep\.|conj\.|pron\.|phr\.))|$)/gs;
+        let match;
+        while ((match = pattern.exec(text)) !== null) {
+            let word = match[2].trim();
+            let kk = match[3] ? `[${match[3].trim()}]` : "";
+            let pos = match[4].trim();
+            let restText = match[5].trim().replace(/\n/g, ' ');
+
+            let englishSentence = "";
+            let meaning = "";
+            let sentenceMatch = restText.match(/([A-Z][A-Za-z0-9\s\,\-\'\"\;\:]+[.?!])/);
+            
+            if (sentenceMatch) {
+                englishSentence = sentenceMatch[1].trim();
+                meaning = restText.substring(0, sentenceMatch.index).trim();
+            } else {
+                meaning = restText.trim();
+            }
+
+            meaning = meaning.replace(/\[.*?\]|\<.*?\>|\(.*?\)/g, '').trim();
+            meaning = meaning.split('|')[0].split('；')[0].split(';')[0].trim();
+            englishSentence = englishSentence.replace(/\s*\[\d+\]$/, '');
+
+            if (word && englishSentence) {
+                wordList.push({ word, pos, kk, meaning: meaning || "詳見原稿", sentence: englishSentence });
+            }
+        }
+        return wordList;
+    }
+
+    // Modal 控制函式
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        const content = document.getElementById(modalId + '-content');
+        modal.classList.remove('hidden');
+        // 小延遲以確保 display:block 生效後才改變 opacity
+        setTimeout(() => {
+            content.classList.remove('scale-95', 'opacity-0');
+            content.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        const content = document.getElementById(modalId + '-content');
+        content.classList.remove('scale-100', 'opacity-100');
+        content.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300); // 對應 transition 期間
+    }
+
+    function renderHistory() {
+        const tbody = document.getElementById("history-tbody");
+        if (window.learningRecords.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="3" class="p-4 text-gray-500">尚無測驗紀錄</td></tr>';
+            return;
+        }
+        tbody.innerHTML = '';
+        [...window.learningRecords].reverse().forEach((record) => {
+            let scoreColor = record.score >= 60 ? 'text-green-600' : 'text-red-600';
+            tbody.innerHTML += `
+                <tr class="hover:bg-yellow-50 border-b border-yellow-100">
+                    <td class="p-3 text-sm text-gray-700">${record.time}</td>
+                    <td class="p-3 text-sm text-indigo-600">${record.bank}</td>
+                    <td class="p-3 font-bold text-lg ${scoreColor}">${record.score} 分</td>
+                </tr>
+            `;
+        });
+    }
+
+    function renderWordList() {
+        const tbody = document.getElementById("wordlist-tbody");
+        const countDisplay = document.getElementById("wordlist-count");
+        
+        const validPool = totalWordPool.filter(w => w.word);
+        countDisplay.innerText = `目前範圍共收錄 ${validPool.length} 個單字`;
+        
+        if (validPool.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-gray-500">尚無單字資料</td></tr>';
+            return;
+        }
+        
+        // 依字母 A-Z 排序，方便查閱
+        const sortedPool = [...validPool].sort((a, b) => a.word.localeCompare(b.word));
+        let html = '';
+        sortedPool.forEach(w => {
+            html += `
+                <tr class="hover:bg-blue-50 transition-colors">
+                    <td class="p-2 font-bold text-indigo-700">${w.word}</td>
+                    <td class="p-2 text-center text-gray-600">${w.pos}</td>
+                    <td class="p-2 text-gray-500">${w.kk || ''}</td>
+                    <td class="p-2 text-gray-800">${w.meaning}</td>
+                </tr>
+            `;
+        });
+        tbody.innerHTML = html;
+    }
+
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            var msg = new SpeechSynthesisUtterance(word);
+            msg.lang = 'en-US'; 
+            msg.rate = 0.85; 
+            msg.pitch = 1;
+            window.speechSynthesis.speak(msg);
+        } else {
+            alert("您的瀏覽器不支援語音合成功能。");
+        }
+    }
+
+    // ==========================================
+    // 命題引擎
+    // ==========================================
+    function generateRandomPaperEngine() {
+        const validPool = totalWordPool.filter(w => w.word && w.sentence);
+        if (validPool.length < 40) {
+            alert(`目前選定的題庫單字數量不足 (${validPool.length}個)。全自動組卷至少需要 40 個單字！請重新匯入。`);
+            return;
+        }
+
+        document.getElementById('pool-status-display').innerText = `目前綜合題庫單字量：${validPool.length} 個字 (動態智能抽題中...)`;
+
+        let shuffled = [...validPool].sort(() => 0.5 - Math.random());
+        let usedWordsInThisPaper = new Set();
+
+        // 1. 克漏字抽題 (保證從 currentClozePool 隨機抽取一篇，並避開重複)
+        let clozeData = null;
+        if (currentClozePool && currentClozePool.length > 0) {
+            clozeData = currentClozePool[Math.floor(Math.random() * currentClozePool.length)];
+            clozeData.words.forEach(wOpt => {
+                let w = wOpt.replace(/^\([A-Z]\)\s*/, '').trim();
+                usedWordsInThisPaper.add(w);
+            });
+        }
+        
+        function pullWord(posFilter = null) {
+            let pool = shuffled.filter(w => !usedWordsInThisPaper.has(w.word));
+            
+            if (posFilter) {
+                let exactFiltered = pool.filter(w => w.pos && w.pos.trim().toLowerCase() === posFilter.trim().toLowerCase());
+                if (exactFiltered.length > 0) {
+                    let w = exactFiltered[0]; usedWordsInThisPaper.add(w.word); return w;
+                }
+                let fuzzyPos = posFilter.replace(/[^a-z]/g, '');
+                let fuzzyFiltered = pool.filter(w => w.pos && w.pos.toLowerCase().includes(fuzzyPos));
+                if (fuzzyFiltered.length > 0) {
+                    let w = fuzzyFiltered[0]; usedWordsInThisPaper.add(w.word); return w;
+                }
+            }
+
+            if (pool.length > 0) {
+                let w = pool[0]; usedWordsInThisPaper.add(w.word); return w;
+            }
+
+            let w = validPool[Math.floor(Math.random() * validPool.length)];
+            usedWordsInThisPaper.add(w.word); return w;
+        }
+
+        // 2. 聽英拼寫 (10題)
+        let spellingData = [];
+        for(let i=0; i<10; i++) spellingData.push(pullWord());
+
+        // 3. 單選題 (5題，同詞性誘答)
+        let mcqData = [];
+        for (let i = 0; i < 5; i++) {
+            let ansObj = pullWord();
+            let distractors = [];
+            for(let j=0; j<3; j++) distractors.push(pullWord(ansObj.pos));
+
+            let options = [ansObj, ...distractors].sort(() => 0.5 - Math.random());
+            let ansIdx = options.findIndex(o => o.word === ansObj.word);
+
+            let escapedWord = ansObj.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            let wordRegex = new RegExp(`\\b${escapedWord}[a-z]*\\b`, 'gi');
+            let blankedSentence = ansObj.sentence.replace(wordRegex, '_____');
+
+            mcqData.push({
+                q: ` ${blankedSentence}`,
+                opts: [`(A) ${options[0].word}`, `(B) ${options[1].word}`, `(C) ${options[2].word}`, `(D) ${options[3].word}`],
+                ans: String.fromCharCode(65 + ansIdx),
+                ansWord: ansObj.word,
+                trans: ansObj.meaning,
+                exp: `正解為 (${String.fromCharCode(65 + ansIdx)}) ${ansObj.word} (${ansObj.pos} ${ansObj.meaning})。`
+            });
+        }
+
+        // 4. 配對題 (5題，需 6個字含1誘答)
+        let matchAns = [];
+        for(let i=0; i<5; i++) matchAns.push(pullWord());
+        let matchDist = pullWord(); 
+        let matchOpts = [...matchAns, matchDist].sort(() => 0.5 - Math.random());
+        
+        let matchingData = {
+            words: matchOpts.map((o, idx) => `( ${String.fromCharCode(65+idx)} ) ${o.word}`),
+            qs: matchAns.map(a => {
+                let escapedWord = a.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                let wordRegex = new RegExp(`\\b${escapedWord}[a-z]*\\b`, 'gi');
+                return a.sentence.replace(wordRegex, '_____');
+            }),
+            ans: matchAns.map(a => String.fromCharCode(65 + matchOpts.findIndex(o => o.word === a.word))),
+            ansWords: matchAns.map(a => a.word),
+            distractor: `(${String.fromCharCode(65 + matchOpts.findIndex(o => o.word === matchDist.word))}) ${matchDist.word} (${matchDist.meaning})`,
+            exp: matchAns.map(a => `本題測試單字為 ${a.word} (${a.meaning})。`)
+        };
+
+        currentBank = { spelling: spellingData, mcq: mcqData, matching: matchingData, cloze: clozeData };
+        renderPaper();
+    }
+
+    // ==========================================
+    // 渲染與計分
+    // ==========================================
+    function renderPaper() {
+        paperCount++;
+        document.getElementById('paper-indicator').innerText = `📝 全真模擬卷 #${paperCount}`;
+        document.getElementById('submit-btn').classList.remove('hidden');
+
+        // 渲染拼寫 (無音標、中文與例句)
+        let spellingHtml = '';
+        currentBank.spelling.forEach((w, index) => {
+            spellingHtml += `
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="text-center font-bold text-gray-700 py-2 sm:py-3">${index + 1}</td>
+                    <td class="text-center py-2 sm:py-3">
+                        <button type="button" class="speak-trigger text-indigo-600 hover:text-indigo-800 text-xl sm:text-2xl focus:outline-none transition-transform hover:scale-110" title="播放發音" data-word="${w.word}">🔊</button>
+                    </td>
+                    <td class="relative py-2 sm:py-3 px-2 sm:px-4">
+                        <input type="text" id="spell-ans-${index}" class="w-full border-b-2 border-gray-400 bg-transparent focus:border-indigo-600 outline-none px-1 py-1 text-base sm:text-lg font-bold tracking-widest text-indigo-900" autocomplete="off" spellcheck="false" placeholder="請拼出單字...">
+                    </td>
+                    <td class="text-center font-bold text-gray-500 text-sm sm:text-base py-2 sm:py-3">${w.pos}</td>
+                </tr>
+            `;
+        });
+        document.getElementById('spelling-tbody').innerHTML = spellingHtml;
+
+        // 渲染選擇題
+        let mcqHtml = '';
+        currentBank.mcq.forEach((item, index) => {
+            mcqHtml += `
+                <div class="mb-4 p-3 sm:p-4 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-200" id="mcq-box-${index}">
+                    <p class="font-medium text-base sm:text-lg text-gray-800 leading-relaxed">${index + 11}.${item.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 pl-2 sm:pl-4">
+                        ${item.opts.map((opt, optIdx) => `
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-indigo-50 transition-colors">
+                                <input type="radio" name="mcq-${index}" value="${String.fromCharCode(65 + optIdx)}" class="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 focus:ring-indigo-500">
+                                <span class="text-gray-700 text-sm sm:text-base">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        });
+        document.getElementById('mcq-container').innerHTML = mcqHtml;
+
+        const selectOptions = '<option value="" disabled selected>請選擇</option><option value="A">(A)</option><option value="B">(B)</option><option value="C">(C)</option><option value="D">(D)</option><option value="E">(E)</option><option value="F">(F)</option>';
+
+        // 渲染配對題
+        let matchWordsHtml = currentBank.matching.words.map(w => `<span class="bg-white px-2 sm:px-3 py-1 rounded border border-gray-300 shadow-sm">${w}</span>`).join('');
+        document.getElementById('matching-wordbank').innerHTML = matchWordsHtml;
+        
+        let matchQsHtml = currentBank.matching.qs.map((q, i) => {
+            let replacedQ = q.replace("_____", `<select id="match-ans-${i}" class="border-b-2 border-indigo-600 bg-indigo-50 outline-none px-1 sm:px-2 py-1 text-indigo-800 font-bold mx-1 cursor-pointer hover:bg-indigo-100 transition-colors text-sm sm:text-base max-w-[100px] sm:max-w-none">${selectOptions}</select>`);
+            return `<div id="match-box-${i}" class="p-2 hover:bg-gray-50 rounded transition-colors leading-relaxed"><span class="font-bold mr-1">${i + 16}.</span> ${replacedQ}</div>`;
+        }).join('');
+        document.getElementById('matching-questions').innerHTML = matchQsHtml;
+
+        // 渲染克漏字
+        if (currentBank.cloze) {
+            let clozeWordsHtml = currentBank.cloze.words.map(w => `<span class="bg-white px-2 sm:px-3 py-1 rounded border border-gray-300 shadow-sm">${w}</span>`).join('');
+            document.getElementById('cloze-wordbank').innerHTML = clozeWordsHtml;
+            
+            let clozeTextHtml = currentBank.cloze.paras.map(p => {
+                return p.replace(/<span[^>]*>\s*(\d+)\s*<\/span>/g, (match, p1) => {
+                    let idx = parseInt(p1) - 21; // 題號固定 21-25
+                    return `<select id="cloze-ans-${idx}" class="border-b-2 border-indigo-600 bg-indigo-50 outline-none px-1 sm:px-2 py-1 mx-1 text-indigo-800 font-bold cursor-pointer hover:bg-indigo-100 transition-colors text-sm sm:text-base max-w-[90px] sm:max-w-none">${selectOptions}</select>`;
+                });
+            }).join('');
+            document.getElementById('cloze-text').innerHTML = clozeTextHtml;
+        }
+
+        document.getElementById("answerSection").classList.add("hidden");
+    }
+
+    function submitExam() {
+        let score = 0;
+        const pts = 4; // 總題數 25 題，每題 4 分
+
+        currentBank.spelling.forEach((item, i) => {
+            const inputEl = document.getElementById(`spell-ans-${i}`);
+            const userAns = inputEl.value.trim().toLowerCase();
+            inputEl.disabled = true;
+            if (userAns === item.word.toLowerCase()) {
+                score += pts; inputEl.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
+            } else {
+                inputEl.classList.add('bg-red-50', 'border-red-500', 'text-red-500', 'line-through');
+                inputEl.insertAdjacentHTML('afterend', `<span class="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-600 font-bold tracking-widest text-sm sm:text-lg">正解: ${item.word}</span>`);
+            }
+        });
+
+        currentBank.mcq.forEach((item, i) => {
+            const checkedEl = document.querySelector(`input[name="mcq-${i}"]:checked`);
+            const boxEl = document.getElementById(`mcq-box-${i}`);
+            const userAns = checkedEl ? checkedEl.value : "";
+            document.querySelectorAll(`input[name="mcq-${i}"]`).forEach(r => r.disabled = true);
+            if (userAns === item.ans) {
+                score += pts; boxEl.classList.add('bg-green-50', 'border-l-4', 'border-green-500');
+            } else {
+                boxEl.classList.add('bg-red-50', 'border-l-4', 'border-red-500');
+                boxEl.insertAdjacentHTML('beforeend', `<p class="text-red-600 font-bold mt-2 ml-2 text-sm sm:text-base">✗ 你的答案：${userAns || '未作答'}，正解為：(${item.ans}) ${item.ansWord}</p>`);
+            }
+        });
+
+        currentBank.matching.ans.forEach((ans, i) => {
+            const selectEl = document.getElementById(`match-ans-${i}`);
+            const userAns = selectEl.value;
+            selectEl.disabled = true;
+            if (userAns === ans) {
+                score += pts; selectEl.classList.replace('bg-indigo-50', 'bg-green-100'); selectEl.classList.replace('border-indigo-600', 'border-green-600'); selectEl.classList.replace('text-indigo-800', 'text-green-900');
+            } else {
+                selectEl.classList.replace('bg-indigo-50', 'bg-red-100'); selectEl.classList.replace('border-indigo-600', 'border-red-600'); selectEl.classList.replace('text-indigo-800', 'text-red-800');
+                document.getElementById(`match-box-${i}`).insertAdjacentHTML('beforeend', `<span class="text-red-600 font-bold ml-2 text-sm sm:text-base block sm:inline mt-1 sm:mt-0">✗ 正解: (${ans})</span>`);
+            }
+        });
+
+        if (currentBank.cloze) {
+            currentBank.cloze.ans.forEach((ans, i) => {
+                const selectEl = document.getElementById(`cloze-ans-${i}`);
+                const userAns = selectEl.value;
+                selectEl.disabled = true;
+                if (userAns === ans) {
+                    score += pts; selectEl.classList.replace('bg-indigo-50', 'bg-green-100'); selectEl.classList.replace('border-indigo-600', 'border-green-600'); selectEl.classList.replace('text-indigo-800', 'text-green-900');
+                } else {
+                    selectEl.classList.replace('bg-indigo-50', 'bg-red-100'); selectEl.classList.replace('border-indigo-600', 'border-red-600'); selectEl.classList.replace('text-indigo-800', 'text-red-800');
+                    selectEl.insertAdjacentHTML('afterend', `<span class="text-red-600 font-bold ml-1 text-sm sm:text-base">✗ 正解: (${ans})</span>`);
+                }
+            });
+        }
+
+        // 紀錄成績
+        const now = new Date();
+        const timeString = now.toLocaleString('zh-TW', { hour12: false });
+        const bankName = "綜合模擬題庫"; // 不再使用下拉選單名稱
+
+        const recordData = { 
+            time: timeString, 
+            bank: bankName,
+            score: score
+        };
+        
+        window.learningRecords.push(recordData);
+        
+        renderAnswersUI();
+        document.getElementById('score-display').innerText = score;
+        openModal('score-modal');
+        document.getElementById('submit-btn').classList.add('hidden');
+    }
+
+    function renderAnswersUI() {
+        let h = `<h3 class="font-bold text-base sm:text-lg text-indigo-700 mb-2">測驗一：聽英拼寫</h3><ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6 bg-white p-4 rounded shadow-sm border border-indigo-100 text-sm sm:text-base">`;
+        currentBank.spelling.forEach((w, i) => { h += `<li><span class="font-bold w-6 inline-block">${i + 1}.</span> <span class="text-indigo-800 font-bold">${w.word}</span> <span class="text-gray-500">(${w.pos} / ${w.meaning})</span></li>`; });
+        h += `</ul><h3 class="font-bold text-base sm:text-lg text-indigo-700 mb-2">測驗二：詞彙題</h3><div class="space-y-4 mb-6 bg-white p-4 rounded shadow-sm border border-indigo-100 text-sm sm:text-base">`;
+        currentBank.mcq.forEach((m, i) => {
+            h += `<div class="leading-relaxed">
+                    <p class="font-bold text-red-600">${i + 11}. 正解：(${m.ans}) ${m.ansWord}</p>
+                    <p class="text-gray-700 mb-1"><span class="bg-gray-200 px-1 rounded text-xs mr-1">翻譯</span>${m.trans}</p>
+                    <p class="text-gray-600"><span class="bg-indigo-100 text-indigo-800 px-1 rounded text-xs mr-1">詳解</span>${m.exp}</p>
+                  </div>${i < 4 ? '<hr class="border-gray-200">' : ''}`;
+        });
+        h += `</div><h3 class="font-bold text-base sm:text-lg text-indigo-700 mb-2">測驗二：題組一 (單句填空)</h3><div class="space-y-4 mb-6 bg-white p-4 rounded shadow-sm border border-indigo-100 text-sm sm:text-base leading-relaxed"><p class="font-bold text-red-600 mb-2 border-b border-red-100 pb-2">解答順序：16.(${currentBank.matching.ans[0]}) &nbsp; 17.(${currentBank.matching.ans[1]}) &nbsp; 18.(${currentBank.matching.ans[2]}) &nbsp; 19.(${currentBank.matching.ans[3]}) &nbsp; 20.(${currentBank.matching.ans[4]})</p>`;
+        currentBank.matching.exp.forEach((e, i) => { h += `<p><span class="font-bold w-7 inline-block">${i + 16}.</span> <strong class="text-indigo-700">(${currentBank.matching.ans[i]}) ${currentBank.matching.ansWords[i]}</strong>：${e}</p>`; });
+        h += `<div class="mt-3 bg-yellow-50 p-2 rounded border border-yellow-200 text-yellow-800"><p>💡 <strong>誘答選項解析：${currentBank.matching.distractor}</strong>。為干擾選項。</p></div></div>`;
+        
+        if (currentBank.cloze) {
+            h += `<h3 class="font-bold text-base sm:text-lg text-indigo-700 mb-2">測驗二：題組二 (短文克漏字)</h3><div class="space-y-4 bg-white p-4 rounded shadow-sm border border-indigo-100 text-sm sm:text-base leading-relaxed"><p class="font-bold text-red-600 mb-2 border-b border-red-100 pb-2">解答順序：21.(${currentBank.cloze.ans[0]}) &nbsp; 22.(${currentBank.cloze.ans[1]}) &nbsp; 23.(${currentBank.cloze.ans[2]}) &nbsp; 24.(${currentBank.cloze.ans[3]}) &nbsp; 25.(${currentBank.cloze.ans[4]})</p><p class="mb-3 text-gray-700 text-justify"><span class="bg-gray-200 px-1 rounded text-xs mr-1 block sm:inline mb-1 sm:mb-0">短文翻譯</span>${currentBank.cloze.trans}</p><hr class="border-gray-200">`;
+            currentBank.cloze.exp.forEach((e, i) => { h += `<p><span class="font-bold w-7 inline-block">${i + 21}.</span> <strong class="text-indigo-700">(${currentBank.cloze.ans[i]})</strong>：${e}</p>`; });
+            h += `<div class="mt-3 bg-yellow-50 p-2 rounded border border-yellow-200 text-yellow-800"><p>💡 <strong>誘答選項解析：${currentBank.cloze.distractor}</strong>。為干擾選項。</p></div></div>`;
+        }
+        
+        document.getElementById('answers-container').innerHTML = h;
+    }
+
+    // ==========================================
+    // 精準事件委派 (Event Delegation)
+    // ==========================================
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (btn) {
+            const id = btn.id;
+
+            if (id === 'score-close-btn') {
+                closeModal('score-modal');
+            }
+            if (id === 'history-close-x' || id === 'history-close-btn') {
+                closeModal('history-modal');
+            }
+            if (id === 'admin-close-x') {
+                closeModal('admin-modal');
+            }
+            if (id === 'nav-history') {
+                renderHistory();
+                openModal('history-modal');
+            }
+            if (id === 'nav-wordlist') {
+                renderWordList();
+                openModal('wordlist-modal');
+            }
+            if (id === 'wordlist-close-x' || id === 'wordlist-close-btn') {
+                closeModal('wordlist-modal');
+            }
+            if (id === 'nav-admin') {
+                openModal('admin-modal');
+            }
+            if (id === 'nav-new') {
+                generateRandomPaperEngine();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            if (id === 'submit-btn') {
+                submitExam();
+            }
+            if (id === 'toggle-answers-btn') {
+                const sec = document.getElementById("answerSection");
+                sec.classList.toggle("hidden");
+                if (!sec.classList.contains("hidden")) {
+                    setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                }
+            }
+            if (id === 'import-btn') {
+                try {
+                    let data = JSON.parse(document.getElementById('json-input').value);
+                    totalWordPool = data.filter(w => w.word && w.sentence);
+                    if(totalWordPool.length < 40) throw new Error("有效單字不足 40 個");
+                    
+                    let clozeInput = document.getElementById('cloze-json-input').value.trim();
+                    if(clozeInput) {
+                        let clozeData = JSON.parse(clozeInput);
+                        if(Array.isArray(clozeData)) {
+                            currentClozePool = clozeData;
+                        } else if(typeof clozeData === 'object') {
+                            currentClozePool = [clozeData];
+                        }
+                    } else {
+                        currentClozePool = [...builtinClozePool]; // 無輸入則降級使用綜合內建題庫
+                    }
+                    
+                    generateRandomPaperEngine();
+                    closeModal('admin-modal');
+                    alert("匯入成功並已重新出卷！");
+                } catch(err) { 
+                    alert("解析失敗：" + err.message); 
+                }
+            }
+
+            if (btn.classList.contains('speak-trigger')) {
+                speakWord(btn.dataset.word);
+            }
+        }
+    });
+
+    document.getElementById('file-upload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const msgEl = document.getElementById('admin-msg');
+        msgEl.classList.remove('hidden');
+        msgEl.innerText = "⏳ 檔案讀取中...";
+        msgEl.className = "text-center font-bold mt-3 text-blue-600";
+
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+            let content = evt.target.result.trim();
+            try {
+                let jsonData = JSON.parse(content);
+                if (Array.isArray(jsonData)) {
+                    document.getElementById('json-input').value = JSON.stringify(jsonData, null, 2);
+                    msgEl.innerText = "✅ JSON 檔案讀取成功，請點擊下方按鈕匯入。";
+                    msgEl.className = "text-center font-bold mt-3 text-green-600";
+                    return; 
+                }
+            } catch (err) {}
+
+            try {
+                msgEl.innerText = "⏳ 偵測到純文本，正在執行自動智慧擷取...";
+                const wordList = parseTextToJSON(content);
+                if (wordList.length === 0) throw new Error("無法解析出單字，請確認文本符合格式。");
+                document.getElementById('json-input').value = JSON.stringify(wordList, null, 2);
+                msgEl.innerText = `✅ 智慧解析成功！共擷取 ${wordList.length} 個單字，請點擊下方按鈕匯入。`;
+                msgEl.className = "text-center font-bold mt-3 text-green-600";
+            } catch (err) {
+                document.getElementById('json-input').value = content; 
+                msgEl.innerText = "❌ 解析失敗：" + err.message;
+                msgEl.className = "text-center font-bold mt-3 text-red-600";
+            }
+        };
+        reader.readAsText(file, "UTF-8"); 
+    });
+
+    // 啟動：載入所有題庫資料
+    window.onload = () => {
+        const allData = [
+            rawDataLevel3_1_10, rawDataLevel3_11_20, rawDataLevel3_21_30, rawDataLevel3_31_40,
+            rawDataLevel4_1_10, 
+            rawDataLevel5_1_10, rawDataLevel5_11_20, 
+            rawDataLevel6_1_10, rawDataLevel6_11_20, rawDataLevel6_21_30, rawDataLevel6_31_40, 
+            rawDataPlus_1_10
+        ].join('\n');
+        totalWordPool = parseTextToJSON(allData);
+        currentClozePool = [...builtinClozePool];
+        generateRandomPaperEngine();
+    };
+
+</script>
+</body>
+</html>
