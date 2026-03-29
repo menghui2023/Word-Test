@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>高級中等學校英文單字比賽 - 模擬試題</title>
+    <title>高級中等學校英文單字比賽 - 區域決賽模擬試題</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
@@ -109,43 +109,9 @@
     </div>
 </div>
 
-<!-- 單字總表 Modal -->
-<div id="wordlist-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
-    <div class="bg-white p-5 sm:p-8 rounded-xl shadow-2xl max-w-2xl w-full mx-auto transform transition-all max-h-[90vh] flex flex-col scale-95 opacity-0" id="wordlist-modal-content">
-        <div class="flex justify-between items-center border-b-2 border-blue-200 pb-3 mb-3 shrink-0">
-            <h2 class="text-xl sm:text-2xl font-bold text-blue-800">📖 綜合單字總表</h2>
-            <button id="wordlist-close-x" class="text-gray-500 hover:text-red-500 text-2xl font-bold transition-colors">&times;</button>
-        </div>
-        <div class="mb-2 text-xs sm:text-sm text-gray-600 font-bold shrink-0 flex justify-between items-end">
-            <span id="wordlist-count"></span>
-            <span class="text-indigo-500 bg-indigo-50 px-2 py-1 rounded">A-Z 排序</span>
-        </div>
-        <div class="overflow-y-auto flex-1 mb-4 border border-gray-200 rounded">
-            <table class="w-full text-left border-collapse text-xs sm:text-base">
-                <thead class="sticky top-0 bg-blue-100 shadow-sm z-10">
-                    <tr class="text-blue-900">
-                        <th class="p-2 border-b border-blue-200 whitespace-nowrap">單字</th>
-                        <th class="p-2 border-b border-blue-200 text-center whitespace-nowrap">詞性</th>
-                        <th class="p-2 border-b border-blue-200">中文解釋</th>
-                    </tr>
-                </thead>
-                <tbody id="wordlist-tbody" class="bg-white divide-y divide-gray-100">
-                    <tr><td colspan="3" class="p-4 text-center text-gray-500">載入中...</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <button id="wordlist-close-btn" class="w-full bg-gray-800 text-white px-4 py-3 rounded-lg font-bold hover:bg-gray-900 transition duration-200 shadow shrink-0">關閉</button>
-    </div>
-</div>
-
 <!-- 響應式底部導覽列 -->
 <div class="fixed bottom-0 left-0 w-full sm:bottom-6 sm:right-6 sm:left-auto sm:w-auto z-50 no-print flex flex-row sm:flex-col justify-around sm:justify-end gap-1 sm:gap-2 bg-gray-900 sm:bg-transparent p-2 sm:p-0 shadow-[0_-4px_15px_rgba(0,0,0,0.2)] sm:shadow-none transition-opacity opacity-95 hover:opacity-100">
     <div id="paper-indicator" class="hidden sm:block bg-gray-800 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-t-lg text-center shadow-lg tracking-wider">全真模擬試卷</div>
-    
-    <button id="nav-wordlist" class="flex-1 sm:flex-none bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
-        <span class="text-lg sm:text-xl leading-none">📖</span> 
-        <span class="hidden sm:inline">單字總表</span><span class="sm:hidden leading-none mt-1">單字</span>
-    </button>
 
     <button id="nav-history" class="flex-1 sm:flex-none bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
         <span class="text-lg sm:text-xl leading-none">📊</span> 
@@ -424,33 +390,6 @@
                 </tr>
             `;
         });
-    }
-
-    function renderWordList() {
-        const tbody = document.getElementById("wordlist-tbody");
-        const countDisplay = document.getElementById("wordlist-count");
-        if(!tbody || !countDisplay) return;
-
-        const validPool = totalWordPool.filter(w => w.word);
-        countDisplay.innerText = `共收錄 ${validPool.length} 個單字`;
-        
-        if (validPool.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="3" class="p-4 text-center text-gray-500">尚無單字資料，請先由上方選單載入題庫！</td></tr>';
-            return;
-        }
-        
-        const sortedPool = [...validPool].sort((a, b) => a.word.localeCompare(b.word));
-        let html = '';
-        sortedPool.forEach(w => {
-            html += `
-                <tr class="hover:bg-blue-50 transition-colors">
-                    <td class="p-2 font-bold text-indigo-700">${w.word}</td>
-                    <td class="p-2 text-center text-gray-600">${w.pos}</td>
-                    <td class="p-2 text-gray-800">${w.meaning}</td>
-                </tr>
-            `;
-        });
-        tbody.innerHTML = html;
     }
 
     function speakWord(word) {
@@ -811,17 +750,12 @@
             if (id === 'score-close-btn') closeModal('score-modal');
             if (id === 'history-close-x' || id === 'history-close-btn') closeModal('history-modal');
             if (id === 'admin-close-x') closeModal('admin-modal');
-            if (id === 'wordlist-close-x' || id === 'wordlist-close-btn') closeModal('wordlist-modal');
             
             if (id === 'clear-history-btn') clearHistory();
             
             if (id === 'nav-history') {
                 renderHistory();
                 openModal('history-modal');
-            }
-            if (id === 'nav-wordlist') {
-                renderWordList();
-                openModal('wordlist-modal');
             }
             if (id === 'nav-admin') openModal('admin-modal');
             
