@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>高級中等學校英文單字比賽 - 區域決賽模擬試題</title>
+    <title>高級中等學校英文單字比賽 - 模擬試題</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
@@ -100,7 +100,7 @@
 
             <div class="mb-6 bg-green-50 p-3 sm:p-4 rounded border border-green-200">
                 <label class="block text-green-800 font-bold mb-2 text-sm sm:text-base">📝 第三步：貼上 AI 「產出的結果」 (選填)</label>
-                <textarea id="cloze-json-input" class="w-full h-32 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-green-500 outline-none" placeholder='請將生成器幫您寫好的 { JSON } 格式結果貼在這裡。&#10;若留空，系統將自動使用預載的內建短文。'></textarea>
+                <textarea id="cloze-json-input" class="w-full h-32 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-green-500 outline-none" placeholder='若您有單篇新文章想立刻測試，請將 JSON 貼在此處。&#10;若留空，系統將自動從雲端抓取「cloze_pool.json」題庫。'></textarea>
             </div>
 
             <button id="import-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition duration-200 text-base sm:text-lg">💾 儲存自訂短文並出卷</button>
@@ -154,7 +154,7 @@
     
     <button id="nav-admin" class="flex-1 sm:flex-none bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
         <span class="text-lg sm:text-xl leading-none">⚙️</span> 
-        <span class="hidden sm:inline">管理題庫</span><span class="sm:hidden leading-none mt-1">管理</span>
+        <span class="hidden sm:inline">教師管理</span><span class="sm:hidden leading-none mt-1">管理</span>
     </button>
     
     <button id="nav-new" class="flex-1 sm:flex-none bg-green-600 hover:bg-green-700 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded-b-lg shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
@@ -206,7 +206,7 @@
             <optgroup label="Level 6 分段進度">
                 <option value="三民Level 6 U1-10.txt">📕 Level 6 (Unit 1-10)</option>
                 <option value="三民Level 6 U11-20.txt">📕 Level 6 (Unit 11-20)</option>
-                <option value="三民Level 6 U21-30.txt">📕 Level 6 (Unit 21-30)</option>
+                <option value="三民Level 6 21-30.txt">📕 Level 6 (Unit 21-30)</option>
                 <option value="三民Level 6 U31-40.txt">📕 Level 6 (Unit 31-40)</option>
             </optgroup>
             <optgroup label="三民 Plus 進階">
@@ -295,51 +295,6 @@
 
 <script>
     // ==========================================
-    // 預設極輕量題庫 (僅供初始化防呆)
-    // ==========================================
-    const defaultRawData = `award	n.	獎，獎品	Emma has won many _____ for swimming.
-award	v.	給予，授予	They _____ the athlete a gold medal for her excellent performance.
-communicate	v.	溝通	Many parents find it hard to _____ with their children.
-hollow	adj.	中空的	The squirrel hid in a big _____ tree.
-hollow	v.	挖空	The green activists were angry at _____ out a tunnel in the mountain.
-inform	v.	通知	The leader held a meeting to _____ everyone of the new sales figures.
-mostly	adv.	大部分，主要地	The customers of that store are _____ women.
-ownership	n.	所有權	The _____ of the restaurant has changed.
-patience	n.	耐心	The teacher always has a lot of _____ with her students.
-persuade	v.	說服	The manager has _____ his boss that the project is a good investment.
-poverty	n.	貧窮	Unable to earn a living, the old woman lived in _____.
-replace	v.	取代	For the sake of health, many people nowadays _____ butter with olive oil in cooking.
-risk	n.	風險，危險	Andy ran the _____ of losing all his savings when he invested in the stock market.
-rough	adj.	粗糙的	The man's hands are very _____.
-sticky	adj.	黏的	The glue left my fingers _____.
-stomach	n.	胃	Don't swim on a full _____.
-temporary	adj.	暫時的	Gary's house collapsed in the earthquake, so he and his family are living in a _____ shelter.
-vanish	v.	消失	When Betty heard the bad news, her smile _____ immediately.
-weekly	adv.	每週地	The factory workers are paid _____.
-bamboo	n.	竹子	_____ shoots are very delicious.
-bucket	n.	水桶	Mrs. Chen carried a _____ and a mop to clean the balcony.
-connect	v.	連結，連接	The United Kingdom is _____ to France by the Channel Tunnel.
-dairy	n.	乳製品	Since Elena has an allergy to milk, the doctor asks her to avoid _____.
-dinosaur	n.	恐龍	The museum houses several _____ fossils.
-erase	v.	擦掉，抹去	The teacher asked Ella to _____ the words on the blackboard.
-imagination	n.	想像力	The poet has a vivid _____.
-intelligent	adj.	聰明的	Life becomes easier with the application of the _____ devices like computers and smartphones.
-leak	n.	漏洞，裂縫	Roger found a _____ in the roof of his house.
-opportunity	n.	機會	The attendees have the _____ to win a free concert ticket.
-passion	n.	熱情，熱愛	The councilor spoke with _____ about what she would do to help the people in need.
-pile	n.	一堆	There is a _____ of dirty clothes in the corner.
-practical	adj.	實際的，實用的	Your plan is not very _____. I am afraid it won't be put into practice.
-process	n.	過程	My company is in the _____ of merging with another firm.
-puppet	n.	木偶	Children like to go to _____ shows.
-situation	n.	情況，處境	Frank still stays positive in such a difficult _____.
-strategy	n.	策略	The government should work out an effective _____ for fighting crime.
-tablet	n.	藥片，藥錠	Take three _____ a day after meals.
-threat	n.	威脅	Reckless driving poses a serious _____ to pedestrians.
-tourist	n.	觀光客	_____ attractions are always crowded with _____ in high season.
-vision	n.	視力，視覺；遠見	The boxer lost _____ in one of his eyes.
-yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
-
-    // ==========================================
     // 系統預設克漏字題庫
     // ==========================================
     const builtinClozePool = [
@@ -362,6 +317,24 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
     let currentClozePool = [...builtinClozePool];
     let paperCount = 0;
     let bankNameForRecord = "未命名題庫";
+
+    // ==========================================
+    // 從 GitHub 載入外部克漏字題庫 (cloze_pool.json)
+    // ==========================================
+    async function loadExternalClozePool() {
+        try {
+            const response = await fetch('./cloze_pool.json');
+            if (response.ok) {
+                const data = await response.json();
+                if (Array.isArray(data) && data.length > 0) {
+                    currentClozePool = data;
+                    console.log("✅ 成功載入雲端克漏字題庫！共收錄 " + data.length + " 篇文章。");
+                }
+            }
+        } catch (e) {
+            console.log("ℹ️ 尚未偵測到外部克漏字題庫 (cloze_pool.json)，將使用內建預設文章。");
+        }
+    }
 
     // ==========================================
     // TXT 自動解析引擎
@@ -493,7 +466,7 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
     }
 
     // ==========================================
-    // 遠端載入題庫 (自動從 GitHub 抓取)
+    // 遠端載入單字題庫 (自動從 GitHub 抓取)
     // ==========================================
     document.getElementById('bank-selector').addEventListener('change', async function(e) {
         const filename = e.target.value;
@@ -504,7 +477,6 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
         statusDisplay.className = "text-xs sm:text-sm font-bold text-blue-600 mt-2 bg-blue-50 inline-block px-2 py-1 rounded border border-blue-100";
 
         try {
-            // 從 GitHub Pages 的相對路徑去抓取檔案
             const response = await fetch('./' + filename);
             if (!response.ok) {
                 throw new Error(`無法載入題庫！請確認老師已將「${filename}」上傳到 GitHub！`);
@@ -802,16 +774,30 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
             return;
         }
         
-        // 隨機抽取 6 個單字
         let shuffled = [...totalWordPool].filter(w => w.word && w.meaning).sort(() => 0.5 - Math.random());
         let selected = shuffled.slice(0, 6);
         let wordListStr = selected.map(w => `${w.word} (${w.pos} ${w.meaning})`).join(', ');
 
-        // 將單字編碼並透過網址傳遞給您的「短文生成程式」
         const targetUrl = `cloze-generator.html?words=${encodeURIComponent(wordListStr)}`;
-        
-        // 開啟新分頁前往生成器
         window.open(targetUrl, '_blank');
+    }
+
+    // ==========================================
+    // 建立外部題庫 (讓老師可以自行準備 .json 擴充文章)
+    // ==========================================
+    async function loadExternalClozePool() {
+        try {
+            const response = await fetch('./cloze_pool.json');
+            if (response.ok) {
+                const data = await response.json();
+                if (Array.isArray(data) && data.length > 0) {
+                    currentClozePool = data;
+                    console.log("✅ 成功載入雲端克漏字題庫！共收錄 " + data.length + " 篇文章。");
+                }
+            }
+        } catch (e) {
+            console.log("ℹ️ 尚未偵測到外部克漏字題庫 (cloze_pool.json)，將使用內建預設文章。");
+        }
     }
 
     // ==========================================
@@ -858,37 +844,32 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
                     setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
                 }
             }
+            
+            // 貼上 JSON 進行測試或寫入
             if (id === 'import-btn') {
                 try {
                     let clozeInput = document.getElementById('cloze-json-input').value.trim();
                     if(clozeInput) {
-                        // 防呆：防止貼到 Prompt
                         if (clozeInput.includes('你現在是一位') || clozeInput.includes('【文章與測驗要求】')) {
                             throw new Error("❌ 您貼到的是「給 AI 的提示詞」！\n\n請將剛剛複製的內容貼到 ChatGPT，然後將 AI 回傳的 { JSON 格式 } 結果貼回這裡。");
                         }
                         
-                        // 【強效除錯 1】自動清除 markdown 標記 (AI 喜歡加 ```json 前綴)
                         clozeInput = clozeInput.replace(/```json/gi, '').replace(/```/g, '').trim();
-                        
-                        // 【強效除錯 2】精準只抓取 { 到 } 之間的內容，去除 AI 前後廢話
                         let jsonStart = clozeInput.indexOf('{');
                         let jsonEnd = clozeInput.lastIndexOf('}');
                         if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
                             clozeInput = clozeInput.substring(jsonStart, jsonEnd + 1);
                         }
 
-                        // 【強效除錯 3】終極防呆：AI 常在字串內偷換行或加 tab，這會導致 JSON 壞掉。
-                        // 直接把所有實際的換行 (\n, \r) 和 tab 替換成空格，將 JSON 壓成安全的單行！
                         clozeInput = clozeInput.replace(/[\r\n\t]+/g, ' ');
-
-                        // 【強效除錯 4】修復 AI 偶爾會多加的結尾逗號 (Trailing comma，例如 [1,2,] 變 [1,2])
                         clozeInput = clozeInput.replace(/,\s*([\]}])/g, '$1');
 
                         let clozeData = JSON.parse(clozeInput);
                         if(Array.isArray(clozeData)) currentClozePool = clozeData;
                         else if(typeof clozeData === 'object') currentClozePool = [clozeData];
                     } else {
-                        currentClozePool = [...builtinClozePool]; 
+                        // 若無輸入，嘗試載入外部題庫，若無則用內建
+                        loadExternalClozePool(); 
                     }
                     
                     if(totalWordPool.length >= 40) {
@@ -954,6 +935,7 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
     // 系統啟動初始化
     window.onload = () => {
         loadHistory();
+        loadExternalClozePool(); // 啟動時自動嘗試載入外部 JSON 題庫
         document.getElementById('pool-status-display').innerText = `等待載入題庫...`;
     };
 
