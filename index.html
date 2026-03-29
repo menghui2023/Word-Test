@@ -1,86 +1,832 @@
-<!-- ==========================================
-     第一部分：在 HTML 的結尾處，找到 <div id="admin-modal">...</div> 
-     把下面這段【操作指引 Modal】直接貼在它的下方！
-     ========================================== -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>高級中等學校英文單字比賽 - 區域決賽模擬試題</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
+        body { font-family: 'Noto Serif TC', serif; background-color: #f3f4f6; color: #1f2937; }
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid #d1d5db; padding: 0.75rem; }
+        th { background-color: #f9fafb; font-weight: bold; }
+        @media print {
+            body { background-color: #ffffff; font-size: 11pt; padding-bottom: 0 !important; }
+            .paper-container { box-shadow: none !important; padding: 0 !important; margin: 0 !important; max-width: 100% !important; border: none !important; }
+            .no-print { display: none !important; }
+            .speak-btn { display: none !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            input[type="text"] { border: none !important; border-bottom: 1px solid #000 !important; border-radius: 0 !important; background: transparent !important; padding: 0 !important; box-shadow: none !important; }
+            input[type="radio"] { -webkit-appearance: none !important; appearance: none !important; border: 1px solid #000 !important; width: 14px !important; height: 14px !important; border-radius: 50% !important; background-color: transparent !important; display: inline-block !important; margin-right: 6px !important; }
+            select { -webkit-appearance: none !important; appearance: none !important; border: none !important; border-bottom: 1px solid #000 !important; background: transparent !important; color: transparent !important; box-shadow: none !important; width: 60px !important; padding: 0 !important; }
+            #answerSection { page-break-before: always; border: none !important; background: none !important; padding: 0 !important; margin-top: 0 !important; }
+        }
+        .modal-transition { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .mobile-pb { padding-bottom: 5rem; }
+        @media (min-width: 640px) { .mobile-pb { padding-bottom: 0; } }
+    </style>
+</head>
+<body class="antialiased mobile-pb">
 
-<!-- 操作指引 Modal -->
-<div id="guide-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 overflow-y-auto h-full w-full z-50 backdrop-blur-sm transition-opacity duration-300">
-    <div class="relative top-5 sm:top-10 mx-auto p-0 border w-11/12 max-w-4xl shadow-2xl rounded-xl bg-white animate-fade-in-up mb-10">
-        <!-- Header -->
-        <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-4 sm:p-5 rounded-t-xl flex justify-between items-center shadow-md">
-            <h3 class="text-xl sm:text-2xl font-bold tracking-wider flex items-center gap-2">
-                <span>📖</span> 系統操作指引
-            </h3>
-            <button id="guide-close-x" class="text-white hover:text-red-300 text-3xl font-bold focus:outline-none transition transform hover:scale-110">&times;</button>
+<!-- 測驗結果 Modal -->
+<div id="score-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
+    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl text-center max-w-sm w-full mx-auto transform transition-all scale-95 opacity-0" id="score-modal-content">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-gray-800">測驗結果</h2>
+        <div class="my-4 sm:my-6">
+            <span class="text-5xl sm:text-6xl font-extrabold text-indigo-600" id="score-display">0</span>
+            <span class="text-lg sm:text-xl text-gray-500 font-bold"> / 100</span>
         </div>
-        
-        <!-- Body -->
-        <div class="p-5 sm:p-8 text-gray-800 space-y-6 sm:space-y-8">
-            <!-- 學生篇 -->
-            <section class="bg-blue-50/50 p-5 sm:p-6 rounded-xl border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
-                <h4 class="text-lg sm:text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2 mb-4 flex items-center gap-2">
-                    <span>👨‍🎓</span> 【學生篇】如何進行測驗？
-                </h4>
-                <ol class="list-decimal list-inside space-y-3 pl-1 sm:pl-2 text-blue-900 text-base sm:text-lg">
-                    <li><strong>選擇範圍：</strong>點擊上方藍色區塊下拉選單選擇單元，系統會瞬間產生全新試卷。</li>
-                    <li><strong>開始作答：</strong>
-                        <ul class="list-disc list-inside pl-6 sm:pl-8 mt-2 space-y-2 text-sm sm:text-base text-gray-700">
-                            <li><strong>聽英拼寫：</strong>點擊喇叭圖示聽發音，用「<strong>全小寫</strong>」拼出單字。</li>
-                            <li><strong>詞彙題：</strong>包含單選、配對及短文克漏字，請依據句意選出正確答案。</li>
-                        </ul>
-                    </li>
-                    <li><strong>交卷檢討：</strong>作答完畢後，點擊最下方紅色 <strong>[📝 交卷並查看成績]</strong>，接著點擊 <strong>[👨‍🏫 顯示測驗詳解]</strong> 查看翻譯與解析。</li>
-                    <li><strong>查看紀錄：</strong>點擊右下角 <strong>[📊 我的成績]</strong>，查看過去的分數與進步軌跡。</li>
-                </ol>
-            </section>
+        <p class="text-sm sm:text-base text-gray-600 mb-6 font-medium">請往下捲動查看正確解答與詳解！</p>
+        <button id="score-close-btn" class="w-full bg-indigo-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-indigo-700 transition duration-200 shadow">查看試卷</button>
+    </div>
+</div>
 
-            <!-- 教師篇 -->
-            <section class="bg-purple-50/50 p-5 sm:p-6 rounded-xl border border-purple-100 shadow-sm hover:shadow-md transition-shadow">
-                <h4 class="text-lg sm:text-xl font-bold text-purple-800 border-b-2 border-purple-200 pb-2 mb-4 flex items-center gap-2">
-                    <span>👩‍🏫</span> 【教師篇】如何用 AI 產生全新題目？
-                </h4>
-                <ol class="list-decimal list-inside space-y-3 pl-1 sm:pl-2 text-purple-900 text-base sm:text-lg">
-                    <li><strong>管理後臺：</strong>在主系統選好單字範圍後，點擊右下角 <strong>[⚙️ 教師管理]</strong>。</li>
-                    <li><strong>開啟 AI 生成器：</strong>點擊視窗內 <strong>[🚀 開啟 AI 短文生成器]</strong>，系統會另開分頁。</li>
-                    <li><strong>讓 AI 寫作：</strong>在新分頁中貼上 <strong>Google Gemini API Key</strong>，點擊 <strong>[✨ 呼叫 AI 開始寫作]</strong>，等待約 10 秒。</li>
-                    <li><strong>貼回主系統：</strong>
-                        <ul class="list-disc list-inside pl-6 sm:pl-8 mt-2 space-y-2 text-sm sm:text-base text-gray-700">
-                            <li>文章生成完畢後，點擊 <strong>[📋 一鍵複製結果]</strong>。</li>
-                            <li>回到主系統，在教師管理視窗的「第三步」綠色區塊內<strong>貼上</strong>內容。</li>
-                            <li>點擊 <strong>[💾 儲存自訂短文並出卷]</strong>，系統即刻換上全新試卷！</li>
-                        </ul>
-                    </li>
-                </ol>
-            </section>
+<!-- 學習紀錄 Modal -->
+<div id="history-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
+    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full mx-auto transform transition-all max-h-[85vh] flex flex-col scale-95 opacity-0" id="history-modal-content">
+        <div class="flex justify-between items-center border-b-2 border-yellow-200 pb-3 mb-4 shrink-0">
+            <h2 class="text-xl sm:text-2xl font-bold text-yellow-700">📊 學習紀錄 (本機儲存)</h2>
+            <button id="history-close-x" class="text-gray-500 hover:text-red-500 text-2xl font-bold transition-colors">&times;</button>
         </div>
-        
-        <!-- Footer -->
-        <div class="bg-gray-50 px-6 py-4 rounded-b-xl flex justify-center border-t border-gray-100">
-            <button id="guide-close-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg shadow-md hover:shadow-lg transition duration-200 text-lg w-full sm:w-auto">了解，開始使用！</button>
+        <div class="overflow-y-auto flex-1 mb-4">
+            <table class="w-full text-center border-collapse text-sm sm:text-base">
+                <thead class="sticky top-0 bg-white">
+                    <tr class="bg-yellow-50 text-yellow-800">
+                        <th class="border border-yellow-200 p-2">時間</th>
+                        <th class="border border-yellow-200 p-2">題庫來源</th>
+                        <th class="border border-yellow-200 p-2">得分</th>
+                    </tr>
+                </thead>
+                <tbody id="history-tbody" class="bg-white">
+                    <tr><td colspan="3" class="p-4 text-gray-500">尚無測驗紀錄</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="flex gap-2 shrink-0">
+            <button id="clear-history-btn" class="w-1/3 bg-red-100 text-red-700 px-4 py-3 rounded-lg font-bold hover:bg-red-200 transition duration-200 shadow">清空</button>
+            <button id="history-close-btn" class="w-2/3 bg-gray-800 text-white px-4 py-3 rounded-lg font-bold hover:bg-gray-900 transition duration-200 shadow">關閉</button>
         </div>
     </div>
 </div>
 
+<!-- 教師管理後臺 Modal -->
+<div id="admin-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
+    <div class="bg-white p-5 sm:p-8 rounded-xl shadow-2xl max-w-3xl w-full mx-auto transform transition-all max-h-[90vh] overflow-y-auto flex flex-col scale-95 opacity-0" id="admin-modal-content">
+        <div class="flex justify-between items-center border-b-2 border-indigo-200 pb-3 mb-4 shrink-0">
+            <h2 class="text-xl sm:text-2xl font-bold text-indigo-800">⚙️ 批次上傳題庫中心</h2>
+            <button id="admin-close-x" class="text-gray-500 hover:text-red-500 text-2xl font-bold transition-colors">&times;</button>
+        </div>
+        
+        <div id="admin-bank-section" class="flex-1">
+            
+            <div class="mb-6 bg-indigo-50 p-4 sm:p-6 rounded-lg border-2 border-dashed border-indigo-300 hover:border-indigo-500 transition-colors text-center">
+                <label class="block text-indigo-800 font-bold mb-3 text-lg cursor-pointer">
+                    📁 第一步：點擊上傳單字 .txt 檔案 (支援多選)
+                    <input type="file" id="file-upload" accept=".json, .txt" multiple class="hidden">
+                </label>
+                <p class="text-sm text-gray-500">請一次圈選並上傳您電腦中的 Level 3 ~ Level 6 文字檔！</p>
+            </div>
 
-<!-- ==========================================
-     第二部分：尋找您的【響應式底部導覽列】
-     在 <button id="nav-history"> 的前面，加入這顆【操作指引】按鈕
-     ========================================== -->
+            <!-- AI 克漏字生成輔助區 -->
+            <div class="mb-6 bg-yellow-50 p-4 rounded-lg border border-yellow-300">
+                <h3 class="font-bold text-yellow-800 mb-2 flex items-center gap-2">
+                    <span>✨</span> 第二步：取得 AI 克漏字命題指令
+                </h3>
+                <p class="text-sm text-gray-700 mb-3">純網頁無法直接自動寫出長篇文章。請點擊下方按鈕，系統會自動寫好發包給 AI 的「專屬提示詞(Prompt)」。<br><span class="font-bold text-red-600">⚠️ 複製後，請自行打開 ChatGPT 或 Gemini 貼上送出，讓 AI 幫您寫文章！</span></p>
+                <button id="generate-prompt-btn" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded shadow transition duration-200 text-sm sm:text-base mb-2">
+                    📋 從目前題庫抽 6 字並複製 AI 提示詞
+                </button>
+            </div>
 
-    <button id="nav-guide" class="flex-1 sm:flex-none bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
-        <span class="text-lg sm:text-xl leading-none">📖</span> 
-        <span class="hidden sm:inline">操作指引</span><span class="sm:hidden leading-none mt-1">指引</span>
+            <div class="mb-6 bg-green-50 p-3 sm:p-4 rounded border border-green-200">
+                <label class="block text-green-800 font-bold mb-2 text-sm sm:text-base">📝 第三步：貼上 AI 「產出的結果」 (選填)</label>
+                <textarea id="cloze-json-input" class="w-full h-24 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-green-500 outline-none" placeholder='請將 AI 幫您寫好的 { JSON } 格式結果貼在這裡。&#10;若留空，系統將自動使用預載的內建短文。'></textarea>
+            </div>
+
+            <button id="import-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition duration-200 text-base sm:text-lg">💾 儲存自訂短文並出卷</button>
+            <p id="admin-msg" class="text-center font-bold mt-3 text-sm sm:text-base"></p>
+        </div>
+    </div>
+</div>
+
+<!-- 響應式底部導覽列 -->
+<div class="fixed bottom-0 left-0 w-full sm:bottom-6 sm:right-6 sm:left-auto sm:w-auto z-50 no-print flex flex-row sm:flex-col justify-around sm:justify-end gap-1 sm:gap-2 bg-gray-900 sm:bg-transparent p-2 sm:p-0 shadow-[0_-4px_15px_rgba(0,0,0,0.2)] sm:shadow-none transition-opacity opacity-95 hover:opacity-100">
+    <div id="paper-indicator" class="hidden sm:block bg-gray-800 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-t-lg text-center shadow-lg tracking-wider">全真模擬試卷</div>
+    
+    <button id="nav-history" class="flex-1 sm:flex-none bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
+        <span class="text-lg sm:text-xl leading-none">📊</span> 
+        <span class="hidden sm:inline">我的成績</span><span class="sm:hidden leading-none mt-1">成績</span>
     </button>
     
-    <!-- (這裡原本是您的 <button id="nav-history">...) -->
+    <button id="nav-admin" class="flex-1 sm:flex-none bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
+        <span class="text-lg sm:text-xl leading-none">⚙️</span> 
+        <span class="hidden sm:inline">管理題庫</span><span class="sm:hidden leading-none mt-1">管理</span>
+    </button>
+    
+    <button id="nav-new" class="flex-1 sm:flex-none bg-green-600 hover:bg-green-700 text-white font-bold py-2 sm:py-3 px-1 sm:px-4 rounded-lg sm:rounded-b-lg shadow-none sm:shadow-lg transition duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base">
+        <span class="text-lg sm:text-xl leading-none">🎲</span> 
+        <span class="hidden sm:inline">產生新卷</span><span class="sm:hidden leading-none mt-1">新卷</span>
+    </button>
+</div>
 
+<!-- 主要試卷容器 -->
+<div class="paper-container bg-white max-w-5xl mx-auto my-0 sm:my-8 p-4 sm:p-10 md:p-14 sm:shadow-lg sm:rounded-xl">
+    <div class="flex flex-col sm:flex-row justify-between items-start border-b-2 border-gray-800 pb-4 mb-6 gap-4 sm:gap-0">
+        <div class="w-full">
+            <h1 class="text-xl sm:text-2xl font-bold tracking-wider">高級中等學校英文單字比賽</h1>
+            <p class="text-xs sm:text-sm font-bold text-indigo-600 mt-2 bg-indigo-50 inline-block px-2 py-1 rounded border border-indigo-100" id="pool-status-display">系統題庫載入中...</p>
+        </div>
+    </div>
 
-<!-- ==========================================
-     第三部分：尋找 JavaScript 中的「事件委派與操作處理」區塊
-     (大約在 document.addEventListener('click', (e) => { ... } 裡面)
-     把下面這兩行判斷式加進去：
-     ========================================== -->
+    <div class="mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed bg-gray-50 p-3 sm:p-4 rounded border border-gray-200">
+        <p class="font-bold mb-1 text-gray-800">試卷結構與題型說明：</p>
+        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+            <li><strong>測驗一：聽英拼寫 (Spelling)</strong> - 共 10 題。點擊喇叭圖示聆聽，以<span class="font-bold text-red-600">全小寫</span>輸入拼字。</li>
+            <li><strong>測驗二：詞彙題 (Vocabulary & Collocations)</strong>
+                <ul class="list-circle pl-5 mt-1 space-y-1">
+                    <li>第一部分：單句詞彙選擇題 (Multiple Choice) - 共 5 題。考驗語意或搭配詞。</li>
+                    <li>第二部分：單句填空配對題 - 題組 (Sentence Matching) - 共 5 題，含 1 誘答字。</li>
+                    <li>第三部分：短文篇章克漏字題 - 題組 (Passage Cloze Test) - 共 5 題，含 1 誘答字。</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 
-            // 處理操作指引視窗的開啟與關閉
-            if (id === 'guide-close-x' || id === 'guide-close-btn') closeModal('guide-modal');
-            if (id === 'nav-guide') openModal('guide-modal');
+    <!-- 測驗一：聽英拼寫 -->
+    <div class="mb-10 sm:mb-14">
+        <h3 class="text-lg sm:text-2xl font-bold mb-4 text-indigo-900 border-b-2 border-indigo-200 pb-2">測驗一：聽英拼寫 (Spelling)</h3>
+        <div class="w-full border border-gray-300 rounded shadow-sm overflow-hidden">
+            <table class="w-full text-left text-sm sm:text-base table-fixed sm:table-auto">
+                <thead>
+                    <tr class="bg-gray-100 text-gray-700">
+                        <th class="w-10 sm:w-16 text-center py-2 sm:py-3">題號</th>
+                        <th class="w-12 sm:w-20 text-center speak-btn">發音</th>
+                        <th class="w-auto py-2 sm:py-3">英文單字拼寫</th>
+                        <th class="w-16 sm:w-24 text-center">詞性</th>
+                    </tr>
+                </thead>
+                <tbody id="spelling-tbody" class="bg-white divide-y divide-gray-200"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 測驗二：詞彙題 -->
+    <div id="exam-part-2">
+        <h3 class="text-lg sm:text-2xl font-bold mb-6 text-indigo-900 border-b-2 border-indigo-200 pb-2">測驗二：詞彙題 (Vocabulary & Collocations)</h3>
+        
+        <!-- 第一部分：單選 -->
+        <h4 class="font-bold text-base sm:text-xl mt-4 mb-4 text-gray-800 bg-gray-100 p-2 rounded border-l-4 border-gray-500">第一部分：單句詞彙選擇題 (Multiple Choice)</h4>
+        <div id="mcq-container" class="space-y-4 sm:space-y-5 mb-10 pl-1 sm:pl-2"></div>
+
+        <!-- 第二部分：配對 -->
+        <h4 class="font-bold text-base sm:text-xl mt-8 mb-4 text-gray-800 bg-gray-100 p-2 rounded border-l-4 border-gray-500">第二部分：單句填空配對題 - 題組 (Sentence Matching)</h4>
+        <div class="border-2 border-indigo-200 bg-indigo-50 p-3 sm:p-5 flex flex-wrap gap-2 sm:gap-4 justify-center font-bold mb-5 rounded-lg shadow-inner text-sm sm:text-base" id="matching-wordbank"></div>
+        <div class="space-y-4 sm:space-y-5 pl-1 sm:pl-2 text-sm sm:text-base text-gray-800 mb-10" id="matching-questions"></div>
+
+        <!-- 第三部分：克漏字 -->
+        <h4 class="font-bold text-base sm:text-xl mt-8 mb-4 text-gray-800 bg-gray-100 p-2 rounded border-l-4 border-gray-500">第三部分：短文篇章克漏字題 - 題組 (Passage Cloze Test)</h4>
+        <div class="border-2 border-green-200 bg-green-50 p-3 sm:p-5 flex flex-wrap gap-2 sm:gap-4 justify-center font-bold mb-5 rounded-lg shadow-inner text-sm sm:text-base" id="cloze-wordbank"></div>
+        <div class="leading-relaxed sm:leading-loose text-justify text-sm sm:text-lg space-y-4 sm:space-y-5 px-2 sm:px-4 text-gray-800 mb-6" id="cloze-text"></div>
+    </div>
+    
+    <div class="mt-12 sm:mt-16 text-center no-print">
+        <hr class="border-t border-dashed border-gray-400 mb-6">
+        <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+            <button id="submit-btn" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-3 sm:py-4 px-10 rounded-lg shadow-lg transition duration-300 transform hover:-translate-y-1 text-base sm:text-lg">
+                📝 交卷並查看成績
+            </button>
+            <button id="toggle-answers-btn" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 sm:py-4 px-8 rounded-lg shadow-lg transition duration-300 text-base sm:text-lg">
+                👨‍🏫 顯示測驗詳解
+            </button>
+        </div>
+    </div>
+
+    <div id="answerSection" class="hidden mt-8 sm:mt-10 bg-gray-50 p-5 sm:p-10 rounded-xl border-2 border-gray-300 shadow-inner">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center border-b-2 border-gray-300 pb-3">解答與解析 (Answer Key & Explanations)</h2>
+        <div id="answers-container"></div>
+    </div>
+</div>
+
+<script>
+    // ==========================================
+    // 預設基礎題庫 (極輕量版，確保啟動不當機)
+    // 老師請透過「管理題庫」按鈕批次匯入您的 .txt 檔案！
+    // ==========================================
+    const defaultRawData = `award	n.	獎，獎品	Emma has won many _____ for swimming.
+award	v.	給予，授予	They _____ the athlete a gold medal for her excellent performance.
+communicate	v.	溝通	Many parents find it hard to _____ with their children.
+hollow	adj.	中空的	The squirrel hid in a big _____ tree.
+hollow	v.	挖空	The green activists were angry at _____ out a tunnel in the mountain.
+inform	v.	通知	The leader held a meeting to _____ everyone of the new sales figures.
+mostly	adv.	大部分，主要地	The customers of that store are _____ women.
+ownership	n.	所有權	The _____ of the restaurant has changed.
+patience	n.	耐心	The teacher always has a lot of _____ with her students.
+persuade	v.	說服	The manager has _____ his boss that the project is a good investment.
+poverty	n.	貧窮	Unable to earn a living, the old woman lived in _____.
+replace	v.	取代	For the sake of health, many people nowadays _____ butter with olive oil in cooking.
+risk	n.	風險，危險	Andy ran the _____ of losing all his savings when he invested in the stock market.
+rough	adj.	粗糙的	The man's hands are very _____.
+sticky	adj.	黏的	The glue left my fingers _____.
+stomach	n.	胃	Don't swim on a full _____.
+temporary	adj.	暫時的	Gary's house collapsed in the earthquake, so he and his family are living in a _____ shelter.
+vanish	v.	消失	When Betty heard the bad news, her smile _____ immediately.
+weekly	adv.	每週地	The factory workers are paid _____.
+bamboo	n.	竹子	_____ shoots are very delicious.
+bucket	n.	水桶	Mrs. Chen carried a _____ and a mop to clean the balcony.
+connect	v.	連結，連接	The United Kingdom is _____ to France by the Channel Tunnel.
+dairy	n.	乳製品	Since Elena has an allergy to milk, the doctor asks her to avoid _____.
+dinosaur	n.	恐龍	The museum houses several _____ fossils.
+erase	v.	擦掉，抹去	The teacher asked Ella to _____ the words on the blackboard.
+imagination	n.	想像力	The poet has a vivid _____.
+intelligent	adj.	聰明的	Life becomes easier with the application of the _____ devices like computers and smartphones.
+leak	n.	漏洞，裂縫	Roger found a _____ in the roof of his house.
+opportunity	n.	機會	The attendees have the _____ to win a free concert ticket.
+passion	n.	熱情，熱愛	The councilor spoke with _____ about what she would do to help the people in need.
+pile	n.	一堆	There is a _____ of dirty clothes in the corner.
+practical	adj.	實際的，實用的	Your plan is not very _____. I am afraid it won't be put into practice.
+process	n.	過程	My company is in the _____ of merging with another firm.
+puppet	n.	木偶	Children like to go to _____ shows.
+situation	n.	情況，處境	Frank still stays positive in such a difficult _____.
+strategy	n.	策略	The government should work out an effective _____ for fighting crime.
+tablet	n.	藥片，藥錠	Take three _____ a day after meals.
+threat	n.	威脅	Reckless driving poses a serious _____ to pedestrians.
+tourist	n.	觀光客	_____ attractions are always crowded with _____ in high season.
+vision	n.	視力，視覺；遠見	The boxer lost _____ in one of his eyes.
+yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
+
+    // ==========================================
+    // 系統預設克漏字題庫 (內建 1 篇高階短文)
+    // 配合題號 1-5 重製標籤
+    // ==========================================
+    const builtinClozePool = [
+        {
+            words: ["(A) abundant", "(B) imperative", "(C) thorough", "(D) enhance", "(E) skeptical", "(F) republican"],
+            paras: [
+                "In recent decades, the rapid advancement of artificial intelligence has sparked widespread debate across various academic and industrial sectors. While some tech enthusiasts strongly believe that AI will significantly <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> our productivity and elevate our overall quality of life, others remain deeply <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> about the ethical implications of allowing autonomous machines to make critical decisions on our behalf. These concerns are not completely unfounded, considering the potential risks of algorithmic biases and severe job displacement.",
+                "Given the incredibly <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> amount of personal and behavioral data generated by users on the internet every single day, digital privacy and data breaches are a constantly growing concern. Consequently, it has become absolutely <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> for global tech companies to implement a <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> and rigorous review process to ensure user privacy and digital security. Ultimately, the delicate balance between technological innovation and legal regulation will dictate how smoothly these unprecedented tools are integrated into our modern society."
+            ],
+            ans: ["D", "E", "A", "B", "C"],
+            trans: "近幾十年來，人工智慧的快速發展在各個學術和工業領域引發了廣泛的爭論。儘管科技迷相信 AI 能顯著「提升 (enhance)」我們的生產力並提高生活品質，但其他人對允許機器代做決策的倫理影響深感「懷疑 (skeptical)」。考慮到演算法偏見，這些擔憂並非毫無根據。\n鑑於每天產生「大量的 (abundant)」數據，數位隱私成為日益嚴重的問題。因此，對於全球科技公司來說，實施「徹底的 (thorough)」和嚴格的審查流程以確保隱私安全已變得絕對「迫切的 (imperative)」。最終，科技創新與法律規範之間的平衡，將決定這些工具如何融入現代社會。",
+            exp: ["語氣判斷：搭配 productivity (生產力)，正面語氣選 enhance (提升)。", "轉折語氣：前面為正面相信，while 帶出反面語氣 skeptical (懷疑的)。", "語意搭配：形容 amount of data (資料量) 需用 abundant (大量的)。", "句型結構：it is absolutely imperative for sb to V (對某人來說做某事是絕對必須的)。", "語意判斷：搭配 review process (審查流程)，指 thorough (徹底且嚴格的) 審查。"],
+            distractor: "(F) republican (adj. 共和主義的) - 政治術語，在此科技語境中為無效干擾。"
+        }
+    ];
+
+    // 全域變數
+    window.learningRecords = [];
+    let totalWordPool = [];
+    let currentClozePool = [...builtinClozePool];
+    let currentBank = null;
+    let paperCount = 0;
+
+    // ==========================================
+    // TXT 自動解析引擎
+    // ==========================================
+    function parseTextToJSON(text) {
+        const wordList = [];
+        const lines = text.split(/[\r\n]+/);
+        for (let line of lines) {
+            if (!line.trim() || line.trim() === '單字\t詞性\t中文解釋\t例句') continue;
+            const parts = line.split('\t');
+            if (parts.length >= 4) {
+                let wordRaw = parts[0].trim().replace(/^\d+\.?\s*/, ''); 
+                let word = wordRaw.replace(/\[.*?\]/, '').trim();
+                let pos = parts[1].trim();
+                let meaning = parts[2].trim().split('|')[0].split('；')[0].split(';')[0].trim();
+                let englishSentence = parts[3].trim().replace(/\s*\[\d+\]$/, '');
+                if (word && englishSentence) {
+                    wordList.push({ word, pos, meaning, sentence: englishSentence });
+                }
+            }
+        }
+        return wordList;
+    }
+
+    // Modal 控制與成績持久化
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if(!modal) return;
+        const content = document.getElementById(modalId + '-content');
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            if(content) {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }
+        }, 10);
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if(!modal) return;
+        const content = document.getElementById(modalId + '-content');
+        if(content) {
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+        }
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300); 
+    }
+
+    function loadHistory() {
+        try {
+            const saved = localStorage.getItem('vocabContestHistory');
+            if (saved) window.learningRecords = JSON.parse(saved);
+        } catch(e) { window.learningRecords = []; }
+    }
+
+    function saveHistory() {
+        try { localStorage.setItem('vocabContestHistory', JSON.stringify(window.learningRecords)); } 
+        catch(e) { console.error("無法儲存成績", e); }
+    }
+
+    function clearHistory() {
+        if(confirm("確定要清空所有成績紀錄嗎？無法復原喔！")) {
+            window.learningRecords = [];
+            saveHistory();
+            renderHistory();
+        }
+    }
+
+    function renderHistory() {
+        const tbody = document.getElementById("history-tbody");
+        if(!tbody) return;
+        if (window.learningRecords.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="3" class="p-4 text-gray-500">尚無測驗紀錄</td></tr>';
+            return;
+        }
+        tbody.innerHTML = '';
+        [...window.learningRecords].reverse().forEach((record) => {
+            let scoreColor = record.score >= 60 ? 'text-green-600' : 'text-red-600';
+            tbody.innerHTML += `
+                <tr class="hover:bg-yellow-50 border-b border-yellow-100">
+                    <td class="p-3 text-sm text-gray-700">${record.time}</td>
+                    <td class="p-3 text-sm text-indigo-600 truncate max-w-[120px]">${record.bank}</td>
+                    <td class="p-3 font-bold text-lg ${scoreColor}">${record.score} 分</td>
+                </tr>
+            `;
+        });
+    }
+
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            var msg = new SpeechSynthesisUtterance(word);
+            msg.lang = 'en-US'; 
+            msg.rate = 0.85; 
+            window.speechSynthesis.speak(msg);
+        } else {
+            alert("您的瀏覽器不支援語音合成功能。");
+        }
+    }
+
+    // ==========================================
+    // 一鍵生成 AI 命題 Prompt
+    // ==========================================
+    function generateClozePrompt() {
+        if(totalWordPool.length < 6) {
+            alert("題庫單字不足 6 個，請先載入或上傳題庫！");
+            return;
+        }
+        
+        let shuffled = [...totalWordPool].filter(w => w.word && w.meaning).sort(() => 0.5 - Math.random());
+        let selected = shuffled.slice(0, 6);
+        let wordListStr = selected.map(w => `${w.word} (${w.pos} ${w.meaning})`).join(', ');
+
+        let prompt = `你現在是一位台灣「高級中等學校英文單字比賽」的專業命題教授。請根據我提供的 6 個單字，撰寫一篇符合決賽水準的「短文克漏字 (Passage Cloze Test)」題組。
+
+【文章與測驗要求】
+1. 題量：1 篇短文，包含 5 個空格。
+2. 格式：撰寫一篇約 150-200 字的高中進階程度英文短文（主題可為科普、歷史、社會等）。
+3. 選項：請使用以下 6 個單字作為 (A) 到 (F) 的選項：
+[ ${wordListStr} ]
+4. 要求：著重測驗文章脈絡理解與進階詞彙。其中 5 個單字為正解填入空格，必須留下 1 個單字作為具備迷惑性的「誘答字 (Distractor)」。
+5. 空格格式：請在文章中將這 5 個答案挖空，並精準替換為這段 HTML 標籤：<span class='px-1 border-b border-black font-bold text-red-600'> 題號 </span>（題號請依序填入 1, 2, 3, 4, 5）。
+
+【輸出格式要求】
+請「只」輸出符合下列格式的單一 JSON 物件（絕對不要輸出任何 markdown 標記、\`\`\`json 符號或說明文字），以便我直接匯入程式碼：
+
+{
+  "words": ["(A) 選項1", "(B) 選項2", "(C) 選項3", "(D) 選項4", "(E) 選項5", "(F) 選項6"],
+  "paras": [
+    "第一段文章內容，包含 <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span>...",
+    "第二段文章內容，包含 <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span>..."
+  ],
+  "ans": ["A", "C", "D", "B", "E"],
+  "trans": "整篇文章的繁體中文流暢翻譯。",
+  "exp": [
+    "第1題解析（包含語意判斷、搭配詞等）。",
+    "第2題解析。",
+    "第3題解析。",
+    "第4題解析。",
+    "第5題解析。"
+  ],
+  "distractor": "(F) 誘答字英文 (中文意思) - 簡述為何它是誘答選項。"
+}`;
+        
+        navigator.clipboard.writeText(prompt).then(() => {
+            alert(`✅ 專屬 AI 命題提示詞已成功複製到剪貼簿！\n\n已選用單字：\n${wordListStr}\n\n請前往 ChatGPT 或 Gemini 貼上此段提示詞產生 JSON，並貼回本網頁的輸入框中。`);
+        }).catch(err => {
+            alert('複製失敗，請手動選取：\n\n' + prompt);
+        });
+    }
+
+    // ==========================================
+    // 命題引擎 (嚴格落實三大題型結構)
+    // ==========================================
+    function generateRandomPaperEngine() {
+        const validPool = totalWordPool.filter(w => w.word && w.sentence);
+        if (validPool.length < 40) {
+            alert(`目前選定的題庫單字數量不足 (${validPool.length}個)。全自動組卷至少需要 40 個單字！請透過管理題庫功能上傳檔案。`);
+            return;
+        }
+
+        let bankName = totalWordPool.length > 200 ? "擴充綜合題庫" : "基礎題庫";
+        document.getElementById('pool-status-display').innerText = `已掛載${bankName} (共 ${validPool.length} 字)，隨機抽題中...`;
+
+        let shuffled = [...validPool].sort(() => 0.5 - Math.random());
+        let usedWordsInThisPaper = new Set();
+
+        // 1. 克漏字抽題 
+        let clozeData = null;
+        if (currentClozePool && currentClozePool.length > 0) {
+            clozeData = currentClozePool[Math.floor(Math.random() * currentClozePool.length)];
+            clozeData.words.forEach(wOpt => {
+                let w = wOpt.replace(/^\([A-Z]\)\s*/, '').trim();
+                usedWordsInThisPaper.add(w);
+            });
+        }
+        
+        function pullWord(posFilter = null) {
+            let pool = shuffled.filter(w => !usedWordsInThisPaper.has(w.word));
+            
+            // 單選題要求同詞性干擾項
+            if (posFilter) {
+                let exactFiltered = pool.filter(w => w.pos && w.pos.trim().toLowerCase() === posFilter.trim().toLowerCase());
+                if (exactFiltered.length > 0) {
+                    let w = exactFiltered[0]; usedWordsInThisPaper.add(w.word); return w;
+                }
+                let fuzzyPos = posFilter.replace(/[^a-z]/g, '');
+                let fuzzyFiltered = pool.filter(w => w.pos && w.pos.toLowerCase().includes(fuzzyPos));
+                if (fuzzyFiltered.length > 0) {
+                    let w = fuzzyFiltered[0]; usedWordsInThisPaper.add(w.word); return w;
+                }
+            }
+
+            if (pool.length > 0) {
+                let w = pool[0]; usedWordsInThisPaper.add(w.word); return w;
+            }
+
+            let w = validPool[Math.floor(Math.random() * validPool.length)];
+            usedWordsInThisPaper.add(w.word); return w;
+        }
+
+        // 測驗一：聽英拼寫 (10題)
+        let spellingData = [];
+        for(let i=0; i<10; i++) spellingData.push(pullWord());
+
+        // 測驗二 (第一部分)：單選題 (5題，同詞性誘答)
+        let mcqData = [];
+        for (let i = 0; i < 5; i++) {
+            let ansObj = pullWord();
+            let distractors = [];
+            for(let j=0; j<3; j++) distractors.push(pullWord(ansObj.pos));
+
+            let options = [ansObj, ...distractors].sort(() => 0.5 - Math.random());
+            let ansIdx = options.findIndex(o => o.word === ansObj.word);
+
+            let escapedWord = ansObj.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            let wordRegex = new RegExp(`\\b${escapedWord}[a-z]*\\b`, 'gi');
+            let blankedSentence = ansObj.sentence.replace(wordRegex, '_____');
+
+            mcqData.push({
+                q: ` ${blankedSentence}`,
+                opts: [`(A) ${options[0].word}`, `(B) ${options[1].word}`, `(C) ${options[2].word}`, `(D) ${options[3].word}`],
+                ans: String.fromCharCode(65 + ansIdx),
+                ansWord: ansObj.word,
+                trans: ansObj.meaning,
+                exp: `正解為 (${String.fromCharCode(65 + ansIdx)}) ${ansObj.word} (${ansObj.pos} ${ansObj.meaning})。`
+            });
+        }
+
+        // 測驗二 (第二部分)：配對題 (5題，需 6個字含1誘答)
+        let matchAns = [];
+        for(let i=0; i<5; i++) matchAns.push(pullWord());
+        let matchDist = pullWord(); 
+        let matchOpts = [...matchAns, matchDist].sort(() => 0.5 - Math.random());
+        
+        let matchingData = {
+            words: matchOpts.map((o, idx) => `( ${String.fromCharCode(65+idx)} ) ${o.word}`),
+            qs: matchAns.map(a => {
+                let escapedWord = a.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                let wordRegex = new RegExp(`\\b${escapedWord}[a-z]*\\b`, 'gi');
+                return a.sentence.replace(wordRegex, '_____');
+            }),
+            ans: matchAns.map(a => String.fromCharCode(65 + matchOpts.findIndex(o => o.word === a.word))),
+            ansWords: matchAns.map(a => a.word),
+            distractor: `(${String.fromCharCode(65 + matchOpts.findIndex(o => o.word === matchDist.word))}) ${matchDist.word} (${matchDist.meaning})`,
+            exp: matchAns.map(a => `本題測試單字為 ${a.word} (${a.meaning})。`)
+        };
+
+        currentBank = { spelling: spellingData, mcq: mcqData, matching: matchingData, cloze: clozeData };
+        renderPaper();
+    }
+
+    // ==========================================
+    // 渲染與計分
+    // ==========================================
+    function renderPaper() {
+        paperCount++;
+        document.getElementById('paper-indicator').innerText = `📝 全真模擬卷 #${paperCount}`;
+        document.getElementById('submit-btn').classList.remove('hidden');
+
+        // 測驗一：渲染拼寫 1-10
+        let spellingHtml = '';
+        currentBank.spelling.forEach((w, index) => {
+            spellingHtml += `
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="text-center font-bold text-gray-700 py-2 sm:py-3">${index + 1}</td>
+                    <td class="text-center py-2 sm:py-3">
+                        <button type="button" class="speak-trigger text-indigo-600 hover:text-indigo-800 text-xl sm:text-2xl focus:outline-none transition-transform hover:scale-110" title="播放發音" data-word="${w.word}">🔊</button>
+                    </td>
+                    <td class="relative py-2 sm:py-3 px-2 sm:px-4">
+                        <input type="text" id="spell-ans-${index}" class="w-full border-b-2 border-gray-400 bg-transparent focus:border-indigo-600 outline-none px-1 py-1 text-base sm:text-lg font-bold tracking-widest text-indigo-900" autocomplete="off" spellcheck="false" placeholder="請拼出單字...">
+                    </td>
+                    <td class="text-center font-bold text-gray-500 text-sm sm:text-base py-2 sm:py-3">${w.pos}</td>
+                </tr>
+            `;
+        });
+        document.getElementById('spelling-tbody').innerHTML = spellingHtml;
+
+        // 測驗二 第一部分：單選題 1-5
+        let mcqHtml = '';
+        currentBank.mcq.forEach((item, index) => {
+            mcqHtml += `
+                <div class="mb-4 p-3 sm:p-4 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-200" id="mcq-box-${index}">
+                    <p class="font-medium text-base sm:text-lg text-gray-800 leading-relaxed">${index + 1}.${item.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 pl-2 sm:pl-4">
+                        ${item.opts.map((opt, optIdx) => `
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-indigo-50 transition-colors">
+                                <input type="radio" name="mcq-${index}" value="${String.fromCharCode(65 + optIdx)}" class="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 focus:ring-indigo-500">
+                                <span class="text-gray-700 text-sm sm:text-base">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        });
+        document.getElementById('mcq-container').innerHTML = mcqHtml;
+
+        const selectOptions = '<option value="" disabled selected>請選擇</option><option value="A">(A)</option><option value="B">(B)</option><option value="C">(C)</option><option value="D">(D)</option><option value="E">(E)</option><option value="F">(F)</option>';
+
+        // 測驗二 第二部分：配對題 1-5
+        let matchWordsHtml = currentBank.matching.words.map(w => `<span class="bg-white px-2 sm:px-3 py-1 rounded border border-gray-300 shadow-sm">${w}</span>`).join('');
+        document.getElementById('matching-wordbank').innerHTML = matchWordsHtml;
+        
+        let matchQsHtml = currentBank.matching.qs.map((q, i) => {
+            let replacedQ = q.replace("_____", `<select id="match-ans-${i}" class="border-b-2 border-indigo-600 bg-indigo-50 outline-none px-1 sm:px-2 py-1 text-indigo-800 font-bold mx-1 cursor-pointer hover:bg-indigo-100 transition-colors text-sm sm:text-base max-w-[100px] sm:max-w-none">${selectOptions}</select>`);
+            return `<div id="match-box-${i}" class="p-2 hover:bg-gray-50 rounded transition-colors leading-relaxed"><span class="font-bold mr-1">${i + 1}.</span> ${replacedQ}</div>`;
+        }).join('');
+        document.getElementById('matching-questions').innerHTML = matchQsHtml;
+
+        // 測驗二 第三部分：克漏字 1-5
+        if (currentBank.cloze) {
+            let clozeWordsHtml = currentBank.cloze.words.map(w => `<span class="bg-white px-2 sm:px-3 py-1 rounded border border-gray-300 shadow-sm">${w}</span>`).join('');
+            document.getElementById('cloze-wordbank').innerHTML = clozeWordsHtml;
+            
+            let clozeTextHtml = currentBank.cloze.paras.map(p => {
+                return p.replace(/<span[^>]*>\s*(\d+)\s*<\/span>/g, (match, p1) => {
+                    let idx = parseInt(p1) - 1; // 題號改為 1-5
+                    return `<select id="cloze-ans-${idx}" class="border-b-2 border-indigo-600 bg-indigo-50 outline-none px-1 sm:px-2 py-1 mx-1 text-indigo-800 font-bold cursor-pointer hover:bg-indigo-100 transition-colors text-sm sm:text-base max-w-[90px] sm:max-w-none">${selectOptions}</select>`;
+                });
+            }).join('');
+            document.getElementById('cloze-text').innerHTML = clozeTextHtml;
+        }
+
+        document.getElementById("answerSection").classList.add("hidden");
+    }
+
+    function submitExam() {
+        let score = 0;
+        const pts = 4; // 25 題，每題 4 分
+
+        currentBank.spelling.forEach((item, i) => {
+            const inputEl = document.getElementById(`spell-ans-${i}`);
+            const userAns = inputEl.value.trim().toLowerCase();
+            inputEl.disabled = true;
+            if (userAns === item.word.toLowerCase()) {
+                score += pts; inputEl.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
+            } else {
+                inputEl.classList.add('bg-red-50', 'border-red-500', 'text-red-500', 'line-through');
+                inputEl.insertAdjacentHTML('afterend', `<span class="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-600 font-bold tracking-widest text-sm sm:text-lg">正解: ${item.word}</span>`);
+            }
+        });
+
+        currentBank.mcq.forEach((item, i) => {
+            const checkedEl = document.querySelector(`input[name="mcq-${i}"]:checked`);
+            const boxEl = document.getElementById(`mcq-box-${i}`);
+            const userAns = checkedEl ? checkedEl.value : "";
+            document.querySelectorAll(`input[name="mcq-${i}"]`).forEach(r => r.disabled = true);
+            if (userAns === item.ans) {
+                score += pts; boxEl.classList.add('bg-green-50', 'border-l-4', 'border-green-500');
+            } else {
+                boxEl.classList.add('bg-red-50', 'border-l-4', 'border-red-500');
+                boxEl.insertAdjacentHTML('beforeend', `<p class="text-red-600 font-bold mt-2 ml-2 text-sm sm:text-base">✗ 你的答案：${userAns || '未作答'}，正解為：(${item.ans}) ${item.ansWord}</p>`);
+            }
+        });
+
+        currentBank.matching.ans.forEach((ans, i) => {
+            const selectEl = document.getElementById(`match-ans-${i}`);
+            const userAns = selectEl.value;
+            selectEl.disabled = true;
+            if (userAns === ans) {
+                score += pts; selectEl.classList.replace('bg-indigo-50', 'bg-green-100'); selectEl.classList.replace('border-indigo-600', 'border-green-600'); selectEl.classList.replace('text-indigo-800', 'text-green-900');
+            } else {
+                selectEl.classList.replace('bg-indigo-50', 'bg-red-100'); selectEl.classList.replace('border-indigo-600', 'border-red-600'); selectEl.classList.replace('text-indigo-800', 'text-red-800');
+                document.getElementById(`match-box-${i}`).insertAdjacentHTML('beforeend', `<span class="text-red-600 font-bold ml-2 text-sm sm:text-base block sm:inline mt-1 sm:mt-0">✗ 正解: (${ans})</span>`);
+            }
+        });
+
+        if (currentBank.cloze) {
+            currentBank.cloze.ans.forEach((ans, i) => {
+                const selectEl = document.getElementById(`cloze-ans-${i}`);
+                const userAns = selectEl.value;
+                selectEl.disabled = true;
+                if (userAns === ans) {
+                    score += pts; selectEl.classList.replace('bg-indigo-50', 'bg-green-100'); selectEl.classList.replace('border-indigo-600', 'border-green-600'); selectEl.classList.replace('text-indigo-800', 'text-green-900');
+                } else {
+                    selectEl.classList.replace('bg-indigo-50', 'bg-red-100'); selectEl.classList.replace('border-indigo-600', 'border-red-600'); selectEl.classList.replace('text-indigo-800', 'text-red-800');
+                    selectEl.insertAdjacentHTML('afterend', `<span class="text-red-600 font-bold ml-1 text-sm sm:text-base">✗ 正解: (${ans})</span>`);
+                }
+            });
+        }
+
+        const now = new Date();
+        const timeString = now.toLocaleString('zh-TW', { hour12: false });
+        let bankName = totalWordPool.length > 200 ? "擴充綜合題庫" : "基礎模擬題庫";
+
+        const recordData = { 
+            time: timeString, 
+            bank: bankName,
+            score: score
+        };
+        
+        window.learningRecords.push(recordData);
+        saveHistory();
+        
+        renderAnswersUI();
+        document.getElementById('score-display').innerText = score;
+        openModal('score-modal');
+        document.getElementById('submit-btn').classList.add('hidden');
+    }
+
+    function renderAnswersUI() {
+        let h = `<h3 class="font-bold text-base sm:text-lg text-indigo-700 mb-2 border-b-2 border-indigo-200 pb-1">測驗一：聽英拼寫</h3><ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6 bg-white p-4 rounded shadow-sm border border-indigo-100 text-sm sm:text-base">`;
+        currentBank.spelling.forEach((w, i) => { h += `<li><span class="font-bold w-6 inline-block">${i + 1}.</span> <span class="text-indigo-800 font-bold">${w.word}</span> <span class="text-gray-500">(${w.pos} / ${w.meaning})</span></li>`; });
+        h += `</ul><h3 class="font-bold text-base sm:text-lg text-indigo-700 mb-2 border-b-2 border-indigo-200 pb-1">測驗二：詞彙題 - 第一部分 (單選)</h3><div class="space-y-4 mb-6 bg-white p-4 rounded shadow-sm border border-indigo-100 text-sm sm:text-base">`;
+        currentBank.mcq.forEach((m, i) => {
+            h += `<div class="leading-relaxed">
+                    <p class="font-bold text-red-600">${i + 1}. 正解：(${m.ans}) ${m.ansWord}</p>
+                    <p class="text-gray-700 mb-1"><span class="bg-gray-200 px-1 rounded text-xs mr-1">翻譯</span>${m.trans}</p>
+                    <p class="text-gray-600"><span class="bg-indigo-100 text-indigo-800 px-1 rounded text-xs mr-1">詳解</span>${m.exp}</p>
+                  </div>${i < 4 ? '<hr class="border-gray-200">' : ''}`;
+        });
+        h += `</div><h3 class="font-bold text-base sm:text-lg text-indigo-700 mb-2 border-b-2 border-indigo-200 pb-1">測驗二：詞彙題 - 第二部分 (配對)</h3><div class="space-y-4 mb-6 bg-white p-4 rounded shadow-sm border border-indigo-100 text-sm sm:text-base leading-relaxed"><p class="font-bold text-red-600 mb-2 border-b border-red-100 pb-2">解答順序：1.(${currentBank.matching.ans[0]}) &nbsp; 2.(${currentBank.matching.ans[1]}) &nbsp; 3.(${currentBank.matching.ans[2]}) &nbsp; 4.(${currentBank.matching.ans[3]}) &nbsp; 5.(${currentBank.matching.ans[4]})</p>`;
+        currentBank.matching.exp.forEach((e, i) => { h += `<p><span class="font-bold w-5 inline-block">${i + 1}.</span> <strong class="text-indigo-700">(${currentBank.matching.ans[i]}) ${currentBank.matching.ansWords[i]}</strong>：${e}</p>`; });
+        h += `<div class="mt-3 bg-yellow-50 p-2 rounded border border-yellow-200 text-yellow-800"><p>💡 <strong>誘答選項解析：${currentBank.matching.distractor}</strong>。為干擾選項。</p></div></div>`;
+        
+        if (currentBank.cloze) {
+            h += `<h3 class="font-bold text-base sm:text-lg text-indigo-700 mb-2 border-b-2 border-indigo-200 pb-1">測驗二：詞彙題 - 第三部分 (克漏字)</h3><div class="space-y-4 bg-white p-4 rounded shadow-sm border border-indigo-100 text-sm sm:text-base leading-relaxed"><p class="font-bold text-red-600 mb-2 border-b border-red-100 pb-2">解答順序：1.(${currentBank.cloze.ans[0]}) &nbsp; 2.(${currentBank.cloze.ans[1]}) &nbsp; 3.(${currentBank.cloze.ans[2]}) &nbsp; 4.(${currentBank.cloze.ans[3]}) &nbsp; 5.(${currentBank.cloze.ans[4]})</p><p class="mb-3 text-gray-700 text-justify"><span class="bg-gray-200 px-1 rounded text-xs mr-1 block sm:inline mb-1 sm:mb-0">短文翻譯</span>${currentBank.cloze.trans}</p><hr class="border-gray-200">`;
+            currentBank.cloze.exp.forEach((e, i) => { h += `<p><span class="font-bold w-5 inline-block">${i + 1}.</span> <strong class="text-indigo-700">(${currentBank.cloze.ans[i]})</strong>：${e}</p>`; });
+            h += `<div class="mt-3 bg-yellow-50 p-2 rounded border border-yellow-200 text-yellow-800"><p>💡 <strong>誘答選項解析：${currentBank.cloze.distractor}</strong>。為干擾選項。</p></div></div>`;
+        }
+        
+        document.getElementById('answers-container').innerHTML = h;
+    }
+
+    // ==========================================
+    // 事件委派與批次檔案讀取 (多檔上傳)
+    // ==========================================
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (btn) {
+            const id = btn.id;
+
+            if (id === 'score-close-btn') closeModal('score-modal');
+            if (id === 'history-close-x' || id === 'history-close-btn') closeModal('history-modal');
+            if (id === 'admin-close-x') closeModal('admin-modal');
+            
+            if (id === 'clear-history-btn') clearHistory();
+            
+            if (id === 'nav-history') {
+                renderHistory();
+                openModal('history-modal');
+            }
+            if (id === 'nav-admin') openModal('admin-modal');
+            
+            if (id === 'nav-new') {
+                generateRandomPaperEngine();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            if (id === 'submit-btn') submitExam();
+            
+            if (id === 'generate-prompt-btn') generateClozePrompt();
+            
+            if (id === 'toggle-answers-btn') {
+                const sec = document.getElementById("answerSection");
+                sec.classList.toggle("hidden");
+                if (!sec.classList.contains("hidden")) {
+                    setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                }
+            }
+            if (id === 'import-btn') {
+                try {
+                    let clozeInput = document.getElementById('cloze-json-input').value.trim();
+                    if(clozeInput) {
+                        // 防呆機制：如果使用者不小心貼上提示詞或非 JSON 格式
+                        if (clozeInput.includes('你現在是一位') || clozeInput.includes('【文章與測驗要求】')) {
+                            throw new Error("❌ 您貼到的是「給 AI 的提示詞」！\n\n請將剛剛複製的內容貼到 ChatGPT 或 Gemini，然後將 AI 回傳的 { JSON 格式 } 結果貼回這裡。");
+                        }
+                        
+                        // 嘗試尋找字串中的 JSON 區塊 (有時 AI 會在前後加廢話)
+                        let jsonStart = clozeInput.indexOf('{');
+                        let jsonEnd = clozeInput.lastIndexOf('}');
+                        if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
+                            clozeInput = clozeInput.substring(jsonStart, jsonEnd + 1);
+                        }
+
+                        let clozeData = JSON.parse(clozeInput);
+                        if(Array.isArray(clozeData)) currentClozePool = clozeData;
+                        else if(typeof clozeData === 'object') currentClozePool = [clozeData];
+                    } else {
+                        currentClozePool = [...builtinClozePool]; 
+                    }
+                    generateRandomPaperEngine();
+                    closeModal('admin-modal');
+                    alert("設定儲存成功並已重新出卷！");
+                } catch(err) { 
+                    if (err.name === 'SyntaxError') {
+                        alert("解析失敗：JSON 格式不正確！\n\n請確保貼上的是 AI 產出的完整 { ... } 括號內容，並且裡面沒有多餘的對話。");
+                    } else {
+                        alert(err.message); 
+                    }
+                }
+            }
+
+            if (btn.classList.contains('speak-trigger')) {
+                speakWord(btn.dataset.word);
+            }
+        }
+    });
+
+    document.getElementById('file-upload').addEventListener('change', async function(e) {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+        
+        const msgEl = document.getElementById('admin-msg');
+        msgEl.classList.remove('hidden');
+        msgEl.innerText = "⏳ 正在合併與解析檔案...";
+        msgEl.className = "text-center font-bold mt-3 text-blue-600";
+
+        let combinedPool = [];
+
+        for (let i = 0; i < files.length; i++) {
+            const text = await files[i].text();
+            try {
+                const jsonData = JSON.parse(text);
+                if (Array.isArray(jsonData)) {
+                    combinedPool.push(...jsonData.filter(w => w.word && w.sentence));
+                    continue;
+                }
+            } catch (err) {}
+            const parsedList = parseTextToJSON(text);
+            combinedPool.push(...parsedList);
+        }
+
+        if (combinedPool.length >= 40) {
+            totalWordPool = combinedPool;
+            msgEl.innerText = `✅ 成功匯入 ${files.length} 個檔案，獲得 ${totalWordPool.length} 個單字題庫！`;
+            msgEl.className = "text-center font-bold mt-3 text-green-600";
+            
+            setTimeout(() => {
+                generateRandomPaperEngine();
+                closeModal('admin-modal');
+            }, 1500);
+        } else {
+            msgEl.innerText = "❌ 匯入失敗：有效單字不足 40 個，無法自動組卷。";
+            msgEl.className = "text-center font-bold mt-3 text-red-600";
+        }
+    });
+
+    // 系統啟動初始化
+    window.onload = () => {
+        loadHistory();
+        totalWordPool = parseTextToJSON(defaultRawData);
+        generateRandomPaperEngine();
+    };
+
+</script>
+</body>
+</html>
