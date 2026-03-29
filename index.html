@@ -100,7 +100,7 @@
 
             <div class="mb-6 bg-green-50 p-3 sm:p-4 rounded border border-green-200">
                 <label class="block text-green-800 font-bold mb-2 text-sm sm:text-base">📝 第三步：貼上 AI 「產出的結果」 (選填)</label>
-                <textarea id="cloze-json-input" class="w-full h-24 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-green-500 outline-none" placeholder='請將生成器幫您寫好的 { JSON } 格式結果貼在這裡。&#10;若留空，系統將自動使用預載的內建短文。'></textarea>
+                <textarea id="cloze-json-input" class="w-full h-32 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-green-500 outline-none" placeholder='請將生成器幫您寫好的 { JSON } 格式結果貼在這裡。&#10;若留空，系統將自動使用預載的內建短文。'></textarea>
             </div>
 
             <button id="import-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition duration-200 text-base sm:text-lg">💾 儲存自訂短文並出卷</button>
@@ -862,15 +862,27 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
                 try {
                     let clozeInput = document.getElementById('cloze-json-input').value.trim();
                     if(clozeInput) {
+                        // 防呆：防止貼到 Prompt
                         if (clozeInput.includes('你現在是一位') || clozeInput.includes('【文章與測驗要求】')) {
                             throw new Error("❌ 您貼到的是「給 AI 的提示詞」！\n\n請將剛剛複製的內容貼到 ChatGPT，然後將 AI 回傳的 { JSON 格式 } 結果貼回這裡。");
                         }
                         
+                        // 【強效除錯 1】自動清除 markdown 標記 (AI 喜歡加 ```json 前綴)
+                        clozeInput = clozeInput.replace(/```json/gi, '').replace(/```/g, '').trim();
+                        
+                        // 【強效除錯 2】精準只抓取 { 到 } 之間的內容，去除 AI 前後廢話
                         let jsonStart = clozeInput.indexOf('{');
                         let jsonEnd = clozeInput.lastIndexOf('}');
                         if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
                             clozeInput = clozeInput.substring(jsonStart, jsonEnd + 1);
                         }
+
+                        // 【強效除錯 3】終極防呆：AI 常在字串內偷換行或加 tab，這會導致 JSON 壞掉。
+                        // 直接把所有實際的換行 (\n, \r) 和 tab 替換成空格，將 JSON 壓成安全的單行！
+                        clozeInput = clozeInput.replace(/[\r\n\t]+/g, ' ');
+
+                        // 【強效除錯 4】修復 AI 偶爾會多加的結尾逗號 (Trailing comma，例如 [1,2,] 變 [1,2])
+                        clozeInput = clozeInput.replace(/,\s*([\]}])/g, '$1');
 
                         let clozeData = JSON.parse(clozeInput);
                         if(Array.isArray(clozeData)) currentClozePool = clozeData;
@@ -878,6 +890,7 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
                     } else {
                         currentClozePool = [...builtinClozePool]; 
                     }
+                    
                     if(totalWordPool.length >= 40) {
                         generateRandomPaperEngine();
                         closeModal('admin-modal');
@@ -888,7 +901,7 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
                     }
                 } catch(err) { 
                     if (err.name === 'SyntaxError') {
-                        alert("解析失敗：JSON 格式不正確！\n\n請確保貼上的是 AI 產出的完整 { ... } 括號內容，並且裡面沒有多餘的對話。");
+                        alert("❌ 解析失敗：AI 產出的內容仍有格式錯誤！\n\n【唯一可能原因】\nAI 在翻譯或解析的文字中使用了「未跳脫的雙引號 (\")」或特殊符號。\n\n【解決方法】\n請回到生成器，要求 AI：「請重新生成，確保字串內不要有任何雙引號與換行」。\n\n(系統錯誤訊息：" + err.message + ")");
                     } else {
                         alert(err.message); 
                     }
