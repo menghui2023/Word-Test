@@ -1,0 +1,106 @@
+[
+  {
+    "words": ["(A) fracture (n. 骨折)", "(B) waterproof (v. 使防水)", "(C) freak (adj. 異常的)", "(D) salute (n. 敬禮)", "(E) sovereign (adj. 有主權的)", "(F) sovereign (n. 君主)"],
+    "paras": ["In the annals of exploration, few expeditions rival the legendary voyage of Captain Elias Thorne and his crew across the forbidding Frostfall Wastes. Their mission, sanctioned by a newly independent state, aimed to chart unknown territories and secure vital resources. The journey began under an ominous sky, and soon they were battered by a <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> storm, a meteorological anomaly that defied all previous forecasts. Prior to departure, the crew had spent weeks meticulously working to <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> their specialized tents and equipment, knowing that every layer of protection was crucial for survival.", "Despite their meticulous preparations, the unforgiving terrain claimed its toll. During a perilous ascent, a rockslide caused their lead scout to suffer a severe arm <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span>, a painful setback that threatened the entire mission. Yet, through sheer grit and strategic navigation, they pressed on, ultimately discovering rich mineral veins that would bolster the economy of their fledgling, <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> homeland. Upon their triumphant return, the grateful citizens lined the streets, eager to offer a collective <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> to the intrepid explorers whose sacrifices had secured a brighter future."],
+    "ans": ["C", "B", "A", "E", "D"],
+    "trans": "在探險史冊中，少有活動能與索恩船長穿越霜降荒原的傳奇航程相比。他們遭遇了異常風暴，並在出發前強化設備防水。雖然發生了手臂骨折的意外，但最終成功為獨立自主的家園帶回資源，凱旋時受到市民集體的敬禮。",
+    "exp": ["1. 氣候異常選 freak","2. 設備防護選 waterproof","3. 手臂傷害選 fracture","4. 修飾獨立國家選 sovereign (adj.)","5. 向英雄表達敬意選 salute"],
+    "distractor": "(F) sovereign (n. 君主) - 詞性不符。"
+  },
+  {
+    "words": ["(A) spectacle (n. 奇觀)", "(B) fume (v. 發怒)", "(C) subordinate (n. 下屬)", "(D) melancholy (n. 憂鬱)", "(E) hunch (n. 直覺)", "(F) propel (v. 推動)"],
+    "paras": ["General Alistair stood on the ramparts, gazing out at the desolate landscape. The siege had dragged on for months, and the morale of his troops was visibly waning. A deep sense of <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> settled over him, a heavy cloak of despair. He knew his <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> officers looked to him for a solution, but inspiration seemed elusive.", "Earlier, a messenger had brought news of a daring new weapon being developed, a device designed to <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> massive projectiles over enemy lines. The idea had seemed far-fetched then, but now, a sudden <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> struck him – a wild guess that this crude prototype might be their only chance. He quickly dispatched orders, overriding the cautious advice of his strategists. The next morning, as the sun rose, the enemy camp was met with an unexpected <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span>: a volley of fiery rocks, marking a turning point in the siege."],
+    "ans": ["D", "C", "F", "E", "A"],
+    "trans": "將軍站在城牆感受到深沉的憂鬱。他的下屬期待解決方案。他決定利用能推動巨大拋射物的武器。憑藉直覺，他下令發動攻擊，敵軍見證了火石彈幕的奇觀。",
+    "exp": ["1. 絕望斗篷意指 melancholy","2. 指將軍手下的軍官 subordinate","3. 推進拋射物選 propel","4. 突如其來的猜測選 hunch","5. 壯觀景象選 spectacle"],
+    "distractor": "(B) fume (v. 發怒) - 文中強調憂鬱而非憤怒。"
+  },
+  {
+    "words": ["(A) oppress (v. 壓迫)", "(B) restoration (n. 恢復)", "(C) faction (n. 派系)", "(D) groan (v. 呻吟)", "(E) hospitality (n. 殷勤待客)", "(F) relic (n. 遺跡)"],
+    "paras": ["The ancient city of Xylos, once a beacon of advanced civilization, gradually succumbed to internal strife and external pressures. Historians point to the emergence of powerful <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> within its ruling council as a primary cause of its downfall. For generations, the common populace was forced to endure rulers who would <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> them with exorbitant taxes and unjust decrees.", "Centuries later, Xylos lay mostly forgotten, its grandeur reduced to scattered <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> buried beneath layers of earth. However, in recent decades, renewed archaeological interest has sparked a massive project aimed at the <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> of its magnificent temples. The local inhabitants have shown immense pride, extending their legendary <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> to visiting scholars."],
+    "ans": ["C", "A", "F", "B", "E"],
+    "trans": "賽洛斯古城因內部派系鬥爭而衰落。百姓曾受統治者壓迫。現今透過考古挖掘出遺跡，並進行神廟恢復計畫，當地人也展現了殷勤待客的精神。",
+    "exp": ["1. 議會內的黨派 faction","2. 稅收與法令的行為 oppress","3. 地下的古物 relic","4. 建築物的修復 restoration","5. 對客人的態度 hospitality"],
+    "distractor": "(D) groan (v. 呻吟) - 不符語境。"
+  },
+  {
+    "words": ["(A) dweller (n. 居民)", "(B) intimidating (adj. 令人害怕的)", "(C) diabetic (adj. 糖尿病的)", "(D) radiant (adj. 容光煥發的)", "(E) accusation (n. 控訴)", "(F) disgrace (n. 恥辱)"],
+    "paras": ["Dr. Aris Thorne found himself at the center of a storm. An unfounded <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> of plagiarism threatened to derail his career. This turned his respected name into a symbol of public <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span>. He also privately battled a severe <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> condition.", "The legal proceedings were long and arduous, the opposing counsel's tactics often quite <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span>. When the court finally cleared his name, he appeared at the press conference not embittered, but truly <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span>, his resolve shining through."],
+    "ans": ["E", "F", "C", "B", "D"],
+    "trans": "索恩博士面臨抄襲指控，成為公眾恥辱，並深受糖尿病之苦。雖然對方律師策略令人害怕，但他最終勝訴，容光煥發地出席記者會。",
+    "exp": ["1. 抄襲的指控 accusation","2. 聲譽受損的狀態 disgrace","3. 身體疾病修飾 diabetic","4. 律師強硬的策略過於 intimidating","5. 勝利後的喜悅狀態 radiant"],
+    "distractor": "(A) dweller (n. 居民) - 毫無關聯。"
+  },
+  {
+    "words": ["(A) itchy (adj. 發癢的)", "(B) catastrophic (adj. 毀滅性的)", "(C) scenic (adj. 風景的)", "(D) accustom (v. 使習慣)", "(E) accusation (n. 控訴)", "(F) anticipation (n. 期盼)"],
+    "paras": ["Dr. Aris Thorne's team finally arrived at the research station nestled amidst the breathtaking <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> fjords of Greenland. There was a palpable sense of <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> among the crew. They struggled to <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> themselves to the extreme cold.", "However, a sudden polar storm threatened to turn their expedition into a <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> failure. A heated debate erupted over equipment maintenance, which escalated into a direct <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> against the lead engineer."],
+    "ans": ["C", "F", "D", "B", "E"],
+    "trans": "團隊抵達格陵蘭風景優美的峽灣，充滿期盼地開始研究，並努力適應嚴寒。但風暴導致毀滅性的失敗，團員間甚至對工程師提出控訴。",
+    "exp": ["1. 描述峽灣景色 scenic","2. 對任務的期待感 anticipation","3. 適應環境的動詞 accustom","4. 巨大的失敗形容詞 catastrophic","5. 責任追究的行為 accusation"],
+    "distractor": "(A) itchy (adj. 發癢的) - 無關單字。"
+  },
+  {
+    "words": ["(A) carefree", "(B) catastrophe", "(C) concise", "(D) diversify", "(E) endeavor", "(F) gay"],
+    "paras": ["Regions that once enjoyed a relatively <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> existence now face natural disasters. The potential for a widespread <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> looms larger than ever.", "Communities must proactively <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> their strategies. Such a monumental shift requires a concerted <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> from all sectors. Communicating climate solutions demands a <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> yet powerful message."],
+    "ans": ["A", "B", "D", "E", "C"],
+    "trans": "曾經無憂無慮的地區正面臨災難威脅。各國必須使策略多樣化，這需要社會各界的努力，並傳達簡潔有力的訊息。",
+    "exp": ["1. 過去的生活狀態 carefree","2. 大災難的名詞 catastrophe","3. 策略的多元化動詞 diversify","4. 共同的努力 endeavor","5. 精簡的訊息 concise"],
+    "distractor": "(F) gay - 不符語境。"
+  },
+  {
+    "words": ["(A) amplifier", "(B) glittering", "(C) acre", "(D) garment", "(E) spiral", "(F) discomfort"],
+    "paras": ["The Grand Celestial Observatory dome presented a <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> spectacle. Thousands arrived bundled in their warmest ceremonial <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span>.", "Despite the excitement, the wait led to a degree of physical <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span>. Anticipation seemed to <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> through the masses. The event encompassed several <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> of the desert landscape."],
+    "ans": ["B", "D", "F", "E", "C"],
+    "trans": "觀測站閃爍的奇觀吸引了穿著禮服的人群。長時間等待造成身體不適。眾人的期待螺旋式上升，活動佔地數英畝。",
+    "exp": ["1. 閃耀的形容詞 glittering","2. 衣物名詞 garment","3. 生理不適 discomfort","4. 情緒升高動詞 spiral","5. 土地面積單位 acre"],
+    "distractor": "(A) amplifier - 誘答字。"
+  },
+  {
+    "words": ["(A) coral", "(B) spotlight", "(C) blunt", "(D) banquet", "(E) devour", "(F) complement"],
+    "paras": ["The underwater world is formed by <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> reefs. Pollution combines to <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> these foundations.", "Conservation efforts strive to <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> the urgency. Diverse strategies often <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> each other. Yet, the scale of impact continues to <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> the progress made."],
+    "ans": ["A", "E", "B", "F", "C"],
+    "trans": "珊瑚礁正面臨威脅，污染正吞噬其根基。保育工作致力於讓大眾關注此問題。各種策略應相互補足，但人類破壞正削弱這些進展。",
+    "exp": ["1. 珊瑚名詞 coral","2. 吞噬/破壞動詞 devour","3. 吸引關注動詞 spotlight","4. 互補動詞 complement","5. 削弱動詞 blunt"],
+    "distractor": "(D) banquet - 誘答字。"
+  },
+  {
+    "words": ["(A) plunge", "(B) adorable", "(C) naive", "(D) assault", "(E) presumably", "(F) whereabouts"],
+    "paras": ["We can <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> expect drastic shifts in weather. Habitats are under constant <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> from rising temperatures. Some remain <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> about the damage.", "A significant <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> in species populations has been documented. Tracking the exact <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> of migratory animals becomes difficult."],
+    "ans": ["E", "D", "C", "A", "F"],
+    "trans": "我們大概可預期天氣劇變。棲息地遭受熱浪攻擊。有些人對損害感到天真。數據顯示物種數量驟降，且難以追蹤其行蹤。",
+    "exp": ["1. 副詞推測 presumably","2. 攻擊名詞 assault","3. 天真的形容詞 naive","4. 數量驟降名詞 plunge","5. 所在位置 whereabouts"],
+    "distractor": "(B) adorable - 不符語境。"
+  },
+  {
+    "words": ["(A) plea", "(B) agony", "(C) glare", "(D) fabric", "(E) depict", "(F) questionnaire"],
+    "paras": ["The exhibition sought to <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> the profound challenges. The artist captured the silent <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> on their faces. Each brushstroke served as a powerful <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> for empathy.", "The intricate <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> of their culture was shown on garments. A comprehensive <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> was distributed among residents."],
+    "ans": ["E", "B", "A", "D", "F"],
+    "trans": "展覽旨在描繪社區挑戰，捕捉臉上的痛苦，這是一次對同理心的懇求。文化結構呈現在布料上，並透過問卷收集居民需求。",
+    "exp": ["1. 描繪動詞 depict","2. 極度痛苦 agony","3. 懇求名詞 plea","4. 布料/結構 fabric","5. 調查問卷 questionnaire"],
+    "distractor": "(C) glare - 誘答字。"
+  },
+  {
+    "words": ["(A) plunge", "(B) workshop", "(C) sensation", "(D) sensational", "(E) evolution", "(F) vocal"],
+    "paras": ["The remarkable <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> of gene-editing technologies has revolutionized biotechnology. This breakthrough created a global <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span>. Scientific community recognized the potential for a moral <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> if misused.", "Scientists organized dedicated <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> sessions. Media coverage was often filled with <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> headlines."],
+    "ans": ["E", "C", "A", "B", "D"],
+    "trans": "基因技術的演化引發轟動。若被濫用，道德可能驟降。專家舉辦工作坊教育大眾，而媒體常下一些聳人聽聞的標題。",
+    "exp": ["1. 技術發展 evolution","2. 引發轟動(名詞) sensation","3. 道德墮落 plunge","4. 研討會/工作坊 workshop","5. 聳人聽聞的(形容詞) sensational"],
+    "distractor": "(F) vocal - 無關字。"
+  },
+  {
+    "words": ["(A) isolate", "(B) spade", "(C) overcoat", "(D) flush", "(E) orientation", "(F) cease"],
+    "paras": ["The team knew they would be completely <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> from the nearest settlement. They wore a thick <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> against the cold.", "A sturdy <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> remained indispensable for digging. The initial team <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> emphasized safety. Researchers refused to <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span> their search."],
+    "ans": ["A", "C", "B", "E", "F"],
+    "trans": "考古隊與外界隔離。他們穿著大衣。雖然設備精良，但鏟子仍不可或缺。行前說明強調安全，他們絕不停止搜尋。",
+    "exp": ["1. 被動語態隔離 isolate","2. 保暖大衣 overcoat","3. 挖掘用鏟子 spade","4. 職前說明會 orientation","5. 停止動詞 cease"],
+    "distractor": "(D) flush - 誘答字。"
+  },
+  {
+    "words": ["(A) merchant", "(B) blossom", "(C) circulate", "(D) clash", "(E) disgusting", "(F) socket"],
+    "paras": ["Intrepid <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span> played a crucial role. Goods and ideas began to <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span> across distant lands. Interactive customs led to a <span class='px-1 border-b border-black font-bold text-red-600'> 3 </span> of perspectives.", "Artistic movements would often <span class='px-1 border-b border-black font-bold text-red-600'> 4 </span> along trade routes. However, resource exploitation was truly <span class='px-1 border-b border-black font-bold text-red-600'> 5 </span>."],
+    "ans": ["A", "C", "D", "B", "E"],
+    "trans": "無畏的商人讓思想在各地流通。不同文化導致衝突，但藝術也隨之繁榮。然而，歷史上的剝削行為卻令人厭惡。",
+    "exp": ["1. 商人名詞 merchant","2. 流通/循環動詞 circulate","3. 衝突/對立名詞 clash","4. 蓬勃發展動詞 blossom","5. 令人厭惡的形容詞 disgusting"],
+    "distractor": "(F) socket - 誘答字。"
+  }
+]
