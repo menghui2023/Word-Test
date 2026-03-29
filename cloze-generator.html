@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 克漏字短文全自動生成器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Noto Serif TC', serif; background-color: #f3f4f6; }
+    </style>
+</head>
+<body class="antialiased p-6 sm:p-10">
+
+<div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+    <h1 class="text-2xl font-bold text-indigo-800 mb-2">✨ AI 克漏字短文全自動生成器</h1>
+    <p class="text-gray-600 mb-6 border-b pb-4">接收主系統傳來的單字，並呼叫 Google Gemini AI 自動生成測驗所需的 JSON 格式。</p>
+
+    <!-- 步驟 1：確認單字 -->
+    <div class="mb-6">
+        <h2 class="font-bold text-gray-800 mb-2">📌 接收到的命題單字：</h2>
+        <div id="word-list-display" class="bg-indigo-50 text-indigo-900 p-3 rounded border border-indigo-200 font-medium">
+            讀取中...
+        </div>
+    </div>
+
+    <!-- 步驟 2：設定 API Key -->
+    <div class="mb-6 bg-yellow-50 p-4 rounded border border-yellow-300">
+        <h2 class="font-bold text-yellow-800 mb-2 flex items-center gap-2">🔑 Google Gemini API Key</h2>
+        <p class="text-xs text-gray-700 mb-2">已為您自動載入專屬金鑰。若未來需要更換，請直接修改下方內容，系統會自動記憶。</p>
+        <input type="password" id="api-key-input" class="w-full border-2 border-yellow-300 rounded p-2 focus:outline-none focus:border-yellow-600 font-mono text-sm">
+    </div>
+
+    <!-- 步驟 3：一鍵生成 -->
+    <button id="generate-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition duration-200 text-lg mb-6">
+        🚀 立即生成克漏字 JSON
+    </button>
+
+    <!-- 狀態與結果顯示 -->
+    <div id="status-msg" class="text-center font-bold mb-4 hidden"></div>
+
+    <div class="mb-2">
+        <div class="flex justify-between items-end mb-2">
+            <label class="block text-gray-800 font-bold">📋 生成結果 (請複製貼回主系統)</label>
+            <button id="copy-btn" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-1 px-3 rounded shadow hidden">一鍵複製結果</button>
+        </div>
+        <textarea id="result-output" class="w-full h-64 border-2 border-gray-300 rounded p-3 font-mono text-sm focus:outline-none focus:border-blue-500" readonly placeholder="AI 生成的 JSON 將顯示於此..."></textarea>
+    </div>
+</div>
+
+<script>
+    // 讀取網址上的單字參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const wordsFromURL = urlParams.get('words');
+
+    if (wordsFromURL) {
+        document.getElementById('word-list-display').innerText = wordsFromURL;
+    } else {
+        document.getElementById('word-list-display').innerText = "❌ 錯誤：未接收到單字。請從主系統點擊按鈕過來。";
+        document.getElementById('word-list-display').classList.replace('bg-indigo-50', 'bg-red-50');
+        document.getElementById('word-list-display').classList.replace('text-indigo-900', 'text-red-600');
+        document.getElementById('generate-btn').disabled = true;
+        document.getElementById('generate-btn').classList.add('opacity-50', 'cursor-not-allowed');
+    }
+
+    // 載入與儲存 API Key (已為老師寫死預設金鑰)
+    const defaultApiKey = "AIzaSyBoSCJXv1NwtSo7FUW2WTZsx0IwCnwVgBU";
+    const apiKeyInput = document.getElementById('api-key-input');
+    const savedKey = localStorage.getItem('gemini_api_key');
+    
+    // 如果有使用者自己存過的新金鑰就用新的，否則用老師提供的預設金鑰
+    if (savedKey) {
+        apiKeyInput.value = savedKey;
+    } else {
+        apiKeyInput.value = defaultApiKey;
+    }
+
+    apiKeyInput.addEventListener('change', (e) => {
+        localStorage.setItem('gemini_api_key', e.target.value.trim());
+    });
+
+    // 呼叫 Gemini API 生成文章
+    document.getElementById('generate-btn').addEventListener('click', async () => {
+        const apiKey = apiKeyInput.value.trim();
+        if (!apiKey) {
+            alert("請先輸入您的 Gemini API Key！");
+            return;
+        }
+
+        const statusMsg = document.getElementById('status-msg');
+        const resultOutput = document.getElementById('result-output');
+        const copyBtn = document.getElementById('copy-btn');
+
+        statusMsg.classList.remove('hidden', 'text-green-600', 'text-red-600');
+        statusMsg.classList.add('text-blue-600');
+        statusMsg.innerText = "⏳ AI 正在燒腦撰寫高中進階短文，請稍候約 10~15 秒...";
+        resultOutput.value = "";
+        copyBtn.classList.add('hidden');
+        document.getElementById('generate-btn').disabled = true;
+
+        // 建構 Prompt
+        const prompt = `你現在是一位台灣「高級中等學校英文單字比賽」的專業命題教授。請根據我提供的 6 個單字，撰寫一篇符合決賽水準的「短文克漏字 (Passage Cloze Test)」題組。
+【文章與測驗要求】
+1. 題量：1 篇短文，包含 5 個空格。
+2. 格式：撰寫一篇約 150-200 字的高中進階程度英文短文（主題可為科普、歷史、社會等）。
+3. 選項：請使用以下單字：[ ${wordsFromURL} ]
+4. 要求：著重測驗脈絡理解與進階詞彙。其中 5 個字為正解，留下 1 個字為「誘答字」。
+5. 空格格式：請在文章中將這 5 個答案挖空，替換為 HTML 標籤：<span class='px-1 border-b border-black font-bold text-red-600'> 題號 </span>（題號依序為 1, 2, 3, 4, 5）。
+
+【輸出要求】
+請只輸出合法的 JSON 格式，絕對不要有 markdown 標記 (\`\`\`json) 或其他廢話。翻譯請勿包含換行符號以免解析失敗：
+{
+  "words": ["(A) 選項1", "(B) 選項2", "(C) 選項3", "(D) 選項4", "(E) 選項5", "(F) 選項6"],
+  "paras": ["第一段...", "第二段..."],
+  "ans": ["A", "C", "D", "B", "E"],
+  "trans": "繁體中文流暢翻譯(請勿換行)。",
+  "exp": ["第1題解析", "第2題解析", "第3題解析", "第4題解析", "第5題解析"],
+  "distractor": "(F) 誘答字英文 (中文) - 簡述為何為誘答"
+}`;
+
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }],
+                    generationConfig: { temperature: 0.7 }
+                })
+            });
+
+            const data = await response.json();
+            
+            if (!response.ok) throw new Error(data.error.message || "API 請求失敗");
+
+            let aiText = data.candidates[0].content.parts[0].text;
+            
+            // 清理 markdown 符號確保純 JSON
+            aiText = aiText.replace(/```json/gi, '').replace(/```/g, '').trim();
+
+            resultOutput.value = aiText;
+            statusMsg.classList.replace('text-blue-600', 'text-green-600');
+            statusMsg.innerText = "✅ 生成成功！請複製下方內容，回主系統貼上。";
+            copyBtn.classList.remove('hidden');
+
+        } catch (error) {
+            statusMsg.classList.replace('text-blue-600', 'text-red-600');
+            statusMsg.innerText = `❌ 生成失敗：${error.message}`;
+        } finally {
+            document.getElementById('generate-btn').disabled = false;
+        }
+    });
+
+    // 複製按鈕功能
+    document.getElementById('copy-btn').addEventListener('click', () => {
+        const resultOutput = document.getElementById('result-output');
+        resultOutput.select();
+        navigator.clipboard.writeText(resultOutput.value).then(() => {
+            alert("✅ 複製成功！您可以關閉此視窗，回到主系統貼上了！");
+        });
+    });
+</script>
+</body>
+</html>
