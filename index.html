@@ -29,6 +29,7 @@
 </head>
 <body class="antialiased mobile-pb">
 
+<!-- 測驗結果 Modal -->
 <div id="score-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
     <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl text-center max-w-sm w-full mx-auto transform transition-all scale-95 opacity-0" id="score-modal-content">
         <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-gray-800">測驗結果</h2>
@@ -41,6 +42,7 @@
     </div>
 </div>
 
+<!-- 學習紀錄 Modal -->
 <div id="history-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
     <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full mx-auto transform transition-all max-h-[85vh] flex flex-col scale-95 opacity-0" id="history-modal-content">
         <div class="flex justify-between items-center border-b-2 border-yellow-200 pb-3 mb-4 shrink-0">
@@ -68,6 +70,7 @@
     </div>
 </div>
 
+<!-- 教師管理後臺 Modal -->
 <div id="admin-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
     <div class="bg-white p-5 sm:p-8 rounded-xl shadow-2xl max-w-3xl w-full mx-auto transform transition-all max-h-[90vh] overflow-y-auto flex flex-col scale-95 opacity-0" id="admin-modal-content">
         <div class="flex justify-between items-center border-b-2 border-indigo-200 pb-3 mb-4 shrink-0">
@@ -81,29 +84,32 @@
                     📁 自訂單字檔測試 (備用)
                     <input type="file" id="file-upload" accept=".json, .txt" multiple class="hidden">
                 </label>
-                <p class="text-sm text-gray-500">若有尚未上傳 GitHub 的新檔案，也可在此手動測試。</p>
+                <p class="text-sm text-gray-500">若有尚未上傳 GitHub 的新檔案，也可在此手動上傳測試。</p>
             </div>
 
+            <!-- AI 克漏字生成輔助區 -->
             <div class="mb-6 bg-yellow-50 p-4 rounded-lg border border-yellow-300">
                 <h3 class="font-bold text-yellow-800 mb-2 flex items-center gap-2">
-                    <span>✨</span> AI 克漏字命題小幫手
+                    <span>✨</span> 第二步：AI 克漏字命題小幫手
                 </h3>
-                <p class="text-sm text-gray-700 mb-3">請點擊下方按鈕，系統會自動寫好發包給 AI 的「專屬提示詞(Prompt)」。<br><span class="font-bold text-red-600">⚠️ 複製後，請自行打開 ChatGPT 或 Gemini 貼上送出，讓 AI 幫您寫文章！</span></p>
-                <button id="generate-prompt-btn" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded shadow transition duration-200 text-sm sm:text-base mb-2">
-                    📋 從目前題庫抽 6 字並複製 AI 提示詞
+                <p class="text-sm text-gray-700 mb-3">請點擊下方按鈕，系統會自動從目前題庫抽出 6 個單字，並為您<strong class="text-red-600">開啟「短文生成器」新分頁</strong>，自動為您呼叫 AI 寫文章！</p>
+                <button id="generate-prompt-btn" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded shadow transition duration-200 text-sm sm:text-base mb-2">
+                    🚀 開啟 AI 短文生成器 (自動抽 6 字)
                 </button>
             </div>
 
             <div class="mb-6 bg-green-50 p-3 sm:p-4 rounded border border-green-200">
-                <label class="block text-green-800 font-bold mb-2 text-sm sm:text-base">📝 貼上 AI 「產出的結果」 (選填)</label>
-                <textarea id="cloze-json-input" class="w-full h-24 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-green-500 outline-none" placeholder='請將 AI 幫您寫好的 { JSON } 格式結果貼在這裡。&#10;若留空，系統將自動使用預載的內建短文。'></textarea>
+                <label class="block text-green-800 font-bold mb-2 text-sm sm:text-base">📝 第三步：貼上 AI 「產出的結果」 (選填)</label>
+                <textarea id="cloze-json-input" class="w-full h-24 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-green-500 outline-none" placeholder='請將生成器幫您寫好的 { JSON } 格式結果貼在這裡。&#10;若留空，系統將自動使用預載的內建短文。'></textarea>
             </div>
 
             <button id="import-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition duration-200 text-base sm:text-lg">💾 儲存自訂短文並出卷</button>
+            <p id="admin-msg" class="text-center font-bold mt-3 text-sm sm:text-base"></p>
         </div>
     </div>
 </div>
 
+<!-- 單字總表 Modal -->
 <div id="wordlist-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
     <div class="bg-white p-5 sm:p-8 rounded-xl shadow-2xl max-w-2xl w-full mx-auto transform transition-all max-h-[90vh] flex flex-col scale-95 opacity-0" id="wordlist-modal-content">
         <div class="flex justify-between items-center border-b-2 border-blue-200 pb-3 mb-3 shrink-0">
@@ -132,6 +138,7 @@
     </div>
 </div>
 
+<!-- 響應式底部導覽列 -->
 <div class="fixed bottom-0 left-0 w-full sm:bottom-6 sm:right-6 sm:left-auto sm:w-auto z-50 no-print flex flex-row sm:flex-col justify-around sm:justify-end gap-1 sm:gap-2 bg-gray-900 sm:bg-transparent p-2 sm:p-0 shadow-[0_-4px_15px_rgba(0,0,0,0.2)] sm:shadow-none transition-opacity opacity-95 hover:opacity-100">
     <div id="paper-indicator" class="hidden sm:block bg-gray-800 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-t-lg text-center shadow-lg tracking-wider">全真模擬試卷</div>
     
@@ -156,6 +163,7 @@
     </button>
 </div>
 
+<!-- 主要試卷容器 -->
 <div class="paper-container bg-white max-w-5xl mx-auto my-0 sm:my-8 p-4 sm:p-10 md:p-14 sm:shadow-lg sm:rounded-xl">
     <div class="flex flex-col sm:flex-row justify-between items-start border-b-2 border-gray-800 pb-4 mb-4 gap-4 sm:gap-0">
         <div class="w-full">
@@ -164,31 +172,38 @@
         </div>
     </div>
 
+    <!-- 自動載入題庫區塊 -->
     <div class="mb-6 sm:mb-8 bg-blue-50 p-4 sm:p-5 rounded-lg border border-blue-200 shadow-sm no-print">
         <h3 class="font-bold text-blue-800 mb-3 text-base sm:text-lg flex items-center gap-2">
             <span>📚</span> 選擇測驗範圍
         </h3>
         <select id="bank-selector" class="w-full sm:w-1/2 border-2 border-blue-300 rounded-lg p-2 sm:p-3 text-blue-900 font-bold focus:outline-none focus:border-blue-600 cursor-pointer bg-white transition-colors text-sm sm:text-base shadow-sm">
             <option value="" disabled selected>👉 請選擇您要測驗的單字範圍...</option>
-            <optgroup label="三民 Level 3">
+            <optgroup label="單冊總複習 (全)">
+                <option value="Level 3.txt">📚 三民 Level 3 (全)</option>
+                <option value="Level 4.txt">📘 三民 Level 4 (全)</option>
+                <option value="Level 5.txt">📙 三民 Level 5 (全)</option>
+                <option value="Level 6.txt">📕 三民 Level 6 (全)</option>
+            </optgroup>
+            <optgroup label="Level 3 分段進度">
                 <option value="三民Level 3 U1-10.txt">📚 Level 3 (Unit 1-10)</option>
                 <option value="三民Level 3 U11-20.txt">📚 Level 3 (Unit 11-20)</option>
                 <option value="三民Level 3 21-30.txt">📚 Level 3 (Unit 21-30)</option>
                 <option value="三民Level 3 U31-40.txt">📚 Level 3 (Unit 31-40)</option>
             </optgroup>
-            <optgroup label="三民 Level 4">
+            <optgroup label="Level 4 分段進度">
                 <option value="三民Level 4 U1-10.txt">📘 Level 4 (Unit 1-10)</option>
                 <option value="三民Level 4 U11-20.txt">📘 Level 4 (Unit 11-20)</option>
                 <option value="三民Level 4 21-30.txt">📘 Level 4 (Unit 21-30)</option>
                 <option value="三民Level 4 U31-40.txt">📘 Level 4 (Unit 31-40)</option>
             </optgroup>
-            <optgroup label="三民 Level 5">
+            <optgroup label="Level 5 分段進度">
                 <option value="三民Level 5 U1-10.txt">📙 Level 5 (Unit 1-10)</option>
                 <option value="三民Level 5 U11-20.txt">📙 Level 5 (Unit 11-20)</option>
                 <option value="三民Level 5 21-30.txt">📙 Level 5 (Unit 21-30)</option>
                 <option value="三民Level 5 U31-40.txt">📙 Level 5 (Unit 31-40)</option>
             </optgroup>
-            <optgroup label="三民 Level 6">
+            <optgroup label="Level 6 分段進度">
                 <option value="三民Level 6 U1-10.txt">📕 Level 6 (Unit 1-10)</option>
                 <option value="三民Level 6 U11-20.txt">📕 Level 6 (Unit 11-20)</option>
                 <option value="三民Level 6 21-30.txt">📕 Level 6 (Unit 21-30)</option>
@@ -198,15 +213,17 @@
                 <option value="三民plus U1-10.txt">⭐ Plus (Unit 1-10)</option>
             </optgroup>
         </select>
-        <p class="text-xs text-blue-600 mt-3">* 學生點選後，系統會自動在背景匯入題庫並立即為您出卷！完全免下載！</p>
+        <p class="text-xs text-blue-600 mt-3">* 點選後，系統會自動在背景匯入題庫並立即出卷！完全免下載！</p>
     </div>
 
+    <!-- 空白提示區塊 (未選擇題庫時顯示) -->
     <div id="empty-state-msg" class="text-center py-12 sm:py-20 text-gray-400">
         <p class="text-6xl mb-4">📂</p>
         <p class="font-bold text-lg sm:text-xl">請於上方選單選擇題庫範圍</p>
         <p class="text-sm mt-2">選擇後，完整的全真模擬試卷將會自動展開於此</p>
     </div>
 
+    <!-- 試卷主體 (載入題庫後才顯示) -->
     <div id="paper-wrapper" class="hidden">
         <div class="mb-6 text-sm sm:text-base leading-relaxed bg-gray-50 p-3 sm:p-4 rounded border border-gray-200">
             <p class="font-bold mb-1 text-gray-800">試卷結構與題型說明：</p>
@@ -222,6 +239,7 @@
             </ul>
         </div>
 
+        <!-- 測驗一：聽英拼寫 -->
         <div class="mb-10 sm:mb-14">
             <h3 class="text-lg sm:text-2xl font-bold mb-4 text-indigo-900 border-b-2 border-indigo-200 pb-2">測驗一：聽英拼寫 (Spelling)</h3>
             <p class="mb-3 text-xs sm:text-sm text-indigo-600 font-bold no-print animate-pulse">👉 提示：點擊喇叭圖示聆聽發音，並使用全小寫作答。</p>
@@ -240,6 +258,7 @@
             </div>
         </div>
 
+        <!-- 測驗二：詞彙題 -->
         <div id="exam-part-2">
             <h3 class="text-lg sm:text-2xl font-bold mb-6 text-indigo-900 border-b-2 border-indigo-200 pb-2">測驗二：詞彙題 (Vocabulary & Collocations)</h3>
             
@@ -276,7 +295,52 @@
 
 <script>
     // ==========================================
-    // 系統預設克漏字題庫 (內建 1 篇高階短文)
+    // 預設極輕量題庫 (僅供初始化防呆)
+    // ==========================================
+    const defaultRawData = `award	n.	獎，獎品	Emma has won many _____ for swimming.
+award	v.	給予，授予	They _____ the athlete a gold medal for her excellent performance.
+communicate	v.	溝通	Many parents find it hard to _____ with their children.
+hollow	adj.	中空的	The squirrel hid in a big _____ tree.
+hollow	v.	挖空	The green activists were angry at _____ out a tunnel in the mountain.
+inform	v.	通知	The leader held a meeting to _____ everyone of the new sales figures.
+mostly	adv.	大部分，主要地	The customers of that store are _____ women.
+ownership	n.	所有權	The _____ of the restaurant has changed.
+patience	n.	耐心	The teacher always has a lot of _____ with her students.
+persuade	v.	說服	The manager has _____ his boss that the project is a good investment.
+poverty	n.	貧窮	Unable to earn a living, the old woman lived in _____.
+replace	v.	取代	For the sake of health, many people nowadays _____ butter with olive oil in cooking.
+risk	n.	風險，危險	Andy ran the _____ of losing all his savings when he invested in the stock market.
+rough	adj.	粗糙的	The man's hands are very _____.
+sticky	adj.	黏的	The glue left my fingers _____.
+stomach	n.	胃	Don't swim on a full _____.
+temporary	adj.	暫時的	Gary's house collapsed in the earthquake, so he and his family are living in a _____ shelter.
+vanish	v.	消失	When Betty heard the bad news, her smile _____ immediately.
+weekly	adv.	每週地	The factory workers are paid _____.
+bamboo	n.	竹子	_____ shoots are very delicious.
+bucket	n.	水桶	Mrs. Chen carried a _____ and a mop to clean the balcony.
+connect	v.	連結，連接	The United Kingdom is _____ to France by the Channel Tunnel.
+dairy	n.	乳製品	Since Elena has an allergy to milk, the doctor asks her to avoid _____.
+dinosaur	n.	恐龍	The museum houses several _____ fossils.
+erase	v.	擦掉，抹去	The teacher asked Ella to _____ the words on the blackboard.
+imagination	n.	想像力	The poet has a vivid _____.
+intelligent	adj.	聰明的	Life becomes easier with the application of the _____ devices like computers and smartphones.
+leak	n.	漏洞，裂縫	Roger found a _____ in the roof of his house.
+opportunity	n.	機會	The attendees have the _____ to win a free concert ticket.
+passion	n.	熱情，熱愛	The councilor spoke with _____ about what she would do to help the people in need.
+pile	n.	一堆	There is a _____ of dirty clothes in the corner.
+practical	adj.	實際的，實用的	Your plan is not very _____. I am afraid it won't be put into practice.
+process	n.	過程	My company is in the _____ of merging with another firm.
+puppet	n.	木偶	Children like to go to _____ shows.
+situation	n.	情況，處境	Frank still stays positive in such a difficult _____.
+strategy	n.	策略	The government should work out an effective _____ for fighting crime.
+tablet	n.	藥片，藥錠	Take three _____ a day after meals.
+threat	n.	威脅	Reckless driving poses a serious _____ to pedestrians.
+tourist	n.	觀光客	_____ attractions are always crowded with _____ in high season.
+vision	n.	視力，視覺；遠見	The boxer lost _____ in one of his eyes.
+yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
+
+    // ==========================================
+    // 系統預設克漏字題庫
     // ==========================================
     const builtinClozePool = [
         {
@@ -440,6 +504,7 @@
         statusDisplay.className = "text-xs sm:text-sm font-bold text-blue-600 mt-2 bg-blue-50 inline-block px-2 py-1 rounded border border-blue-100";
 
         try {
+            // 從 GitHub Pages 的相對路徑去抓取檔案
             const response = await fetch('./' + filename);
             if (!response.ok) {
                 throw new Error(`無法載入題庫！請確認老師已將「${filename}」上傳到 GitHub！`);
@@ -471,7 +536,7 @@
     });
 
     // ==========================================
-    // 命題引擎 (嚴格落實三大題型結構)
+    // 命題引擎
     // ==========================================
     function generateRandomPaperEngine() {
         if (totalWordPool.length < 40) return;
@@ -479,7 +544,6 @@
         let shuffled = [...totalWordPool].sort(() => 0.5 - Math.random());
         let usedWordsInThisPaper = new Set();
 
-        // 1. 克漏字抽題 
         let clozeData = null;
         if (currentClozePool && currentClozePool.length > 0) {
             clozeData = currentClozePool[Math.floor(Math.random() * currentClozePool.length)];
@@ -512,11 +576,9 @@
             usedWordsInThisPaper.add(w.word); return w;
         }
 
-        // 測驗一：聽英拼寫 (10題)
         let spellingData = [];
         for(let i=0; i<10; i++) spellingData.push(pullWord());
 
-        // 測驗二 (第一部分)：單選題 (5題，同詞性誘答)
         let mcqData = [];
         for (let i = 0; i < 5; i++) {
             let ansObj = pullWord();
@@ -540,7 +602,6 @@
             });
         }
 
-        // 測驗二 (第二部分)：配對題 (5題，需 6個字含1誘答)
         let matchAns = [];
         for(let i=0; i<5; i++) matchAns.push(pullWord());
         let matchDist = pullWord(); 
@@ -573,7 +634,6 @@
         document.getElementById('paper-indicator').innerText = `📝 全真模擬卷 #${paperCount}`;
         document.getElementById('submit-btn').classList.remove('hidden');
 
-        // 測驗一：渲染拼寫 1-10
         let spellingHtml = '';
         currentBank.spelling.forEach((w, index) => {
             spellingHtml += `
@@ -591,7 +651,6 @@
         });
         document.getElementById('spelling-tbody').innerHTML = spellingHtml;
 
-        // 測驗二 第一部分：單選題 1-5
         let mcqHtml = '';
         currentBank.mcq.forEach((item, index) => {
             mcqHtml += `
@@ -612,7 +671,6 @@
 
         const selectOptions = '<option value="" disabled selected>請選擇</option><option value="A">(A)</option><option value="B">(B)</option><option value="C">(C)</option><option value="D">(D)</option><option value="E">(E)</option><option value="F">(F)</option>';
 
-        // 測驗二 第二部分：配對題 1-5
         let matchWordsHtml = currentBank.matching.words.map(w => `<span class="bg-white px-2 sm:px-3 py-1 rounded border border-gray-300 shadow-sm">${w}</span>`).join('');
         document.getElementById('matching-wordbank').innerHTML = matchWordsHtml;
         
@@ -622,14 +680,13 @@
         }).join('');
         document.getElementById('matching-questions').innerHTML = matchQsHtml;
 
-        // 測驗二 第三部分：克漏字 1-5
         if (currentBank.cloze) {
             let clozeWordsHtml = currentBank.cloze.words.map(w => `<span class="bg-white px-2 sm:px-3 py-1 rounded border border-gray-300 shadow-sm">${w}</span>`).join('');
             document.getElementById('cloze-wordbank').innerHTML = clozeWordsHtml;
             
             let clozeTextHtml = currentBank.cloze.paras.map(p => {
                 return p.replace(/<span[^>]*>\s*(\d+)\s*<\/span>/g, (match, p1) => {
-                    let idx = parseInt(p1) - 1; // 題號改為 1-5
+                    let idx = parseInt(p1) - 1; 
                     return `<select id="cloze-ans-${idx}" class="border-b-2 border-indigo-600 bg-indigo-50 outline-none px-1 sm:px-2 py-1 mx-1 text-indigo-800 font-bold cursor-pointer hover:bg-indigo-100 transition-colors text-sm sm:text-base max-w-[90px] sm:max-w-none">${selectOptions}</select>`;
                 });
             }).join('');
@@ -737,54 +794,24 @@
     }
 
     // ==========================================
-    // 一鍵生成 AI 命題 Prompt
+    // 呼叫外部 AI 短文生成器 (開啟新分頁)
     // ==========================================
     function generateClozePrompt() {
         if(totalWordPool.length < 6) {
-            alert("題庫單字不足 6 個，請先由上方按鈕上傳題庫！");
+            alert("題庫單字不足 6 個，請先由上方選單載入或上傳題庫！");
             return;
         }
         
+        // 隨機抽取 6 個單字
         let shuffled = [...totalWordPool].filter(w => w.word && w.meaning).sort(() => 0.5 - Math.random());
         let selected = shuffled.slice(0, 6);
         let wordListStr = selected.map(w => `${w.word} (${w.pos} ${w.meaning})`).join(', ');
 
-        let prompt = `你現在是一位台灣「高級中等學校英文單字比賽」的專業命題教授。請根據我提供的 6 個單字，撰寫一篇符合決賽水準的「短文克漏字 (Passage Cloze Test)」題組。
-
-【文章與測驗要求】
-1. 題量：1 篇短文，包含 5 個空格。
-2. 格式：撰寫一篇約 150-200 字的高中進階程度英文短文（主題可為科普、歷史、社會等）。
-3. 選項：請使用以下 6 個單字作為 (A) 到 (F) 的選項：
-[ ${wordListStr} ]
-4. 要求：著重測驗文章脈絡理解與進階詞彙。其中 5 個單字為正解填入空格，必須留下 1 個單字作為具備迷惑性的「誘答字 (Distractor)」。
-5. 空格格式：請在文章中將這 5 個答案挖空，並精準替換為這段 HTML 標籤：<span class='px-1 border-b border-black font-bold text-red-600'> 題號 </span>（題號請依序填入 1, 2, 3, 4, 5）。
-
-【輸出格式要求】
-請「只」輸出符合下列格式的單一 JSON 物件（絕對不要輸出任何 markdown 標記、\`\`\`json 符號或說明文字），以便我直接匯入程式碼：
-
-{
-  "words": ["(A) 選項1", "(B) 選項2", "(C) 選項3", "(D) 選項4", "(E) 選項5", "(F) 選項6"],
-  "paras": [
-    "第一段文章內容，包含 <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span>...",
-    "第二段文章內容，包含 <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span>..."
-  ],
-  "ans": ["A", "C", "D", "B", "E"],
-  "trans": "整篇文章的繁體中文流暢翻譯。",
-  "exp": [
-    "第1題解析（包含語意判斷、搭配詞等）。",
-    "第2題解析。",
-    "第3題解析。",
-    "第4題解析。",
-    "第5題解析。"
-  ],
-  "distractor": "(F) 誘答字英文 (中文意思) - 簡述為何它是誘答選項。"
-}`;
+        // 將單字編碼並透過網址傳遞給您的「短文生成程式」
+        const targetUrl = `cloze-generator.html?words=${encodeURIComponent(wordListStr)}`;
         
-        navigator.clipboard.writeText(prompt).then(() => {
-            alert(`✅ 專屬 AI 命題提示詞已成功複製到剪貼簿！\n\n已選用單字：\n${wordListStr}\n\n請前往 ChatGPT 或 Gemini 貼上此段提示詞產生 JSON，並貼回本網頁的輸入框中。`);
-        }).catch(err => {
-            alert('複製失敗，請手動選取：\n\n' + prompt);
-        });
+        // 開啟新分頁前往生成器
+        window.open(targetUrl, '_blank');
     }
 
     // ==========================================
