@@ -1,0 +1,334 @@
+單字	詞性	中文解釋	例句
+allowance	n.	零用錢	Alex received a weekly _____ from his father.
+bald	adj.	禿頭的	The man went _____ at the age of thirty.
+blossom	n.	花	The white lily _____ symbolizes purity.
+blossom	v.	開花	When the roses _____, the garden is filled with fragrance.
+choke	v.	噎住	Eve _____d on a fish bone and was sent to the hospital.
+choke	n.	窒息聲	With his hand over his mouth, the little boy let out a _____ of laughter.
+constitute	v.	構成	Teachers _____ about 30% of the committee.
+coward	n.	懦夫	Only a _____ runs away from the enemy.
+diploma	n.	文憑	Vanessa has got a _____ in hotel management.
+fax	n.	傳真	We just received an order form by _____.
+fax	v.	傳真	You can order our products online or _____ the order form to us.
+ferry	n.	渡輪	They took the _____ across the bay.
+ferry	v.	運送	The boatman _____ied the passengers across the river.
+ginger	n.	薑	You can get rid of the fishy smell of shrimps with a few slices of _____.
+hasten	v.	催促	Helen _____ed her younger brother to get ready.
+humidity	n.	濕度	Coastal areas usually have higher _____ than inland areas.
+intermediate	adj.	中級的	Sam is taking the _____ course in English.
+intermediate	n.	中級程度的人	This Japanese class is for _____s.
+intermediate	v.	調停	The coach _____d between the two players.
+loosen	v.	鬆開	You can _____ the screw by turning counterclockwise.
+memorable	adj.	難忘的	We spent a _____ week camping by the river.
+obedience	n.	服從	Absolute _____ is required in the army.
+perfection	n.	完美	In order to achieve _____, Ted made numerous revisions to his writing.
+plentiful	adj.	豐富的	Mangoes are _____ in the summer.
+remark	n.	言論	Susie's colleague hurt her feelings by making rude _____s.
+remark	v.	評論	The girl turned down the role after _____ing that she wasn't prepared to be an actress.
+resignation	n.	辭職	Shelly handed in her _____ this morning.
+slogan	n.	口號	The _____ of that political party is "From the cradle to the grave."
+technological	adj.	科技的	The _____ development in the past decade has totally changed the way people communicate.
+troublesome	adj.	令人煩惱的	The _____ boy from the house next door almost drove us crazy.
+vegetarian	n.	素食者	Betty chose to be a _____ for the sake of her health as well as the environment.
+ambiguous	adj.	含糊不清的	The _____ statement caused misunderstanding.
+ballet	n.	芭蕾舞	The audience was fascinated by the graceful movements of the _____ dancer.
+bounce	v.	彈起	The ball _____d over the wall.
+bounce	n.	彈跳	The infielder tried to catch the ball on the first _____.
+circulate	v.	循環	Exercise helps to get blood _____ing through the body.
+convenience	n.	便利	The _____ of online shopping makes it possible for us to buy anything without going out.
+creep	v.	爬行，悄悄地走	A thief _____t into the hospital and stole valuable belongings from several patients.
+disadvantage	n.	缺點	It is a _____ to be unable to speak English nowadays.
+disadvantage	v.	使處於不利地位	It is said this rule could _____ the indigenous people.
+divine	adj.	神聖的	The fan regards her idol as a _____ being.
+feast	n.	盛宴	All the family members got together and had a _____ to celebrate their parents' 50th wedding anniversary.
+feast	v.	盡情享用	We _____ed on food and wine on Chinese New Year's Eve.
+finance	n.	財務	Illness and unemployment cause unbearable strain on Bill's _____s.
+finance	v.	資助	The boy was grateful that his grandfather _____d his education.
+glorious	adj.	光榮的	After the athlete won a gold medal in the Olympic Games, he returned home with a _____ victory.
+herd	n.	獸群	In the video, a _____ of elephants is crossing the river.
+herd	v.	放牧	It's amazing that the shepherd dog can _____ the sheep.
+hurricane	n.	颶風	A _____ is a destructive storm which forms in the Atlantic Ocean.
+interruption	n.	打斷	The president spoke for 30 minutes without _____ at the opening ceremony.
+loyalty	n.	忠誠	The admiral's _____ to his country has never been doubted.
+memorize	v.	記住	The teacher told the students to _____ the new words in class.
+obedient	adj.	服從的	The students are supposed to be _____ to their teachers.
+obediently	adv.	服從地	The dog obeyed its master's orders _____.
+persuasion	n.	說服	It took a lot of _____ to make Nelson change his mind.
+plum	n.	李子	Mike grows a _____ tree.
+repetition	n.	重複	The teacher asked Justin to revise his essay because of some unnecessary _____.
+respectful	adj.	尊敬的	Tony is _____ to his elders.
+respectfully	adv.	尊敬地	Simon talked _____ to the great scholar.
+socket	n.	插座	The mother warned her children not to put their fingers into electric _____s.
+telescope	n.	望遠鏡	Amber looked at Halley's Comet through a _____.
+twig	n.	小樹枝	The campers collected some dry _____s to make a fire.
+vital	adj.	重要的，致命的	Your help is _____ to the program.
+ambitious	adj.	有野心的	The _____ young man wants to establish his own business.
+bandage	n.	繃帶	The nurse wrapped a _____ around my injured arm.
+bandage	v.	用繃帶包紮	Teresa cleaned the wound and _____d it up.
+calculate	v.	計算	I am _____ing how much tax I should pay this year.
+clash	n.	衝突	There were violent _____es between the police and the protesters today.
+clash	v.	衝突	The residents _____ed with the police over whether to tear down the old church.
+converse	v.	交談	Louis speaks French only, and I speak English only, so it is difficult for me to _____ with him.
+critic	n.	評論家	The movie was praised by the film _____s.
+disgust	n.	厭惡	People expressed their _____ at the government's new tax policy.
+disgust	v.	使厭惡	The thought of people spitting on the sidewalk _____ed me.
+disgusted	adj.	感到厭惡的	I was _____ with Helen's behavior.
+disgusting	adj.	令人厭惡的	Terry's room is _____. There are dirty clothes and used tissues everywhere.
+divorce	n.	離婚	To avoid paying for her husband's debts, the wife filed for a _____.
+divorce	v.	離婚	Sunny decided to _____ her husband.
+fertile	adj.	肥沃的	In this country, most _____ farmland, which produces the majority of crops, is located in the west.
+flee	v.	逃跑	The criminal tried to _____ the country but was stopped at the harbor.
+gown	n.	禮服	The bride wore a beautiful wedding _____.
+hook	n.	鉤子	Hang your coat on the _____ behind the door.
+hook	v.	釣住	Luckily, the fisherman _____ed a big salmon within an hour.
+hooked	adj.	入迷的	Tom is completely _____ on video games.
+hush	n.	寂靜	A _____ descended over the classroom when the students saw their teacher.
+hush	v.	使安靜	The tired mother was trying to _____ her crying baby but in vain.
+isolate	v.	隔離	The child with an infectious disease was _____d from other people.
+isolated	adj.	孤立的	Peter leads an _____ life.
+luxury	n.	奢侈	The wealthy man lives in _____ in the mansion.
+mercy	n.	慈悲	Sandy asked the judge to have _____ on her father.
+obstacle	n.	障礙	Leo's fear of water is his major _____ to becoming a sailor.
+pest	n.	害蟲	Flies and rats are common _____s.
+pesticide	n.	殺蟲劑	The overuse of _____ will pollute the environment.
+plumber	n.	水管工人	The toilet is out of order. I'm going to have a _____ fix it.
+rescue	n.	救援	The _____ of the surviving passengers in the plane crash started immediately.
+rescue	v.	救援	The firefighters _____d the baby from the burning building.
+restore	v.	恢復	The mayor is trying to _____ people's confidence in the city government.
+spade	n.	鏟子	The child is digging in the sand with a _____.
+thorough	adj.	徹底的	The detective is making a _____ search of the house.
+thoroughly	adv.	徹底地	We've cleaned our house _____ this afternoon.
+vain	adj.	徒勞的，虛榮的	The butterfly made a _____ attempt to escape from the spider web.
+voyage	n.	航行	The pirates made a _____ from Ireland to Iceland.
+voyage	v.	航行	The adventurer planned to _____ through the Atlantic Ocean.
+amuse	v.	逗樂	The teacher's funny joke _____d all his students.
+amusement	n.	娛樂	These children are playing with _____ in the park.
+amused	adj.	感到有趣的	Iris was _____ at Billy's idea in class.
+amusing	adj.	有趣的	Peter made us laugh with an _____ joke.
+basin	n.	臉盆	The bathroom is equipped with a _____, a shower, and a toilet.
+calculation	n.	計算	Leo made some rapid _____s and told the clerk the bill was wrong.
+classify	v.	分類	The books on the shelves are _____ied according to subject.
+correspond	v.	符合，通信	The British prime minister, who _____s to the president of the United States, is chosen by a general election.
+crunchy	adj.	酥脆的	The mixed salad is fresh and _____.
+crunch	v.	嘎吱作響地咬	The dog is _____ing on the bone we gave him.
+crunch	n.	嘎吱聲	I heard the _____ of my feet on the gravel trail.
+disturb	v.	打擾	I could not concentrate because the loud music kept _____ing me.
+dodge	v.	閃躲	The boxer _____d the blow swiftly.
+dodge	n.	逃避	The company keeps investing in real estate as a tax _____.
+fierce	adj.	兇猛的	The gladiator had a bitter fight with a _____ lion.
+hydrogen	n.	氫	In chemistry, water is a compound of _____ and oxygen.
+illustration	n.	說明，插圖	The tide is an _____ of how the earth and the moon interact.
+jealousy	n.	嫉妒	Kevin broke his younger brother's toy on purpose out of _____.
+mechanical	adj.	機械的	The plane crash was caused by a _____ problem.
+resolve	v.	下定決心，解決	After careful consideration, the witness _____d to tell the truth.
+resolve	n.	決心	These challenges strengthened Lisa's _____ to realize her dream.
+retire	v.	退休	Alex is going to _____ at the age of sixty.
+retirement	n.	退休	After his _____, Sam will devote himself to gardening.
+retired	adj.	退休的	William is a _____ captain. He now has an easy life.
+sprinkle	v.	灑	The waiter _____d some cheese on the pizza.
+sprinkle	n.	少量	I like to put a _____ of cinnamon on my latte.
+sprinkler	n.	灑水器	The _____ doesn't work. We need someone to fix it.
+thoughtful	adj.	體貼的	It was _____ of you to give me a ride home.
+virtue	n.	美德	Honesty is one of my younger sister's _____s.
+witness	n.	目擊者	The only _____ to the accident was taken to the police station to make a statement about what had happened.
+witness	v.	目擊	We have _____ed remarkable advances in technology over the last fifty years.
+claw	n.	爪子	The cat is sharpening its _____s on the carpet.
+claw	v.	抓	The puppy _____ed at the toy.
+costume	n.	服裝	Lily's witch _____ caught many people's attention.
+crush	n.	迷戀	Peter has a _____ on Rita, the most beautiful girl at school.
+crush	v.	壓碎	The car accident not only _____ed my legs but also my dream of becoming a dancer.
+dominate	v.	支配	The aggressive basketball team almost _____s every game.
+draft	n.	草稿	Emily has made the first _____ of her thesis.
+draft	v.	起草	The secretary is _____ing a speech for the company's president.
+fireplace	n.	壁爐	Howard didn't turn on the light, and the living room was only lit by a warm glow from the _____.
+fortunate	adj.	幸運的	I am _____ enough to have good health and a steady job.
+fortunately	adv.	幸運地	_____, the weather cleared up.
+gracious	adj.	親切的	The mayor was _____ enough to attend our garden party.
+identification	n.	辨認，身分證明	Without the aid of DNA testing, the _____ of the crash victims would be extremely difficult.
+imitate	v.	模仿	Nelson likes to _____ the teacher to make his classmates laugh.
+kettle	n.	水壺	Ethan put the _____ on as soon as he got home.
+merchant	n.	商人	The _____ made a fortune by selling antiques.
+messy	adj.	凌亂的	Iris spent the whole weekend tidying up the _____ room.
+offensive	adj.	冒犯的	Teresa was angry about Jack's _____ remarks.
+revolutionary	adj.	革命性的	The computer was a _____ invention in the 20th century.
+revolutionary	n.	革命者	Bill is a radical _____ in the country.
+statistic	n.	統計數據	The most shocking _____ is the high crime rate in the city.
+tolerance	n.	寬容	_____ of different opinions should be encouraged in a democratic country.
+waken	v.	喚醒	All of us were _____ed by the earthquake.
+workplace	n.	工作場所	Earning a good profit this year, the boss promised to improve the facilities in the _____.
+accompany	v.	陪伴	Dora is _____ied by her grandmother to go to school every day.
+apology	n.	道歉	The manager made a sincere _____ to the customers for the inconvenience.
+bin	n.	垃圾桶	Please help me throw it in the _____.
+candidate	n.	候選人	Gloria is one of the leading _____s for the mayor.
+commander	n.	指揮官	Jennifer was a flight _____ when she was 40 years old.
+counter	n.	櫃檯	The customer put his items on the _____ and waited patiently for the cashier to scan them.
+counter	v.	反駁	Grace's brother accused her of breaking the window, but she _____ed that he was the one to blame.
+counter	adv.	相反地	David's action runs _____ to his words.
+cube	n.	立方體	Sam cut a box of tofu into eight _____s and then deep-fried them in the wok.
+cube	v.	切成小方塊	The first step in making the soup is to _____ the potatoes and carrots.
+dread	n.	恐懼	The thought of catching a flight fills me with _____.
+dread	v.	害怕	Most people _____ making speeches in public.
+drift	v.	漂流	The boat _____ed quickly downstream.
+drift	n.	漂流，趨勢	The _____ of this current is to the east.
+flatter	v.	奉承	Ken _____ed Linda by praising her beautiful face.
+flattery	n.	奉承	There must be something underneath Nina's _____.
+frustrate	v.	使挫折	It _____d me that I was rejected by the university.
+frustrated	adj.	感到挫折的	Ian was _____ at his colleague's refusal to help him with the project.
+frustrating	adj.	令人挫折的	It's _____ to talk to Stanley because he never listens.
+greeting	n.	問候	Jack and Mary exchanged _____s and had lunch together.
+idiom	n.	慣用語	An English _____ may mean something different from the words that make up the idiom.
+imply	v.	暗示	John's repeated absences from work _____ied that he didn't like his job.
+kneel	v.	跪下	Facing the Wailing Wall in Jerusalem, people _____t down and started to say their prayers.
+microscope	n.	顯微鏡	The scientist examined the blood samples under the _____.
+millionaire	n.	百萬富翁	The author's first book became a bestseller and made him a _____.
+orientation	n.	傾向，迎新	The company employs their employees without regard to their political or religious _____.
+postage	n.	郵資	How much _____ should I pay for this parcel?
+pregnancy	n.	懷孕	Fiona suffered sickness during her first months of _____.
+reunion	n.	團聚	We usually have a family _____ on Chinese New Year's Eve.
+romance	n.	浪漫史	The writer's _____s with his lovers inspired him to create those great novels.
+stereo	n.	音響	Tom spent a lot of money on the _____ so he could enjoy high-quality music at home.
+tolerate	v.	容忍	Sometimes we have to _____ some inconvenience while traveling in a foreign country.
+wink	n.	眨眼	Irene's father gave her a _____ and put a thumb up to show his praise.
+wink	v.	眨眼	As I looked at the sky, the stars seemed to _____ at me mysteriously.
+admirable	adj.	令人敬佩的	Teresa's contribution to this community was _____.
+applicant	n.	申請人	Clare was selected from over 150 _____s for the job.
+biography	n.	傳記	As a classical music lover, the writer spent years gathering information and then writing a _____ of Mozart.
+cease	v.	停止	The little boy did not _____ crying until his mother returned.
+cease	n.	停止	It looked as if we had walked for days without _____.
+competitor	n.	競爭者	Over 800 _____s took part in the race.
+courageous	adj.	勇敢的	Harry is the most _____ person that I have ever met.
+cue	n.	提示	Our boss's arrival was the _____ for us to get down to work.
+cue	v.	給...提示	The conductor _____d the pianist with a nod of his head.
+drowsy	adj.	昏昏欲睡的	The drugs for allergies normally make patients _____.
+dusty	adj.	滿是灰塵的	The house is now _____. Tony needs to make the time to clean up.
+flea	n.	跳蚤	Stray cats and dogs usually have _____s.
+frustration	n.	挫折	Tom felt a sense of _____ when he knew that he had not been promoted.
+grief	n.	悲傷	Hearing the bad news, the victim's parents were overwhelmed with _____.
+idle	adj.	懶惰的	The _____ student played the computer games all day long and left his homework undone.
+idle	v.	虛度	Tina _____d her time away on the Internet.
+indication	n.	指示，跡象	I gave Rosa some flowers as an _____ of my gratitude.
+lag	n.	延遲	There is always a time _____ between order and delivery.
+lag	v.	落後	After several hours of walking, Edward began to _____ behind us.
+mill	n.	磨坊，工廠	There is a _____ in the village.
+mill	v.	磨碎	The farmer _____ed wheat into flour.
+miller	n.	磨坊主人	My grandfather used to be a _____ in his town.
+ministry	n.	部	The _____ of Foreign Affairs deals with international relationship between our nation and other countries.
+orphan	n.	孤兒	The war destroyed thousands of families and left numerous _____s.
+orphan	v.	使成孤兒	Wendy was _____ed after her parents were killed in a car accident.
+pregnant	adj.	懷孕的	My wife is five months _____.
+presentation	n.	簡報，呈現	The sales manager is giving a brief _____ on the product he is promoting.
+revenge	n.	報復	Henry finally took his _____ on the people who had murdered his father.
+revenge	v.	報復	James _____d himself on his neighbor for the insult.
+sacrifice	n.	犧牲	Parents often make _____s to give their children better lives.
+sacrifice	v.	犧牲	Many people _____d their lives for their country in the war.
+stripe	n.	條紋	Zebras have black and white _____s.
+striped	adj.	有條紋的	Sam wore a green and white _____ shirt for his friend's party.
+torture	n.	折磨	Looking at a table full of sweets can be _____ for one with a toothache.
+torture	v.	折磨	John was _____d by his memories of the war.
+wit	n.	機智	Ted is a man of _____, and thus he is very popular in the office.
+admiration	n.	欽佩	The director has great _____ for this actor.
+arch	n.	拱門	Walking through the _____, you will see a beautiful garden.
+arch	v.	使成弓形	When cats get angry, they _____ their backs and lift up their tails.
+bloom	n.	花	The roses in our garden are in full _____.
+bloom	v.	開花	The lilies are _____ing early this year.
+chamber	n.	房間，室	The witch lives in an underground _____.
+complicate	v.	使複雜	The language barrier between the employee and employer _____d the situation.
+complicated	adj.	複雜的	The rules are so _____ that I can only remember a few.
+courtesy	n.	禮貌	I couldn't believe that Carol didn't have the _____ to call me to cancel our appointment.
+cunning	adj.	狡猾的	Steve is very _____ and good at deceiving others.
+cunning	n.	狡猾	David used some _____ to get what he wanted.
+dye	n.	染料	These eggs are being boiled in bright red _____ to make them red.
+dye	v.	染色	Alex _____d his hair green.
+economical	adj.	節儉的，經濟的	My father is _____ with his money.
+flush	v.	沖洗，臉紅	Don't forget to _____ the toilet after you use it.
+flush	n.	臉紅	A _____ colored Judy's cheeks when Allan asked her out.
+funeral	n.	葬禮	When the famous singer died, many of his fans attended his _____.
+guardian	n.	監護人，保護者	The United Nations should be a _____ of world peace.
+idol	n.	偶像	Young people tend to worship and imitate their _____s.
+inflation	n.	通貨膨脹	The government is trying its best to reduce the rate of _____.
+landmark	n.	地標	The Sydney Opera House is one of Australia's most famous _____s.
+miner	n.	礦工	Three _____s have been trapped underground for a week.
+mischief	n.	惡作劇	The teacher will not allow any _____ in her class.
+oval	adj.	橢圓形的	There is an _____ mirror on the wall.
+oval	n.	橢圓形	We found several rocks in the shape of _____s on the beach.
+preservation	n.	保存	The local government is in charge of the _____ of the old temple.
+priority	n.	優先考慮的事	Some people think that environmental protection should take _____ over economic development.
+revision	n.	修訂	Greg stayed up to make some _____s to his dissertation.
+seize	v.	抓住	The police officer _____d the thief by the arm when he tried to run away.
+summarize	v.	總結	In the introduction, the author _____s what will be included in the book.
+tremendous	adj.	巨大的	The boss praised Simon for the _____ effort he had made to accomplish the project.
+witch	n.	女巫	The _____ turned the prince into a frog.
+wizard	n.	巫師	The _____ performed magic tricks with his magic wand.
+agreeable	adj.	令人愉快的	We had an _____ picnic in the park today.
+arise	v.	發生，產生	Accidents often _____ from carelessness.
+boast	v.	吹噓	The mother _____ed about her child's achievements.
+boast	n.	自誇	Mark made a _____ that he could beat me at chess.
+championship	n.	冠軍頭銜	The tennis player finally won the world _____, which he had been dreaming about for years.
+conductor	n.	指揮	The orchestra _____ bowed to the audience.
+crack	n.	裂縫	Lily looked through the _____ in the door to see if anyone was in the room.
+crack	v.	破裂	The glass _____ed when boiling water was being poured into it.
+curl	n.	捲髮	Melody has blond _____s.
+curl	v.	捲曲	The dog _____ed itself into a ball.
+earphone	n.	耳機	I usually use _____s to listen to music.
+elegant	adj.	優雅的	Nina tried hard to make herself look _____ in the presence of her date.
+elegance	n.	優雅	The prom queen danced with _____.
+foam	n.	泡沫	When I poured the Coke into the glass, _____ rose to the surface.
+foam	v.	起泡沫	Sam applied some soap to his wet hands and rubbed them until it began to _____.
+gifted	adj.	有天賦的	As a _____ artist, Nelson can depict human feelings and emotions through his creations.
+guilt	n.	罪惡感	It takes courage to admit _____.
+ignorant	adj.	無知的	Thomas was _____ of the local custom and thus offended the local people.
+innocence	n.	清白	The suspect tried to prove his _____.
+lawful	adj.	合法的	It's not _____ to smoke marijuana in this country.
+mineral	n.	礦物	Indonesia has long been known as a country rich in _____ resources.
+mineral	adj.	礦物的	_____ water
+motivate	v.	激勵	Teachers must know how to _____ their students to learn.
+overcoat	n.	大衣	After Jack put on a woolen scarf and a thick _____, he went out.
+proceed	v.	繼續進行	Emily asked her father to _____ with the bedtime story.
+pronunciation	n.	發音	The _____ of the word might vary a little in different areas.
+rhyme	n.	押韻	The book contains a collection of famous children's _____s.
+rhyme	v.	押韻	"Run" _____s with "son."
+shameful	adj.	可恥的	The cruel way this person treated the stray dog was _____.
+surgeon	n.	外科醫生	Two _____s are performing emergency surgery on the man suffering multiple fractures.
+urge	n.	衝動	Though I am on a diet, I cannot stand the _____ to have some desserts.
+urge	v.	催促	The police _____d drivers not to take the highway because of the traffic accident.
+workout	n.	運動	Abby usually has a _____ in the gym after work.
+amateur	adj.	業餘的	To the coach's surprise, the _____ player plays basketball better than a professional one.
+amateur	n.	業餘愛好者	The photographer won the photo contest when he was still an _____.
+aspirin	n.	阿斯匹靈	Iris took two _____s for her headache.
+bracelet	n.	手鐲	Nina's silver _____ shone in the sunshine with every movement.
+characteristic	n.	特徵	One of the _____s of Byron's poems is passion.
+characteristic	adj.	特有的	Being hospitable is _____ of Taiwanese people.
+confess	v.	坦白	The man _____ed that he had stolen three cars this year.
+craft	n.	手工藝	The school provides lots of courses for those who are interested in _____s.
+economist	n.	經濟學家	The _____ claimed that the unemployment rate would rise this year.
+embarrass	v.	使尷尬	The boy _____ed the girl by laughing at her appearance.
+embarrassment	n.	尷尬	To her _____, the lawyer forgot her client's name.
+embarrassed	adj.	感到尷尬的	Emily was _____ about her messy room.
+embarrassing	adj.	令人尷尬的	I wish Ted could stop asking me _____ questions.
+forbid	v.	禁止	My father _____ me to drive his car.
+forbidden	adj.	被禁止的	Be careful. Chewing gum is _____ in Singapore.
+glimpse	n.	瞥見	Ariel caught a _____ of a figure in the dark.
+glimpse	v.	瞥見	I _____d my former teacher in the crowd.
+hardware	n.	五金	You can find hammers and nails in this _____ store.
+imaginary	adj.	想像的	The unicorn is an _____ creature that looks like a horse.
+input	n.	輸入，投入	I want to thank all my team members, whose _____ into the project made it a success.
+input	v.	輸入	Olivia's job is to _____ data into the computer.
+lean	v.	傾斜，倚靠	All the audience _____ed forward and listened carefully because the speaker's microphone was dead.
+lean	adj.	瘦的	There is a healthy trend to use _____ meat for hamburgers.
+misfortune	n.	不幸	Linda had the _____ to lose her parents at an early age.
+mountainous	adj.	多山的	The _____ area is not suitable for agriculture for lack of fertile soil.
+parachute	n.	降落傘	Jumping from the helicopter, the pilot was landed by a _____.
+parachute	v.	跳傘	The soldiers were ordered to _____ into the town.
+prosper	v.	繁榮	In spite of the depression, the company has continued to _____.
+prosperity	n.	繁榮	Some people said that the _____ of a country depends on its educational system.
+riddle	n.	謎語	I was unable to guess the answer to the _____.
+shift	n.	改變	The doctor recommended a _____ in my diet.
+shift	v.	改變，移動	The boy _____ed uneasily in the chair when he was asked whether he had taken the money.
+surrender	v.	投降	We will never _____ to the terrorists.
+surrender	n.	投降	The _____ of the city was a turning point in the war.
+usage	n.	用法	The first _____ of the word was recorded in the 17th century.
+wreck	n.	殘骸	After the car crash, the _____s of the two cars were towed away.
+wreck	v.	破壞	A serious knee injury _____ed this basketball player's career.
+yawn	n.	呵欠	My younger brother read a book with a _____.
+yawn	v.	打呵欠	Helen was so tired that she couldn't stop _____ing.
+youthful	adj.	年輕的	Looking at these old pictures brings back my memories of those _____ days.

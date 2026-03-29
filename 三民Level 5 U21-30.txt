@@ -1,0 +1,355 @@
+單字	詞性	中文解釋	例句
+attendance	n.	出席	All the executives were in _____ at yesterday's meeting.
+briefcase	n.	公事包	My neighbor usually wears a suit and carries a _____ to work.
+clinical	adj.	臨床的	_____ trials show that the new medicine is quite effective.
+compliment	n.	讚美	The whole class paid the student great _____s on her speech.
+compliment	v.	讚美，稱讚	The judges all _____ed us on our performance.
+conversion	n.	轉變	The country is undergoing a _____ from monarchy to democracy.
+defendant	n.	被告	The _____ denied all charges and pleaded not guilty.
+directory	n.	姓名地址錄，通訊錄，名錄	Joe found the company's number in the telephone _____.
+entitle	v.	為(書籍等)命名；使享有...資格或權利	The magazine is _____d Newsweek.
+exterior	n.	外表	The teacher hid his anger behind a calm _____.
+exterior	adj.	外部的	The _____ walls of the building are made of glass.
+gloomy	adj.	沮喪的；陰暗的	My aunt was very _____ after losing her job.
+ideology	n.	意識形態，思想體系	Some people say that elections are about _____.
+interval	n.	(時間或空間的)間隔	The singer returned to the stage after an _____ of two years.
+masterpiece	n.	傑作	Van Gogh's Sunflowers is considered a _____ of Impressionist art.
+narrative	n.	故事，敘述	This novel is a gripping _____ of the explorer's adventures across the Sahara Desert.
+narrative	adj.	敘述的	Epics such as The Iliad and The Odyssey are _____ poems.
+pastry	n.	油酥麵團；(派、塔等)油酥糕點	Cut the _____ into small pieces and then roll them into balls.
+porch	n.	門廊	On summer nights, Ted and his family would sit on the _____ and gaze up at the stars.
+quota	n.	配額，限額	The boxer avoids exceeding her daily _____ of calories so as not to gain weight.
+republican	n.	共和主義者	Many _____s want an elected leader instead of a king or queen.
+republican	adj.	共和的	In a country with a _____ government, the ruler with real power is an elected leader, instead of a king or queen.
+scope	n.	範圍；機會	The task lies beyond the _____ of the novice's ability.
+sibling	n.	手足，兄弟姊妹	Tom has 4 _____s: 2 brothers and 2 sisters.
+spectrum	n.	光譜；範圍	When light passes through a prism, you can see the _____.
+stink	n.	臭味	Do you smell a _____?
+stink	v.	發出惡臭；讓人感到糟糕，討厭	That drunk's breath _____ of alcohol and smoke.
+testify	v.	(尤指出庭)作證	The victim's neighbor _____ied that she heard a gunshot.
+trim	v.	修剪；削除；裝飾	I got my hair _____med.
+trim	n.	修剪	Kate's hair needs a _____.
+trim	adj.	苗條健康的	Ann keeps _____ by swimming.
+verdict	n.	判決，裁決	It took the jury 5 hours to reach a _____ of not guilty.
+attic	n.	閣樓	The kids found boxes of old books and letters in the _____.
+bronze	n.	青銅；銅牌	The statue is made of _____.
+bronze	adj.	古銅色的	The designer wanted the model to be a young man with _____ skin.
+bronze	v.	使成古銅色	The athlete's skin has been _____d by the sun.
+cluster	n.	串，團，群	Sightseers were standing in a _____ around the famous statue.
+cluster	v.	聚集，群集	Tim and his friends _____ed around the campfire.
+comply	v.	遵從，遵守	All of us should _____ with the epidemic control regulations.
+convict	v.	宣判...有罪	That man over there was _____ed of theft and fraud.
+convict	n.	囚犯	The police are chasing the escaped _____.
+defy	v.	違抗	The couple got into trouble because they openly _____ied the law.
+disapprove	v.	不贊同，不認可，反對	Eunice strongly _____s of drunk driving.
+disapproval	n.	不贊同，不認可，反對	The principal expressed strong _____ of their plan.
+entity	n.	獨立存在的個體，實體	These countries are all regarded as separate _____ies.
+fabulous	adj.	很棒的	I am a big fan of the _____ dancer.
+gorgeous	adj.	非常漂亮的，很美的；美好的，令人愉快的	Jenny looked _____ in her new dress.
+idiot	n.	笨蛋	It's not polite to talk down to people as if they were _____s.
+idiotic	adj.	愚蠢至極的	What an _____ question!
+intervention	n.	干涉，介入	People are opposed to military _____ in other countries' affairs.
+mattress	n.	床墊	Many people prefer to sleep on soft _____es.
+negotiation	n.	商議，協商，談判	The treaty is still under _____.
+patch	n.	補丁；(與周圍不同的)一小片	The frugal farmer often wears jeans with _____es on the knees.
+patch	v.	補綴，修補	I have to _____ my jeans; the knees are torn.
+practitioner	n.	(醫界等的)從業人員	Dr. Lin is a _____ of Chinese medicine.
+racism	n.	種族歧視	Many immigrants stood together to fight against _____.
+resemblance	n.	相似	That boy bears a close _____ to his father.
+scramble	v.	(手腳並用地)攀爬；爭搶	Those mountain climbers _____d along the edge of the cliff.
+scramble	n.	攀登；爭搶	It is quite a _____ to get to the top of the mountain.
+siege	n.	圍攻；包圍	The town was under _____ in the war.
+speculate	v.	推測；做投機買賣	Bob don't want to _____ about the future.
+speculation	n.	推測	There has been much _____ about the future.
+straighten	v.	弄直；整理	The clerk _____ed his tie before entering the office.
+theology	n.	神學	John wants to study _____ and philosophy at college.
+triple	adj.	三倍的；由三部分組成的	The applicant demanded _____ pay.
+triple	v.	(使)成為三倍	The staff tried their best to _____ the profits of the company.
+triple	n.	三個一組；(棒球的)三壘打	Two espressos, no, _____s, please.
+versus	prep.	與...對抗，...對...；與...對比	Tonight's match is Brazil _____ Uruguay.
+attorney	n.	律師	The _____ advised her client to remain silent.
+bulk	n.	巨大的東西，龐然大物；大部分	The elephant heaved its _____ out of the river.
+coherent	adj.	(論述等)條理清楚的，合乎邏輯的，連貫的；(人)說話有條理的	The witness gave a _____ account of the accident.
+comprise	v.	包含，包括；組成	The U.S. _____s 50 states.
+correlation	n.	相互關係，相關性，關聯	There is a close _____ between smoking and many diseases such as lung cancer and heart attack.
+delegate	n.	代表	My cousin is the Australian _____ to the United Nations.
+delegate	v.	委任，委派	Susan was _____d to attend the conference.
+disclose	v.	揭露，透露	The CEO _____d that she will retire next month.
+entrepreneur	n.	企業家	The young _____ made his money in the stock market.
+faculty	n.	全體教職員；(感官、心智等的)機能，能力	We had a party to welcome the new members of our school's _____.
+grant	n.	(政府或機構的)補助金	The girl was awarded a student _____ from the government to complete her education.
+grant	v.	准予，給與；承認，同意	The journalist was _____ed permission to take pictures.
+illusion	n.	錯誤的想法或認知，幻想	I had no _____s about my chances of success.
+investigator	n.	調查者，調查員	The _____s are examining the crime scene.
+meantime	n.	期間	My car is under repair; in the _____, I take the bus to work.
+meantime	adv.	在此期間，同時	Tom is going to college. _____, he will work part-time to support his family.
+nominate	v.	提名	The film was _____d for 11 Academy Awards.
+patent	n.	專利(權)	The inventor took out a _____ on her invention.
+patent	adj.	專利(權)的；明顯的	My boss needs a _____ lawyer to help her with patent applications.
+patent	v.	取得...的專利(權)	This product is _____ed by the company.
+predator	n.	掠食者，肉食性動物	Most frogs are natural _____s of insects.
+rack	n.	架子	I put my bag onto the luggage _____.
+rack	v.	折磨，使痛苦	Sam's head was _____ed with pain.
+resident	n.	居民；住院醫師	Many _____s of the town travel by boat.
+resident	adj.	居住的	My friend is _____ in Venice.
+scrap	n.	(紙、布等的)小片，小塊，碎片；(資訊等的)少量，一點點	The boy wrote the message on a _____ of paper.
+scrap	v.	放棄，捨棄	Our plan was _____ped for lack of support.
+slam	n.	砰的一聲	The door shut with a _____.
+slam	v.	砰地關上或放下；嚴厲批評，猛烈抨擊	Josh _____med his book down on the desk.
+sphere	n.	球體；範圍，領域	The Earth is a _____.
+strand	v.	使進退不得，使陷於困境；使(船、魚等)擱淺	Because of the typhoon, many people were left _____ed at the airport.
+strand	n.	(繩子、頭髮等的)一縷，一綹	The detective found a _____ of red hair on the carpet.
+therapist	n.	治療師	My cousin works as a physical _____ in a hospital.
+trophy	n.	獎盃；戰利品	The tennis player finally won a _____ in the tournament.
+vertical	adj.	垂直的	The tower is not completely _____ to the ground.
+vertical	n.	垂直的線或平面	The engineer will figure out how many degrees the post is off from the _____.
+auction	n.	拍賣	A couple bought the antique vase at _____ yesterday.
+auction	v.	拍賣	The auctioneer tried to _____ off the antiques.
+bureaucracy	n.	官僚的體制或作風	Dealing with _____ can sometimes be annoying.
+coincidence	n.	巧合	George and Mary met again by _____.
+coincide	v.	同時發生；相符	The incident _____d with the mayor's arrival.
+coincident	adj.	同時發生的	Poverty tends to be _____ with disease.
+coincidental	adj.	巧合的	It was purely _____ that Jeff and his ex-girlfriend both showed up at the party.
+compulsory	adj.	強制性的	Military service is _____ in some countries.
+corridor	n.	走廊	The children ran down the _____.
+delegation	n.	代表團	The government sent a _____ to the United Nations to attend a conference.
+disconnect	v.	切斷(水、電或瓦斯等)；切斷(電話、網路等的連線)	_____ the computer from the electricity supply before fixing it.
+envious	adj.	羨慕的，嫉妒的	My friends are _____ of my good fortune.
+fascinate	v.	使著迷	The idea of sailing around the world _____d John.
+fascinated	adj.	著迷的	Everyone was _____ by the beautiful music.
+fascinating	adj.	迷人的	Some young girls find romance novels _____.
+gravity	n.	(地心)引力，重力；重大，嚴重性	Objects fall to the ground because the force of _____ pulls them down.
+implication	n.	可能的影響或後果；含意，暗示	The proposal will have far-reaching _____s for our future.
+irony	n.	嘲諷；出人意料或啼笑皆非的事	"Thank you so much," the angry man said with _____.
+mentor	n.	指導者	Judy's college professor is her _____ and close friend.
+nomination	n.	提名	The movie got 6 _____s for the Academy Awards.
+pathetic	adj.	悲慘的；差勁的	Eric looked _____ after the serious illness.
+premier	adj.	首要的，最重要的	South Africa is one of the _____ producers of diamonds.
+premier	n.	首相，總理	The _____ attended the conference.
+radiation	n.	輻射	Exposure to high levels of _____ can cause some forms of cancer.
+residential	adj.	住宅的，有住宿設施的	No factories should be built in the _____ areas.
+script	n.	劇本，講稿；文字	Who wrote the _____ for this movie?
+script	v.	為(電影、廣播、演講等)寫劇本或講稿	This movie is _____ed and directed by Ang Lee.
+slot	n.	溝槽；時段	After putting a coin in the _____, the kid pressed the button to get a can of soda from the vending machine.
+slot	v.	將...插入或投入溝槽中	The clerk helped me _____ the SIM card into my new smartphone.
+spine	n.	脊椎；(仙人掌、豪豬等的)刺	The poor man injured his _____ in a car accident.
+strategic	adj.	戰略的	The enemy occupied an important _____ location.
+thereby	adv.	因此，藉此	Brian signed the document, _____ gaining control of the firm.
+tuition	n.	學費；家教	College _____ can be very expensive.
+veteran	n.	老手，經驗豐富者；退伍軍人	My uncle is a _____ of several political campaigns.
+authorize	v.	授權，認可	The president _____d the foreign minister to negotiate with the U.S.
+authorized	adj.	經授權的，獲得授權的	Ms. Liu is the only _____ dealer in Asia.
+butcher	n.	肉販，肉店；屠夫	Some local _____s do not sell bacon.
+butcher	v.	屠殺	Hundreds of thousands of innocent Chinese were _____ed by the Japanese soldiers during World War II.
+collaboration	n.	合作	Jack is working in _____ with Alice on a book.
+concede	v.	承認；讓出，讓與	I _____ that I am wrong.
+corrupt	adj.	墮落的；貪汙腐敗的	The drug dealer leads a _____ life.
+corrupt	v.	使墮落，使腐化	Power tends to _____ those who hold it.
+deliberate	adj.	刻意的；慎重的	That kid told a _____ lie to cover his mistake.
+deliberate	v.	仔細考慮	We _____d on possible solutions to the problem.
+deliberately	adv.	刻意地，故意	Witnesses said that the fire was started _____.
+discourse	n.	演講，論文	Mr. Wang delivered a _____ on critical thinking.
+envision	v.	預想，設想	We can _____ the future by learning from the past.
+filter	n.	過濾器	We bought a water _____ to purify the drinking water.
+filter	v.	過濾，穿透；(消息)走漏，逐漸傳開	I enjoy seeing sunlight _____ through branches and leaves.
+greed	n.	貪心	In Shakespeare's play, Macbeth's _____ for power cost him his life.
+indulge	v.	縱容；沉迷，沉溺	Some parents _____ their children dreadfully.
+indulgence	n.	縱容；沉迷，沉溺	Some grandparents treated their grandchildren with _____.
+indulgent	adj.	縱容的，溺愛的	The father is _____ toward his daughter.
+journalism	n.	新聞業，新聞工作	Susan plans to begin her career in _____ after graduation.
+merge	v.	合併；融入，融合	The two lanes _____ into one.
+merger	n.	合併	The _____ of the two companies is big news.
+nominee	n.	被提名人	Many celebrities attended the party, including several Oscar _____s.
+patron	n.	贊助者；顧客，常客	This lady is well-known as a _____ of the arts.
+patronage	n.	贊助；光顧	The principal's _____ has made the performance possible.
+patronize	v.	以施恩或高人一等的態度對待；光顧	This program focuses on children's interests, instead of _____ing them.
+premise	n.	前提	The detective's reasoning is based on the _____ that the crime scene was not actually a locked room.
+raid	n.	突擊，突襲；警方的突擊搜查	The enemy launched air _____s on the capital.
+raid	v.	突擊，突襲；(警方)突擊搜查	The enemy _____ed our military base.
+respondent	n.	(問卷調查等的)受訪者	A majority of _____s agreed with the plan.
+sector	n.	(國家經濟或商業活動的)領域，產業；戰區	Salaries in the public _____ can be quite different from those in the private sector.
+smash	v.	打碎，打破；猛擊	The boy accidentally _____ed the mirror to pieces.
+smash	n.	破碎聲，碎裂聲；大受歡迎的歌曲或影片等	The plate fell to the floor with a _____.
+sponsorship	n.	資助，贊助	We are looking for _____ for our school team.
+submit	v.	呈遞，提交；服從，順從，屈服	I'll _____ my homework to the teacher on Monday.
+submission	n.	呈交；服從，屈服，投降	_____ of applications is due at noon on Friday.
+thesis	n.	學位論文，畢業論文	My sister is writing a _____ on Taiwanese cuisine.
+tumor	n.	腫瘤	The patient had an operation to remove a brain _____.
+viewer	n.	觀眾	The TV program is popular and attracts many _____s.
+autonomy	n.	自治(權)；自主(權)	The local government enjoys a high degree of _____.
+canal	n.	運河	Venice has a complex system of _____s.
+collective	adj.	集體的，共同的，集合的	All of us take _____ responsibility for the environment.
+collective	n.	集體經營的農場或企業	In the old communist society, most people worked in _____s.
+collectively	adv.	集體地，共同地，集合地	A group of students taught together can be _____ referred to as a class.
+conceive	v.	想出，想像；懷孕	The writer _____d the plot for her novel when she visited London.
+conceivable	adj.	可想像的，可想見的，可能的	It is _____ that the absentee will be flunked.
+corruption	n.	貪汙腐敗	The government officer was accused of _____ and bribery.
+democrat	n.	民主主義者；美國民主黨員	_____s oppose dictators.
+disrupt	v.	擾亂	Protesters stormed the building and _____ed the meeting.
+episode	n.	事件；(連載小說、連續劇等的)一集，一回	The first landing on the moon was an important _____ in human history.
+fiscal	adj.	財政稅收的，金融的	The government needs sound _____ policies to combat inflation.
+grieve	v.	(因為某人去世而)悲痛	The old woman _____d for her son.
+inevitable	adj.	不可避免的，必然的	It is _____ that all living creatures will die.
+inevitably	adv.	不可避免地，必然地	According to the economist, a recession _____ leads to high unemployment rates.
+judicial	adj.	司法的	People in that country don't quite trust the _____ system.
+metropolitan	adj.	大都會的，大都市的	The _____ area is notorious for its terrible air pollution.
+metropolitan	n.	都市人	Many people think that _____s are sophisticated.
+notify	v.	正式告知，通知	_____ing your supervisor of your resignation in advance is necessary.
+notification	n.	通知	All the residents have received prior _____ of the power outage.
+pedal	n.	腳踏板	One of the _____s came off my bike.
+pedal	v.	騎腳踏車	The girl _____ed her bicycle up the hill.
+premium	n.	保險費，保費；額外的費用，附加費	I hope that the monthly _____ for my health insurance will not go up again.
+rally	n.	大會；(價格、景氣等)止跌回升，復甦	The group held an antiwar _____ appealing for peace.
+rally	v.	召集，集合；復甦，重振	The general _____ied the scattered troops.
+resume	v.	(中斷後)繼續，重新開始；回到，重返(座位、職位等)	The speaker _____d his talk after a long silence.
+resume	n.	履歷表	Alex sent his _____ to about 30 companies and got several interviews.
+seminar	n.	研討會	Dr. Chen will attend a _____ on juvenile crime tomorrow.
+smog	n.	煙霧，霧霾，霾害	Vehicle exhaust is one major source of _____ in the cities.
+spouse	n.	配偶	Please bring your _____ to the party.
+subsidy	n.	補助金，補貼，津貼	The government is criticized for abolishing _____ies to farmers.
+thigh	n.	大腿	Many girls want to have slender _____s.
+tuna	n.	鮪魚	Mom bought some bread and several cans of _____ to make sandwiches for us.
+viewpoint	n.	觀點	From an economic _____, the plan has no merits.
+backyard	n.	後院	Mom grew flowers and vegetables in our _____.
+canvas	n.	帆布；油畫	We bought a tent that is made of _____.
+collector	n.	收藏家；收取或收集...的人	My father is an avid coin _____.
+conception	n.	想法，概念，觀念；懷孕	Many young children have no _____ of money management.
+counsel	n.	建議，勸告	The young man listened to his parents' wise _____ and remained patient.
+counsel	v.	建議，勸告	My doctor _____ed me to take a long vacation.
+denial	n.	否認；拒絕	The official issued a strong _____ of all the charges against her.
+doctrine	n.	教義，信條	The missionary believes in Christian _____.
+equity	n.	公平，公正	Many people want a society in which _____ and justice prevail.
+fleet	n.	艦隊；(同家公司的)車隊或船隊等	The war finally ended after the Spanish _____ was defeated.
+fleet	adj.	能快速移動的，跑得快的	The runner is _____ of foot.
+fleeting	adj.	短暫的，飛逝的	We caught only a _____ glimpse of the superstar.
+grill	n.	烤肉架，燒烤架；烤肉，燒烤的食物	My neighbor cooked pork on the _____.
+grill	v.	用烤肉架燒烤；長時間審問，盤問	I _____ed some fish for dinner.
+inherent	adj.	本質上的，固有的	Competition is an _____ part of the free market economy.
+jug	n.	罐，壺；一壺的量	Please rinse the bottles and _____s before placing them in the trash can.
+minimal	adj.	極少或極小的，最低限度的	We only made _____ changes when renovating the old temple.
+notion	n.	概念；(心血來潮或異想天開的)想法	I didn't have the slightest _____ of the answer.
+pedestrian	n.	行人	This area used to be open to _____s only.
+pedestrian	adj.	平淡無奇的，缺乏想像力的	This novel is _____ and unimaginative.
+prescribe	v.	開藥，開處方；(法律等)規定	The doctor _____d medicine for the patient's stomachache after diagnosis.
+ranch	n.	大牧場，大農場	My brother is going to work part-time on a _____ during the summer vacation.
+ranch	v.	經營大牧場或大農場	My aunt _____es in Australia.
+rancher	n.	大牧場或大農場的經營者或工作者	My uncle works as a cattle _____.
+retail	n.	零售	The sportswear is for _____ only.
+retail	adj.	零售的	The recommended _____ price is 20 dollars.
+retail	adv.	零售地	It is usually cheaper to buy wholesale than _____.
+retail	v.	零售	The dress _____s at 30 dollars.
+retailer	n.	零售商	This company is a major clothing _____.
+senator	n.	參議員；評議委員	This young man is a _____ from the state of California.
+senate	n.	(美國)參議院；(大學的)評議會	Will the _____ approve the bill?
+snatch	v.	一下子搶走，一把抓起，奪取；抓住機會(做)...，趁機抽空(做)...	The thief _____ed the old lady's purse and ran.
+snatch	n.	奪取；片段，小量	There are reports of several bag _____es.
+squad	n.	分隊，小隊，小組	A bomb _____ soon arrived to defuse the time bomb.
+substantial	adj.	(在數量、重要性等方面)大的，可觀的；堅固的	The billionaire has donated a _____ amount of money to charity.
+threshold	n.	門檻；閾，界限	You shall never cross the _____ of this house again!
+uncover	v.	打開...的蓋子；揭發，揭露	The waiter _____ed the dish.
+vinegar	n.	醋	The dish is so sour. You could have added too much _____.
+ballot	n.	無記名投票，投票表決；選票	We elected the president of the club by _____.
+ballot	v.	要求...投票表決	The union is considering _____ing its members on the issue.
+carnival	n.	嘉年華會	Judy and Jack met each other when they went to the _____ in Rio de Janeiro, Brazil.
+columnist	n.	專欄作家	Ann Landers was a famous American _____ in the 20th century.
+condemn	v.	公開譴責；將...判刑	Most countries _____ed Russia for its invasion of Ukraine.
+counselor	n.	諮商師，顧問；(兒童夏令營的)輔導員	The couple talked to a marriage _____ about their problem.
+deploy	v.	部署，調度(軍隊、武器等)；運用(資源等)	Troops and weapons were _____ed in this area.
+documentary	n.	紀錄片	We saw a _____ on the aboriginal peoples in Taiwan.
+documentary	adj.	文件的，書面的；(電影等)紀實的	Investigators are looking for _____ evidence or proof of torture.
+erect	v.	建立；使直立，豎起	The villagers _____ed a statue in memory of the great poet.
+erect	adj.	筆直的	The soldier was standing _____.
+fluency	n.	流利，流暢	The professor speaks English with _____.
+grip	n.	抓牢，抓緊，緊握；掌握，控制	Olive kept a _____ on my hands.
+grip	v.	抓牢，抓緊，緊握；吸引，使感興趣	Victor _____ped May's arm.
+inherit	v.	繼承；遺傳	My friend _____ed a million dollars from her father.
+inheritance	n.	遺產	Ada has recently received a large _____ from a distant relative.
+jury	n.	陪審團；(競賽等的)評審團	After full discussion, the _____ found the defendant not guilty.
+minimize	v.	將...減到最低	Make preparations in advance of the typhoon to _____ the damage.
+nutrient	n.	營養，養分，營養素，營養物質	Vegetables and fruits provide many essential _____s.
+nutrient	adj.	營養的	A person on a strict diet may suffer from a _____ deficiency.
+perspective	n.	觀點；理性客觀的判斷力	What's your _____ on life?
+presume	v.	以為，認為，認定，假定；冒昧，膽敢，擅自	I _____d that we could reason with the salesman.
+presumption	n.	假定，推測，以為，認為	The duchess made a _____ that her servant stole her ring.
+rational	adj.	合理的；理性的	You must give _____ arguments to be persuasive.
+rhetoric	n.	(煽動或浮誇的)言詞，華麗的詞藻，花言巧語；修辭學	The politician's speech was full of empty _____.
+rhetorical	adj.	修辭學的，修辭上的	"Who cares?" is one of the so-called _____ questions.
+sensor	n.	感應器，感應裝置	I'm looking for a _____ that can detect smoke or fire.
+sniff	v.	嗅，聞；吸鼻子	The dog _____ed at the stranger.
+sniff	n.	嗅聞或吸鼻子	The cook took a _____ of the soup.
+squash	n.	南瓜屬的植物或其果實；壁球	I planted some _____ in the field.
+squash	v.	塞進，擠進；壓扁，壓壞，壓爛	My roommate _____ed the clothes into a small suitcase.
+successor	n.	繼任者	Ted was chosen to be the _____ to the current president.
+thrill	n.	激動，興奮刺激，戰慄	It gave us a _____ to meet the superstar.
+thrill	v.	(使)興奮，激動	The good news _____ed me.
+undergraduate	n.	大學生	A group of Harvard _____s threw a party at the bar last night.
+visa	n.	簽證	My visitor's _____ expired. I need to extend it.
+banner	n.	橫幅標語	The protesters carried _____s which said, "No More Chernobyls."
+casino	n.	賭場	Las Vegas is known for many _____s.
+combat	n.	戰鬥	Many soldiers were killed in _____.
+combat	v.	打擊	One of the responsibilities of the police is to _____ crime.
+confession	n.	坦白，供認	The killer was relieved after making a full _____.
+credibility	n.	可信度，信用	The bribery has undermined that man's _____ as a judge.
+depress	v.	使沮喪	Failing to get into his ideal college _____ed Jimmy.
+depressed	adj.	沮喪的	Some people feel _____ about the election results.
+depressing	adj.	令人沮喪的	Such bad news was really _____.
+domain	n.	領域，範圍	Is this issue outside or within the _____ of medicine?
+erupt	v.	(火山)爆發；(動亂、戰爭、抗議等)突發	The volcano _____ed and left several tourists injured.
+eruption	n.	(火山)爆發；(動亂、戰爭、抗議等)突發	The ancient Roman city of Pompeii was destroyed by a volcanic _____.
+forum	n.	討論會，研討會；網路論壇，討論區	There will be a _____ for discussion on economic development.
+guideline	n.	指導方針	The government issued _____s on the stock market for would-be investors.
+initiative	n.	主動，自主性，主導權	We took the _____ in starting diplomatic relationships with that country.
+landlord	n.	房東或地主	Few _____s would lower their tenants' rents; some _____s even raise the rents.
+missionary	n.	傳教士	The _____ies built buildings for their religious work.
+missionary	adj.	傳教士的，傳教的	Bill did _____ work in Africa.
+observer	n.	觀察者，觀察員；觀察家，評論家	UN _____s will also attend the conference.
+pessimism	n.	悲觀，悲觀主義	Because of the pandemic, _____ about the economy could remain for a while.
+pessimist	n.	悲觀的人，悲觀主義者	The old man is a _____; he believes the worst things will happen to him.
+prevail	v.	流行，盛行；占上風，占優勢，勝過	Internet slang _____s among the younger generation.
+prevailing	adj.	普遍的，流行的	The _____ attitudes toward abortion are polarized.
+rattle	v.	嘎嘎作響，發出卡嗒聲；使緊張，使惶恐不安	The windows were _____ing in the violent wind.
+rattle	n.	(硬物碰撞等發出的)嘎嘎聲，卡嗒聲	A _____ of dishes from the kitchen caught our attention.
+rib	n.	肋骨；排骨	The thief fell off a ladder and broke a _____.
+rib	v.	揶揄，調侃，取笑	My friends _____bed me about my silly mistake.
+sentimental	adj.	情感的；多愁善感的，感傷的	For _____ reasons, the old man came back to his hometown.
+soar	v.	暴增；高聳，高飛翱翔	The temperature _____ed to 46°C, and many people died from the heat.
+squat	adj.	矮胖的	The _____ guy over there is a lawyer.
+squat	n.	蹲，蹲著的姿勢	The coach stood up from a _____ and then bent to a _____ again.
+squat	v.	蹲；擅自非法占用(房屋或土地)	The boy _____ted down to pick up his pen.
+suite	n.	(旅館等的)套房	I want to reserve a _____.
+thriller	n.	驚悚片或驚悚小說等文藝作品	This movie is the best _____ I have ever seen.
+underline	v.	在(字句等)之下劃線，(為了強調而)將...劃底線；強調，突顯	I _____d the important words in red.
+underline	n.	底線	You can see a wavy red _____ appear under a word that is spelled wrongly.
+vomit	n.	嘔吐物	The nurse made sure that the unconscious patient didn't choke on his own _____.
+vomit	v.	嘔吐	The smell was so terrible that all of us wanted to _____.
+batch	n.	一批	The dealer delivered the goods in _____es.
+cemetery	n.	(常指非附屬於教會的)墓地	They buried their mother in a public _____.
+comedian	n.	喜劇演員	Chaplin is one of the most famous _____s in the 20th century.
+confine	v.	限制，使侷限於；關住，困住，使離不開	During the lockdowns, many people were _____d to their homes.
+creek	n.	小溪	When I was little, I used to catch tadpoles in the _____.
+deputy	n.	代理人，副手	Who'll be your _____ while you are away?
+dome	n.	半球形屋頂，圓頂，穹頂	The _____ of the cathedral was painted gold.
+escalator	n.	電扶梯，自動手扶梯	We took the _____ down to the lower level.
+escalate	v.	上升，增加；擴大，惡化	The inflation rate could _____ sharply during a time of war.
+foster	adj.	寄養的，(暫時)收養的	This child will be placed with a nice _____ family.
+foster	v.	培養，助長，促進；養育(非親生子女)，收養	The establishment of industrial parks helped to _____ the growth of the domestic industries.
+gut	n.	腸道；內臟	To help food pass through the _____ smoothly, consume enough water.
+gut	v.	清除(魚等)的內臟	I _____ted the fish and then cooked it for dinner.
+inject	v.	注射；注入，增添(活力、資金等)	The doctor _____ed the patient with antibiotics.
+laser	n.	雷射	_____s can be used to perform eye surgery or to read bar codes on products.
+moan	n.	呻吟聲	The rescue team heard a _____ from under the rubble.
+moan	v.	呻吟；發牢騷	The wounded soldier _____ed with pain.
+odds	n.	可能性	The _____ are against us.
+petty	adj.	微不足道的，瑣碎的	Some adolescents are involved in shoplifting or other _____ crimes.
+proclaim	v.	宣布，聲明，宣稱	The famous actor _____ed that he would run for president.
+realism	n.	務實，實際；(文學、藝術等的)逼真，寫實(主義)	There is a mood of _____ at the conference.
+ridge	n.	山脊；(屋脊等)狹長的隆起	The mountain climber walked carefully along the _____.
+ridge	v.	使隆起成脊狀	The soles of the shoes are _____d to help prevent you from slipping.
+server	n.	伺服器；服務生；(大湯匙等)分菜用具；(網球、排球等的)發球者	"Did the _____ crash?" "Yes, the _____ is down again!"
+sob	n.	啜泣(聲)，抽噎(聲)，嗚咽(聲)	Tess asked her father for forgiveness with _____s.
+sob	v.	啜泣，抽噎，嗚咽	We heard someone _____bing in the room.
+stability	n.	安定(性)，穩定(性)	The job offers _____ and a good salary.
+supervise	v.	監督	The teacher _____d the students taking their final exam.
+throne	n.	王位	The incident happened when the old king was still on the _____.
+undertake	v.	從事，進行，承擔(任務等)；承諾，答應	The directors of the company were reluctant to _____ a risky venture.
+voucher	n.	抵用券，兌換券	This _____ is valid till May and entitles you to 10% off all books.

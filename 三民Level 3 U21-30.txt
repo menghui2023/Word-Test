@@ -1,0 +1,334 @@
+單字	詞性	中文解釋	例句
+angel	n.	天使	There are two pictures of _____s on the wall of the church.
+boot	n.	靴子	I bought a pair of riding _____s in the clearance sale.
+boot	v.	猛踢	The soccer player _____ed the ball straight out.
+charm	n.	魅力；護身符	The rabbit's foot is Lillian's lucky _____.
+charm	v.	迷住	The audience was _____ed by the violinist's performance.
+cooker	n.	炊具	You have to be careful when using a pressure _____.
+disk	n.	磁碟	A hard _____ can be used to store information from a computer.
+envy	n.	羨慕，嫉妒	Cinderella's sisters stared with _____ when Cinderella was dancing with the prince.
+envy	v.	羨慕，嫉妒	George _____ed his younger sister because she seemed to get all their parents' attention.
+float	v.	漂浮	There is a volleyball _____ing in the river.
+float	n.	漂浮物	To save energy, the swimmer held on to a _____ in the swimming pool.
+gasoline	n.	汽油	Cars mainly run on _____.
+gas	n.	氣體	We have to reduce the emission of greenhouse _____es to prevent global warming.
+heater	n.	暖氣機	A _____ is used to heat the room.
+hopeful	adj.	抱有希望的	The candidate is _____ about the outcome of the election.
+jeep	n.	吉普車	A _____ can be used for driving on rough ground.
+ladder	n.	梯子	Walking under a _____ is considered bad luck.
+magnet	n.	磁鐵	The _____ attracts bits of iron.
+moist	adj.	潮濕的	The flowers grew well in _____ soil.
+nest	n.	鳥巢	There is a bird's _____ in the tree.
+nest	v.	築巢	Some swallows _____ed next to the window.
+penguin	n.	企鵝	_____s are native to the Antarctic.
+pump	n.	幫浦，抽水機	The non-governmental organization installed _____s in the village.
+pump	v.	抽水，打氣	The villagers _____ clean water from the well.
+raw	adj.	生的，未加工的	You will probably get sick if you eat _____ meat.
+rush	n.	匆忙，急忙	The worshippers all came into the temple in a _____.
+rush	v.	衝，奔	After the police got the call, they _____ed to the scene of the accident immediately.
+shrimp	n.	蝦	My friend is allergic to _____s.
+someday	adv.	有朝一日	I hope I can visit Iceland _____.
+stale	adj.	不新鮮的	Don't eat that bread because it has gone _____.
+teenage	adj.	十幾歲的	This mobile app is very popular with _____ girls and boys.
+tub	n.	浴缸，桶	Andrew used some _____s to grow plants and flowers.
+twin	n.	雙胞胎之一	The _____s look so alike that I can hardly tell one from the other.
+anyhow	adv.	無論如何	The doors were locked and we couldn't get in _____.
+brass	n.	黃銅	_____ is a hard metal made of copper and zinc.
+brass	adj.	黃銅的	To be a good trumpet player, Joe practices the _____ instrument eight hours every day.
+chimney	n.	煙囪	The smoke rising from a _____ always reminds me of my sweet home.
+cough	n.	咳嗽	The patient had a bad _____.
+cough	v.	咳嗽	Ned was _____ing a lot so I took him to the doctor's.
+ditch	n.	溝渠	The workers are digging _____es to prevent flooding during the typhoon seasons.
+ditch	v.	拋棄，丟棄	We decided to _____ the old bicycle and buy a new one.
+faint	adj.	微弱的	The sound is too _____ to be heard clearly.
+faint	v.	昏厥	The runner _____ed as soon as he crossed the finish line.
+faint	n.	昏厥	The old lady suddenly fell in a _____ in the sun.
+flock	n.	群	_____s of wild geese are flying south.
+flock	v.	聚集	Birds of a feather _____ together.
+governor	n.	州長，首長	The amateur politician was elected as the _____.
+hell	n.	地獄	The prison is like a _____ on earth.
+horrible	adj.	可怕的	Waking up from a _____ nightmare, the little boy cried for his parents.
+jet	n.	噴射；噴射機	_____s of water spurted from the fountain.
+jet	v.	搭乘噴射機	Ann and Tom are _____ting off for a honeymoon in Taiwan next week.
+lately	adv.	最近	The team went through a hard time last season, but _____ things have been improving.
+maid	n.	女僕，女傭	The _____ comes twice a week to clean our house.
+multiply	v.	乘，倍增	The math teacher asked the students to _____ 15 by 8.
+nun	n.	修女	The _____ is saying her prayers in the church.
+penny	n.	一分錢	A _____ saved is a _____ earned.
+penniless	adj.	身無分文的	In the story, a rich girl fell in love with a _____ painter.
+punch	n.	拳打	The drunk man threw a _____ at his friend.
+punch	v.	用拳猛擊	The boxer _____ed his opponent in the chin.
+receipt	n.	收據	The store should give you a _____ after you make a purchase.
+sack	n.	麻布袋	_____s of flour and rice were donated to the earthquake victims by several charitable groups.
+sin	n.	罪	Many people think it is a _____ to treat animals cruelly.
+sin	v.	犯罪	The soldier believes he has _____ned against God.
+spaghetti	n.	義大利麵	My parents like to have Italian food like _____ and pizza for lunch on weekends.
+starve	v.	挨餓，餓死	People _____d to death during the long war.
+temper	n.	脾氣	The boss has a short _____.
+tunnel	n.	隧道	The hostages escaped through a secret _____ under the house.
+tunnel	v.	挖掘隧道	The government decided to _____ a route through the mountain.
+unite	v.	聯合，團結	The two companies were _____d to form a new one.
+apologize	v.	道歉	Ann _____d to her teacher for being late for school.
+bravery	n.	勇敢	The soldier was awarded a medal for his _____.
+chin	n.	下巴	The tutor rubbed his _____ when he thought about that matter.
+countable	adj.	可數的	The word "dream" is a _____ noun, so it has a plural form.
+dizzy	adj.	暈眩的	Tina felt _____ after riding the roller coaster.
+fake	adj.	假的	The man who sells _____ medicine has been caught.
+fake	v.	偽造	Frank _____d his wife's signature on the check.
+fake	n.	贗品	The painting is a _____ which is worthless.
+fountain	n.	噴泉	There is a large _____ in the middle of the shopping mall.
+grasp	v.	抓住，理解	The child _____ed his mother by the arm.
+grasp	n.	緊抓，理解	The rock climber kept a firm _____ of the rock.
+helmet	n.	安全帽	Never forget to wear a _____ when you are riding a scooter.
+horror	n.	恐懼	The boy screamed in _____ when he found himself in the dark house.
+juicy	adj.	多汁的	I like _____ and tender steak.
+leap	n.	跳躍	Jim crossed the stream with a flying _____.
+leap	v.	跳躍	The horse _____ed over the fence.
+marble	n.	大理石；彈珠	Many little boys like to play with _____s.
+mushroom	n.	蘑菇	Mark became sick after eating some poisonous _____s.
+mushroom	v.	雨後春筍般出現	The number of high-rise buildings has _____ed in the past five years.
+oak	n.	橡樹	"Tie a Yellow Ribbon Round the Old _____ Tree" is a famous song.
+pepper	n.	胡椒	Can you pass the salt and _____, please?
+queer	adj.	奇怪的	Jeremy had a _____ feeling that he was being followed.
+receiver	n.	話筒，接收器	Lauren picked up the _____ and dialed the number.
+sauce	n.	醬汁	The chef has cooked tomato _____ for pasta.
+sip	v.	啜飲	Gary _____ped coffee and read the newspapers this morning.
+sip	n.	一小口	Sandy added some salt to the soup after taking a _____ of it.
+spill	v.	灑出	One guest tripped and _____ed coffee on the carpet of the restaurant.
+spill	n.	溢出，灑出	Many marine animals were killed in the oil _____.
+sting	n.	螫針	A bee dies when it loses its _____.
+sting	v.	刺，螫	The mountain climber's arm was _____ by a bee.
+tender	adj.	溫柔的；嫩的	Rachel gave me a warm and _____ smile.
+underlying	adj.	潛在的	The government shouldn't ignore any _____ reason of the rising crime rate.
+vase	n.	花瓶	The visitor knocked the _____ over accidentally.
+assist	v.	協助	Doris _____ed her brother with his homework.
+brunch	n.	早午餐	I am going to have _____ with my friend this Saturday.
+chip	n.	碎片；洋芋片	The camper threw some wood _____s into the fire to keep it burning.
+chip	v.	切下碎片	The researchers _____ped a lot of pieces off the rock.
+crab	n.	螃蟹	_____ season usually begins from September to December in Taiwan.
+dock	n.	碼頭	The ship is in _____ for routine maintenance.
+dock	v.	停靠碼頭	The ship is scheduled to _____ at Hualien tomorrow.
+faucet	n.	水龍頭	To conserve water, you should turn off the _____ immediately after use.
+freeze	v.	結冰，凍結	When water _____s, it becomes ice.
+freeze	n.	凍結	Most of the workers faced a wage _____ in the past years.
+grassy	adj.	長滿草的	Some sheep are grazing in the _____ field.
+hint	n.	暗示	Frank kept dropping a _____ to me, but I couldn't take it.
+hint	v.	暗示	The secretary _____ed that she wanted a pay raise.
+humid	adj.	潮濕的	The weather becomes very _____ in the summer.
+jungle	n.	叢林	Edward had some exciting adventures in the Amazon _____.
+leisure	n.	閒暇	Amber likes to do yoga in her _____ time.
+marker	n.	標記	The dancer had placed some _____s on the floor.
+mystery	n.	謎，神祕	The police never solved the _____ of the boy's disappearance.
+omit	v.	遺漏，省略	You have _____ted several important points in your report.
+pigeon	n.	鴿子	The old man feeds _____s in the park every morning.
+quote	v.	引用	The student _____d a passage from Shakespeare.
+quote	n.	引文	I included some _____s from the news report in my speech.
+relief	n.	減輕，鬆一口氣	It is a _____ to know that the children have been rescued.
+saucer	n.	茶碟	The lady gave the stray dog a _____ of water.
+skate	v.	溜冰	Let's go _____ing in the park!
+skate	n.	溜冰鞋	Put on your ice _____s.
+spin	n.	旋轉	The car slid on the icy road and went into a _____.
+spin	v.	旋轉	The ice skater began to _____ faster and faster.
+stitch	n.	一針	John cast some _____es to secure the two pieces of cloth together.
+stitch	v.	縫合	The doctor is _____ing up the patient's wound.
+tent	n.	帳篷	Do you know how to pitch a _____?
+unity	n.	團結，一致	The film lacks _____.
+verse	n.	詩，韻文	This is a story written in _____.
+assistant	n.	助手，助理	Clare had her _____ demonstrate the latest smartwatch to the clients.
+assistant	adj.	助理的	Fiona has been promoted to _____ manager.
+bud	n.	芽，花蕾	The trees in the park were in _____ in early spring.
+bud	v.	發芽	Many plants begin to _____ in spring.
+chop	n.	排骨	The restaurant's signature dish is grilled lamb _____.
+chop	v.	砍，劈	To keep warm, the hunter _____ped wood to make a fire.
+crane	n.	起重機；鶴	The _____ driver operated the _____ to move the container.
+crane	v.	伸長脖子	The kid _____d his neck to see the parade.
+dolphin	n.	海豚	A school of _____s is leaping out of the water.
+feather	n.	羽毛	The little girl tickled her father's feet with a _____.
+geography	n.	地理學	Vincent is interested in human _____ rather than physical _____.
+greenhouse	n.	溫室	The farmer grows some vegetables in the _____.
+historian	n.	歷史學家	The _____ will give a lecture on the civilization of ancient Rome.
+hunger	n.	飢餓	The student felt faint from _____.
+hunger	v.	渴望	The nation _____s for an economic recovery.
+knight	n.	騎士	The _____ finally killed the evil king at the end of the story.
+knight	v.	授予爵位	Jane was _____ed for her services to the community.
+lemonade	n.	檸檬水	This homemade _____ is really fresh.
+mathematical	adj.	數學的	Richard is considered a _____ genius.
+nap	n.	小睡	Ella usually takes a _____ after lunch.
+nap	v.	小睡	Glen _____ped for an hour after he came home from school.
+outdoors	adv.	在戶外	The rock concert was held _____ last night.
+pill	n.	藥丸	Mr. Lee has to take _____s to control his blood pressure every day.
+rag	n.	抹布，破布	Mary used a _____ to clean the floor.
+resist	v.	抵抗，抗拒	Many people strongly _____ed raising income tax.
+sausage	n.	香腸	Jacob had some scrambled eggs, mushrooms, and _____s for breakfast.
+ski	n.	滑雪板	Tom brought his _____s with him.
+ski	v.	滑雪	Tom wants to go _____ing.
+steal	v.	偷竊	The best-selling author was accused of _____ing ideas from the book.
+stormy	adj.	暴風雨的	As the typhoon approaches, a _____ wind starts to blow.
+terrific	adj.	極好的	Tommy looks _____ today.
+vest	n.	背心	The old man likes to wear a wool _____ to keep warm.
+wage	n.	工資	The laborers demanded higher _____s because of long working hours.
+automobile	n.	汽車	The _____ industry in this country is growing faster than any other country in the world.
+buffalo	n.	水牛	My grandparents raise some _____es on the farm.
+cigarette	n.	香菸	The woman lit a _____ but soon put it out.
+crawl	v.	爬行	The baby _____ed across the floor on his hands and knees.
+crawl	n.	緩慢移動	The traffic usually slows to a _____ at the last day of vacation.
+doughnut	n.	甜甜圈	We had _____s and latte for breakfast.
+firework	n.	煙火	The government sets off _____s to celebrate the country's birthday.
+glance	n.	瞥見	At first _____, the fallen leaf looks like a cockroach.
+glance	v.	瞥見	The shy girl _____d at the boy she liked and ran away.
+grin	n.	露齒的笑	Luke gave me a wide _____.
+grin	v.	露齒而笑	When I opened the door, my neighbor _____ned at me.
+holy	adj.	神聖的	A church is considered to be _____.
+icy	adj.	結冰的	The roads became _____ during the snowfall.
+knot	n.	結	The clerk tied the ribbon in a beautiful _____ and then attached it to the gift box.
+knot	v.	打結	Karen wore a silk scarf loosely _____ted around her neck.
+lettuce	n.	萵苣	Would you like some _____ on your sandwich?
+melon	n.	瓜	Debby ate a slice of _____ for dessert.
+navy	n.	海軍	Ronald joined the _____ when he was twenty.
+oven	n.	烤箱	Check the turkey in the _____ to see if it is cooked thoroughly.
+pint	n.	品脫	Please buy a _____ of milk for me on your way home.
+ray	n.	光線	A _____ of sunlight came through the dark cloud.
+ripe	adj.	成熟的	Peaches turn sweet when they are _____.
+scale	n.	規模；秤	The full _____ of the accident was reported in the morning news.
+skillful	adj.	熟練的	Most of the teenagers are _____ at using social media.
+steam	n.	蒸氣	_____ is rising from the boiling soup.
+steam	v.	冒蒸氣	The kettle is _____ing on the stove.
+subtract	v.	減去	_____ three from eight and you get five.
+thankful	adj.	感謝的	I'm _____ to you for giving me this chance.
+violet	adj.	紫羅蘭色的	The actor has beautiful _____ eyes.
+violet	n.	紫羅蘭	Grandma planted some _____s in her garden, and the small purple flowers made it look great.
+warmth	n.	溫暖	The _____ of the fire made me feel sleepy.
+avenue	n.	大道	Fifth _____ in New York City is famous for the luxurious shops along its two sides.
+buffet	n.	自助餐	To keep in shape, you had better not have all-you-can-eat _____ too often.
+cinema	n.	電影院	What's on at the _____ now?
+creator	n.	創造者	Jerry Siegel and Joe Shuster are the _____s of Superman.
+drag	v.	拖，拉	The boy _____ged the heavy bag across the room.
+drag	n.	令人厭煩的事	An hour's commute to work is really a _____.
+flame	n.	火焰	The log cabin in the forest was in _____s.
+flame	v.	燃燒	The car hit the utility pole and _____d up.
+glory	n.	光榮	The tall building was one of the _____ of the city.
+grocery	n.	食品雜貨	Let's get some _____s.
+horn	n.	角；喇叭	The rhinos are illegally hunted for their _____s.
+import	n.	進口品	Some _____s like fruits and vegetables have quite an impact on the local farmers.
+import	v.	進口	Due to lack of natural resources, the country has to _____ oil, gas, and metals from other countries.
+koala	n.	無尾熊	_____s are fed on eucalyptus leaves.
+lick	v.	舔	The cat _____ed the plate clean.
+lick	n.	舔	May I have a _____ of the honey?
+melt	v.	融化	The snow _____ed in the sunlight.
+outline	n.	輪廓，大綱	The teacher told the boy to draw an _____ of the house and then give it colors.
+outline	v.	畫出輪廓	Sue _____d the map of Taiwan on the blackboard.
+owl	n.	貓頭鷹	Lisa is a night _____. She always binge-watches the latest television season at night.
+pit	n.	坑	The cyclist fell into a _____ by accident.
+recorder	n.	錄音機	Tape _____s had been replaced by CD players.
+rot	v.	腐爛	The fallen leaves _____ted away and surrendered their nutrients to the soil.
+rot	n.	腐爛	The damp has resulted in the _____ of furniture.
+scarf	n.	圍巾	Eric bought a silk _____ for his girlfriend as her birthday gift.
+sleeve	n.	袖子	The worker rolled up her _____s and began to work.
+steep	adj.	陡峭的	The tower stands on the _____ hill; it is not easy to reach there.
+suburb	n.	郊區	Yokohama is a _____ of Tokyo.
+thirst	n.	口渴	After a workout, water is the best drink to quench your _____.
+volleyball	n.	排球	In recent years, there have been more and more people showing interest in _____.
+waterfall	n.	瀑布	The tourists came in sight of a great _____.
+awaken	v.	喚醒	People must be _____ed to the danger of being overweight.
+bulb	n.	燈泡	The lamp takes a 20-watt _____.
+circus	n.	馬戲團	The children are excited about going to the _____.
+cruel	adj.	殘忍的	That man is _____ to his dog.
+dragonfly	n.	蜻蜓	The professor specializes in the study of _____es.
+flashlight	n.	手電筒	I walked in the dark woods with a _____ in my hand.
+glow	n.	發光	The room was in complete darkness, except for a dim _____ from my smartphone.
+glow	v.	發光	The fireflies are _____ing in the dark.
+gum	n.	口香糖	It is said that chewing _____ is forbidden in Singapore.
+hourly	adj.	每小時的	Normally a lawyer charges an _____ fee for giving legal advice.
+hourly	adv.	每小時地	The trains run _____.
+indoor	adj.	室內的	Table tennis is an _____ sport.
+lace	n.	蕾絲；鞋帶	Some girls like to wear skirts with beautiful _____.
+lace	v.	繫帶	The man bent over to _____ up his shoes.
+loaf	n.	一條(麵包)	My mother baked three _____es of bread.
+mend	v.	修理	The roof is leaking, so some workers are busy _____ing it.
+overseas	adv.	在海外	Many people travel _____ on their holidays.
+overseas	adj.	海外的	We have many _____ students at our university.
+ox	n.	公牛	The farmers used to keep a lot of _____en for plow.
+playful	adj.	愛玩的	Dodo is a _____ little dog. He is very friendly toward human.
+rectangle	n.	長方形	The math teacher drew a _____ on the blackboard.
+rumor	n.	謠言	_____ has it that the mayor will resign.
+rumor	v.	謠傳	It's widely _____ed that the CEO will be fired.
+scissors	n.	剪刀	Be careful. This pair of _____ is very sharp.
+slender	adj.	苗條的	This model has a _____ figure and confidence.
+stiff	adj.	僵硬的	Sitting at a computer all day gave me a _____ neck.
+stiff	adv.	極度地	I am bored _____. The movie is awful.
+suck	v.	吸	Stop _____ing your thumb.
+suck	n.	吸吮	The kitten is taking its _____ of milk.
+thread	n.	線	My grandmother sewed the skirt with cotton _____.
+thread	v.	穿線	My father put on his glasses and _____ed a needle.
+voter	n.	選民	Most of the _____s are willing to poll and elect a new leader.
+weapon	n.	武器	Silence is sometimes the most effective _____.
+baggage	n.	行李	The passenger paid for his excess _____.
+bull	n.	公牛	Part of Peter's job is to milk the cows and feed the _____s on the farm.
+clay	n.	黏土	The child broke a _____ pot accidentally.
+dam	n.	水壩	Hoover _____ is one of the famous tourist attractions in the United States.
+dam	v.	築壩	The government planned to _____ Yangtze River.
+drip	n.	滴水聲	I heard the _____ of the rain from the roof which kept me awake all night.
+drip	v.	滴下	Because of the downpour, Theo's clothes are soaking wet and even his hair is _____ping.
+flesh	n.	肉	Tigers and lions live on _____.
+golf	n.	高爾夫球	Henry spends most of his free time playing _____.
+hairdresser	n.	美髮師	Do you think I should go to the _____ to dye my hair brown?
+housekeeper	n.	管家	Mrs. Wang doesn't have to worry about housework because she has a _____.
+inner	adj.	內部的	It is safer to keep your wallet in the _____ pocket of your jacket.
+laughter	n.	笑聲	My classmates burst into _____.
+locate	v.	位於；找到	The police finally _____d the missing boy.
+merry	adj.	歡樂的	Sandra is singing a _____ tune.
+owe	v.	欠	Janet _____d me NT$300 for the train ticket.
+pal	n.	夥伴	Jamie has been my best _____ since childhood.
+plug	n.	插頭	It is safer to take out the _____ when you don't use the charger.
+plug	v.	塞住	Some leaves _____ged up the drainpipe.
+regret	v.	後悔，遺憾	Mandy doesn't _____ giving up the chance of studying abroad.
+regret	n.	後悔，遺憾	The boss expressed deep _____ for the factory closures.
+satisfactory	adj.	令人滿意的	The teacher didn't think my report _____ and told me to write it again.
+scout	n.	童子軍；偵察	As a _____, Anthony has learned some survival skills.
+scout	v.	偵察	The camper is _____ing for a place to pitch camp.
+slice	n.	薄片	Can I have a _____ of beef?
+slice	v.	切片	Patty _____d some bread and tomatoes to make sandwich.
+studio	n.	工作室	The director showed us around the _____.
+sum	n.	總數	Josh spent a large _____ of money on clothes and shoes.
+sum	v.	總結	The writer _____med up the main ideas in the last chapter.
+thumb	n.	拇指	The cook accidentally cut her _____ when she sliced the mushrooms.
+thumb	v.	豎起拇指要求搭車	The boy _____ed a ride to town.
+wagon	n.	馬車	In some movies, we can see people traveling in _____s.
+weave	v.	編織	In ancient times, women should learn how to _____ clothes before they got married.
+weave	n.	編法	The vest has a tight _____.
+bait	n.	誘餌	Jerry likes fishing and often uses worms as _____.
+bait	v.	裝餌於	The hunter _____ed the trap for rabbits.
+bullet	n.	子彈	The _____ hit the robber in the leg.
+closet	n.	壁櫥	My _____ is full of clothes.
+dare	aux.	敢	The students _____ not break the class rules again for fear of being punished.
+dare	v.	敢	The shy boy doesn't _____ to ask the girl out.
+dare	n.	挑戰	Simon gets on a roller coaster on a _____.
+drown	v.	淹死	The kid fell into the river and was _____ed in it.
+flour	n.	麵粉	Bread is made from _____.
+gossip	n.	八卦，閒聊	The colleagues exchanged a few juicy pieces of office _____ during lunch break.
+gossip	v.	閒聊	The people in the town are _____ing about the new lover of the old man.
+hallway	n.	走廊	The _____ leading to my bedroom is lined with framed photos of my family.
+hug	n.	擁抱	As soon as the grandmother saw her grandson, she gave him a big _____.
+hug	v.	擁抱	The little girl _____ged her doll tightly.
+innocent	adj.	無罪的；天真的	The man was released when he was found _____ of any crime.
+laundry	n.	洗衣店；待洗衣物	My husband always has his suits dry-cleaned in the _____.
+log	n.	圓木	Let's put another _____ on the fire.
+log	v.	伐木	The rainforests around the world are being _____ged for paper.
+mess	n.	混亂	My friend always makes a _____ in the kitchen when he tries to cook.
+mess	v.	弄亂	I spent hours cleaning up the house, but it took my children only a few minutes to _____ it up.
+pad	n.	墊子，護墊	The soccer player is wearing knee _____s to protect his knees.
+pad	v.	填塞	The seats are _____ded with foam.
+pancake	n.	煎餅	Jenny likes to have _____s for breakfast.
+politician	n.	政治人物	The scandal of taking bribes ruined the career of the _____.
+restrict	v.	限制	The government announced policy to _____ freedom of movement into the country.
+saving	n.	存款	You should deposit your _____s in a _____s account.
+screw	v.	用螺絲固定	Tom _____ed a picture to the wall.
+screw	n.	螺絲	I tightened the _____ with a screwdriver.
+slope	n.	斜坡	The elementary school near my house is built on a _____.
+summary	n.	摘要	The teacher asked us to read the article and then write a _____ of it.
+suspicion	n.	懷疑	Her boyfriend's strange behavior aroused Melissa's _____.
+tighten	v.	變緊	I _____ed the strings on the guitar.
+wander	v.	漫遊	The homeless man _____s around the street every day.
+wander	n.	漫步	The tourists had a _____ around this ancient city.
+wipe	v.	擦拭	The girl _____d her dirty hands with a wet towel.
+wipe	n.	擦拭	You need to give the dusty windows a quick _____ so that we can see the views outside clearly.
