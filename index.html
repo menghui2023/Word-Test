@@ -74,34 +74,33 @@
 <div id="admin-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-[100] flex items-center justify-center backdrop-blur-sm no-print modal-transition p-4">
     <div class="bg-white p-5 sm:p-8 rounded-xl shadow-2xl max-w-3xl w-full mx-auto transform transition-all max-h-[90vh] overflow-y-auto flex flex-col scale-95 opacity-0" id="admin-modal-content">
         <div class="flex justify-between items-center border-b-2 border-indigo-200 pb-3 mb-4 shrink-0">
-            <h2 class="text-xl sm:text-2xl font-bold text-indigo-800">⚙️ 批次上傳題庫中心</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-indigo-800">⚙️ 管理題庫與 AI 命題</h2>
             <button id="admin-close-x" class="text-gray-500 hover:text-red-500 text-2xl font-bold transition-colors">&times;</button>
         </div>
         
         <div id="admin-bank-section" class="flex-1">
-            
             <div class="mb-6 bg-indigo-50 p-4 sm:p-6 rounded-lg border-2 border-dashed border-indigo-300 hover:border-indigo-500 transition-colors text-center">
                 <label class="block text-indigo-800 font-bold mb-3 text-lg cursor-pointer">
-                    📁 第一步：點擊上傳單字 .txt 檔案 (支援多選)
+                    📁 第一步：點擊上傳自訂單字檔 (.txt)
                     <input type="file" id="file-upload" accept=".json, .txt" multiple class="hidden">
                 </label>
                 <p class="text-sm text-gray-500">此功能為「臨時覆蓋」當前題庫。若要永久更新，請將檔案上傳至 GitHub。</p>
             </div>
 
-            <!-- AI 克漏字生成輔助區 -->
-            <div class="mb-6 bg-yellow-50 p-4 rounded-lg border border-yellow-300">
+            <!-- AI 命題連動區 -->
+            <div class="mb-6 bg-yellow-50 p-4 rounded-lg border border-yellow-300 shadow-sm">
                 <h3 class="font-bold text-yellow-800 mb-2 flex items-center gap-2">
-                    <span>✨</span> 第二步：取得 AI 克漏字命題指令
+                    <span>✨</span> 第二步：AI 短文全自動命題
                 </h3>
-                <p class="text-sm text-gray-700 mb-3">純網頁無法直接自動寫出長篇文章。請點擊下方按鈕，系統會自動寫好發包給 AI 的「專屬提示詞(Prompt)」。<br><span class="font-bold text-red-600">⚠️ 複製後，請自行打開 ChatGPT 或 Gemini 貼上送出，讓 AI 幫您寫文章！</span></p>
-                <button id="generate-prompt-btn" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded shadow transition duration-200 text-sm sm:text-base mb-2">
-                    📋 從目前題庫抽 6 字並複製 AI 提示詞
+                <p class="text-sm text-gray-700 mb-4 leading-relaxed">點擊按鈕後，系統將自動從「目前選定題庫」隨機抽出 6 個單字，並跳轉至 AI 生成器頁面開始命題。</p>
+                <button id="btn-link-ai" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-lg shadow-md transition duration-200 flex items-center justify-center gap-2">
+                    🚀 開啟 AI 聯網命題 (新分頁)
                 </button>
             </div>
 
             <div class="mb-6 bg-green-50 p-3 sm:p-4 rounded border border-green-200">
-                <label class="block text-green-800 font-bold mb-2 text-sm sm:text-base">📝 第三步：貼上 AI 「產出的結果」 (選填)</label>
-                <textarea id="cloze-json-input" class="w-full h-24 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-green-500 outline-none" placeholder='請將 AI 幫您寫好的 { JSON } 格式結果貼在這裡。&#10;若留空，系統將自動使用預載的內建短文。'></textarea>
+                <label class="block text-green-800 font-bold mb-2 text-sm sm:text-base">📝 第三步：貼上 AI 產出的結果 (JSON)</label>
+                <textarea id="cloze-json-input" class="w-full h-24 border-2 border-gray-300 rounded p-2 sm:p-3 font-mono text-xs sm:text-sm focus:border-green-500 outline-none" placeholder='請將 AI 產出的結果內容貼在這裡...'></textarea>
             </div>
 
             <button id="import-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition duration-200 text-base sm:text-lg">💾 儲存自訂短文並出卷</button>
@@ -424,54 +423,20 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
     }
 
     // ==========================================
-    // 一鍵生成 AI 命題 Prompt
+    // AI 連動邏輯：隨機抽 6 字並開啟新分頁
     // ==========================================
-    function generateClozePrompt() {
+    function linkAIGenerator() {
         if(totalWordPool.length < 6) {
-            alert("題庫單字不足 6 個，請先載入或上傳題庫！");
+            alert("題庫單字量不足 6 個！請先載入單字檔或選擇題庫。");
             return;
         }
-        
-        let shuffled = [...totalWordPool].filter(w => w.word && w.meaning).sort(() => 0.5 - Math.random());
+        let shuffled = [...totalWordPool].sort(() => 0.5 - Math.random());
         let selected = shuffled.slice(0, 6);
-        let wordListStr = selected.map(w => `${w.word} (${w.pos} ${w.meaning})`).join(', ');
-
-        let prompt = `你現在是一位台灣「高級中等學校英文單字比賽」的專業命題教授。請根據我提供的 6 個單字，撰寫一篇符合決賽水準的「短文克漏字 (Passage Cloze Test)」題組。
-
-【文章與測驗要求】
-1. 題量：1 篇短文，包含 5 個空格。
-2. 格式：撰寫一篇約 150-200 字的高中進階程度英文短文（主題可為科普、歷史、社會等）。
-3. 選項：請使用以下 6 個單字作為 (A) 到 (F) 的選項：
-[ ${wordListStr} ]
-4. 要求：著重測驗文章脈絡理解與進階詞彙。其中 5 個單字為正解填入空格，必須留下 1 個單字作為具備迷惑性的「誘答字 (Distractor)」。
-5. 空格格式：請在文章中將這 5 個答案挖空，並精準替換為這段 HTML 標籤：<span class='px-1 border-b border-black font-bold text-red-600'> 題號 </span>（題號請依序填入 1, 2, 3, 4, 5）。
-
-【輸出格式要求】
-請「只」輸出符合下列格式的單一 JSON 物件（絕對不要輸出任何 markdown 標記、\`\`\`json 符號或說明文字），以便我直接匯入程式碼：
-
-{
-  "words": ["(A) 選項1", "(B) 選項2", "(C) 選項3", "(D) 選項4", "(E) 選項5", "(F) 選項6"],
-  "paras": [
-    "第一段文章內容，包含 <span class='px-1 border-b border-black font-bold text-red-600'> 1 </span>...",
-    "第二段文章內容，包含 <span class='px-1 border-b border-black font-bold text-red-600'> 2 </span>..."
-  ],
-  "ans": ["A", "C", "D", "B", "E"],
-  "trans": "整篇文章的繁體中文流暢翻譯。",
-  "exp": [
-    "第1題解析（包含語意判斷、搭配詞等）。",
-    "第2題解析。",
-    "第3題解析。",
-    "第4題解析。",
-    "第5題解析。"
-  ],
-  "distractor": "(F) 誘答字英文 (中文意思) - 簡述為何它是誘答選項。"
-}`;
+        let wordStr = selected.map(w => `${w.word} (${w.pos} ${w.meaning})`).join(', ');
         
-        navigator.clipboard.writeText(prompt).then(() => {
-            alert(`✅ 專屬 AI 命題提示詞已成功複製到剪貼簿！\n\n已選用單字：\n${wordListStr}\n\n請前往 ChatGPT 或 Gemini 貼上此段提示詞產生 JSON，並貼回本網頁的輸入框中。`);
-        }).catch(err => {
-            alert('複製失敗，請手動選取：\n\n' + prompt);
-        });
+        // 開啟分頁並傳遞參數 (嚴格進行 URI 編碼，防止中文亂碼)
+        const url = `cloze-maker.html?words=${encodeURIComponent(wordStr)}`;
+        window.open(url, '_blank');
     }
 
     // ==========================================
@@ -732,7 +697,7 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
                     <p class="text-gray-600"><span class="bg-indigo-100 text-indigo-800 px-1 rounded text-xs mr-1">詳解</span>${m.exp}</p>
                   </div>${i < 4 ? '<hr class="border-gray-200">' : ''}`;
         });
-        h += `</div><h3 class="font-bold text-base sm:text-lg text-indigo-700 mb-2 border-b-2 border-indigo-200 pb-1">測驗二：詞彙題 - 第二部分 (配配)</h3><div class="space-y-4 mb-6 bg-white p-4 rounded shadow-sm border border-indigo-100 text-sm sm:text-base leading-relaxed"><p class="font-bold text-red-600 mb-2 border-b border-red-100 pb-2">解答順序：1.(${currentBank.matching.ans[0]}) &nbsp; 2.(${currentBank.matching.ans[1]}) &nbsp; 3.(${currentBank.matching.ans[2]}) &nbsp; 4.(${currentBank.matching.ans[3]}) &nbsp; 5.(${currentBank.matching.ans[4]})</p>`;
+        h += `</div><h3 class="font-bold text-base sm:text-lg text-indigo-700 mb-2 border-b-2 border-indigo-200 pb-1">測驗二：詞彙題 - 第二部分 (配對)</h3><div class="space-y-4 mb-6 bg-white p-4 rounded shadow-sm border border-indigo-100 text-sm sm:text-base leading-relaxed"><p class="font-bold text-red-600 mb-2 border-b border-red-100 pb-2">解答順序：1.(${currentBank.matching.ans[0]}) &nbsp; 2.(${currentBank.matching.ans[1]}) &nbsp; 3.(${currentBank.matching.ans[2]}) &nbsp; 4.(${currentBank.matching.ans[3]}) &nbsp; 5.(${currentBank.matching.ans[4]})</p>`;
         currentBank.matching.exp.forEach((e, i) => { h += `<p><span class="font-bold w-5 inline-block">${i + 1}.</span> <strong class="text-indigo-700">(${currentBank.matching.ans[i]}) ${currentBank.matching.ansWords[i]}</strong>：${e}</p>`; });
         h += `<div class="mt-3 bg-yellow-50 p-2 rounded border border-yellow-200 text-yellow-800"><p>💡 <strong>誘答選項解析：${currentBank.matching.distractor}</strong>。為干擾選項。</p></div></div>`;
         
@@ -771,7 +736,7 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
             }
             if (id === 'submit-btn') submitExam();
             
-            if (id === 'generate-prompt-btn') generateClozePrompt();
+            if (id === 'btn-link-ai') linkAIGenerator();
             
             if (id === 'toggle-answers-btn') {
                 const sec = document.getElementById("answerSection");
