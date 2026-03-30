@@ -141,39 +141,35 @@
                     <option value="basic" selected>📚 基礎模擬題庫 (內建)</option>
                     
                     <optgroup label="📘 三民單字 Level 3">
-                        <option value="Level3.txt">Level 3 (全冊總複習)</option>
-                        <option value="Level3_U1-10.txt">Level 3 (U1-10)</option>
-                        <option value="Level3_U11-20.txt">Level 3 (U11-20)</option>
-                        <option value="Level3_U21-30.txt">Level 3 (U21-30)</option>
-                        <option value="Level3_U31-40.txt">Level 3 (U31-40)</option>
+                        <option value="三民Level 3.txt">Level 3 (全冊總複習)</option>
+                        <option value="三民Level 3 U1-10.txt">Level 3 (U1-10)</option>
+                        <option value="三民Level 3 U11-20.txt">Level 3 (U11-20)</option>
+                        <option value="三民Level 3 U21-30.txt">Level 3 (U21-30)</option>
+                        <option value="三民Level 3 U31-40.txt">Level 3 (U31-40)</option>
                     </optgroup>
 
                     <optgroup label="📗 三民單字 Level 4">
-                        <option value="Level4.txt">Level 4 (全冊總複習)</option>
-                        <option value="Level4_U1-10.txt">Level 4 (U1-10)</option>
-                        <option value="Level4_U11-20.txt">Level 4 (U11-20)</option>
-                        <option value="Level4_U21-30.txt">Level 4 (U21-30)</option>
-                        <option value="Level4_U31-40.txt">Level 4 (U31-40)</option>
+                        <option value="三民Level 4.txt">Level 4 (全冊總複習)</option>
+                        <option value="三民Level 4 U1-10.txt">Level 4 (U1-10)</option>
+                        <option value="三民Level 4 U11-20.txt">Level 4 (U11-20)</option>
+                        <option value="三民Level 4 U21-30.txt">Level 4 (U21-30)</option>
+                        <option value="三民Level 4 U31-40.txt">Level 4 (U31-40)</option>
                     </optgroup>
 
                     <optgroup label="📙 三民單字 Level 5">
-                        <option value="Level5.txt">Level 5 (全冊總複習)</option>
-                        <option value="Level5_U1-10.txt">Level 5 (U1-10)</option>
-                        <option value="Level5_U11-20.txt">Level 5 (U11-20)</option>
-                        <option value="Level5_U21-30.txt">Level 5 (U21-30)</option>
-                        <option value="Level5_U31-40.txt">Level 5 (U31-40)</option>
+                        <option value="三民Level 5.txt">Level 5 (全冊總複習)</option>
+                        <option value="三民Level 5 U1-10.txt">Level 5 (U1-10)</option>
+                        <option value="三民Level 5 U11-20.txt">Level 5 (U11-20)</option>
+                        <option value="三民Level 5 U21-30.txt">Level 5 (U21-30)</option>
+                        <option value="三民Level 5 U31-40.txt">Level 5 (U31-40)</option>
                     </optgroup>
 
                     <optgroup label="📕 三民單字 Level 6">
-                        <option value="Level6.txt">Level 6 (全冊總複習)</option>
-                        <option value="Level6_U1-10.txt">Level 6 (U1-10)</option>
-                        <option value="Level6_U11-20.txt">Level 6 (U11-20)</option>
-                        <option value="Level6_U21-30.txt">Level 6 (U21-30)</option>
-                        <option value="Level6_U31-40.txt">Level 6 (U31-40)</option>
-                    </optgroup>
-
-                    <optgroup label="✨ 三民單字 Plus">
-                        <option value="Plus_U1-10.txt">Plus (U1-10)</option>
+                        <option value="三民Level 6.txt">Level 6 (全冊總複習)</option>
+                        <option value="三民Level 6 U1-10.txt">Level 6 (U1-10)</option>
+                        <option value="三民Level 6 U11-20.txt">Level 6 (U11-20)</option>
+                        <option value="三民Level 6 U21-30.txt">Level 6 (U21-30)</option>
+                        <option value="三民Level 6 U31-40.txt">Level 6 (U31-40)</option>
                     </optgroup>
                 </select>
                 <p class="text-xs sm:text-sm font-bold text-indigo-600 bg-indigo-50 inline-block px-3 py-2 rounded-lg border border-indigo-200 whitespace-nowrap shadow-sm w-full sm:w-auto text-center" id="pool-status-display">系統題庫載入中...</p>
@@ -424,6 +420,7 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
 
     // ==========================================
     // AI 連動邏輯：隨機抽 6 字並開啟新分頁
+    // ★ 已精準修正檔名為 cloze_generator.html (底線)
     // ==========================================
     function linkAIGenerator() {
         if(totalWordPool.length < 6) {
@@ -435,7 +432,7 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
         let wordStr = selected.map(w => `${w.word} (${w.pos} ${w.meaning})`).join(', ');
         
         // 開啟分頁並傳遞參數 (嚴格進行 URI 編碼，防止中文亂碼)
-        const url = `cloze-maker.html?words=${encodeURIComponent(wordStr)}`;
+        const url = `cloze_generator.html?words=${encodeURIComponent(wordStr)}`;
         window.open(url, '_blank');
     }
 
@@ -787,7 +784,7 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
     });
 
     // ==========================================
-    // 雲端單字庫選單切換邏輯
+    // 雲端單字庫選單切換邏輯 (嚴格對應 GitHub 檔名)
     // ==========================================
     document.getElementById('bank-select').addEventListener('change', async function(e) {
         const selectedValue = e.target.value;
@@ -821,7 +818,7 @@ yearly	adj.	每年的	Frank's _____ income is US$60,000.`;
             }
         } catch (error) {
             console.error("載入題庫失敗:", error);
-            alert(`❌ 無法載入題庫檔案：${selectedValue}\n\n原因：${error.message}\n\n請確認您是否已經將「${selectedValue}」這個文字檔上傳至您的 GitHub，且大小寫完全吻合。`);
+            alert(`❌ 無法載入題庫檔案：${selectedValue}\n\n原因：${error.message}\n\n系統已為您切換回基礎題庫。`);
             
             // 載入失敗，退回基礎題庫
             selectEl.value = "basic";
